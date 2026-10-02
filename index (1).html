@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>115單字比賽 集訓一 作業(1) 詳解</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E7EBEE; --card:#FDFDFC;
+  --ink:#10202F; --ink-2:#56687A; --ink-3:#7C8B99;
+  --rule:#C6D0D8; --pen:#17457E; --hl:#FFE773; --miss:#A34234;
+  --mono:'IBM Plex Mono',ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace;
+  --read:'Literata',Georgia,'Times New Roman',serif;
+  --han:'PingFang TC','Microsoft JhengHei','Noto Sans TC',system-ui,sans-serif;
+  --maxw:1180px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--han);font-size:16px;line-height:1.75}
+:focus-visible{outline:2px solid var(--pen);outline-offset:3px;border-radius:2px}
+
+.top{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.top-in{max-width:var(--maxw);margin:0 auto;padding:14px 24px 0}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);margin:0 0 4px}
+.title{font-size:23px;font-weight:600;margin:0;line-height:1.3}
+.meta{font-family:var(--mono);font-size:12px;color:var(--ink-2);margin:4px 0 0;letter-spacing:.04em}
+.bar{display:flex;gap:7px;align-items:center;flex-wrap:wrap;padding:12px 0 11px;margin-top:10px;border-top:1px solid var(--rule)}
+.chip{font-family:var(--mono);font-size:12px;letter-spacing:.04em;border:1px solid var(--rule);background:transparent;color:var(--ink-2);padding:5px 10px;border-radius:999px;cursor:pointer;text-decoration:none;transition:border-color .15s,color .15s,background .15s}
+.chip:hover{border-color:var(--pen);color:var(--pen)}
+.chip.solid{margin-left:auto;border-color:var(--ink);color:var(--ink);font-weight:500}
+.chip.solid:hover{background:var(--ink);color:var(--card)}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:28px 24px 96px;display:grid;gap:36px;grid-template-columns:minmax(0,1fr) 288px}
+@media (max-width:1020px){.wrap{grid-template-columns:minmax(0,1fr);gap:44px}}
+
+.sec{margin:0 0 48px;scroll-margin-top:136px}
+.sec-head{display:flex;align-items:baseline;gap:12px;padding-bottom:9px;border-bottom:2px solid var(--ink);flex-wrap:wrap}
+.sec-num{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--ink-3)}
+.sec-label{font-size:18px;font-weight:600;margin:0}
+.sec-score{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);margin-left:auto}
+.sec-inst{font-size:13.5px;color:var(--ink-2);margin:9px 0 0}
+
+.bank{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin:16px 0 0}
+@media (max-width:760px){.bank{grid-template-columns:repeat(2,1fr)}}
+.bank-i{background:var(--card);padding:8px 10px;font-family:var(--read);font-size:14.5px}
+.bank-i span{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);margin-right:5px}
+.bank-i.used{background:#F2F5F6;color:var(--ink-3)}
+
+.passage{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--ink);padding:22px 26px;margin:18px 0 0;font-family:var(--read);font-size:16.5px;line-height:1.95;color:#1a2836}
+.passage p{margin:0 0 1em}
+.passage p:last-child{margin-bottom:0}
+.blank{display:inline-block;min-width:70px;text-align:center;border:0;border-bottom:1.5px solid var(--ink);font-family:var(--mono);font-size:13px;color:var(--pen);cursor:pointer;background:none;padding:0 4px;line-height:1.4}
+.blank:hover{background:rgba(23,69,126,.07)}
+.blank.filled{font-family:var(--read);font-size:16.5px;color:var(--ink);border-bottom-color:transparent;min-width:0}
+.blank sup{font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-right:2px}
+.zhbtn{display:block;margin:0 0 18px;background:var(--card);border:1px solid var(--rule);border-top:0;width:100%;text-align:left;padding:8px 26px;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;color:var(--pen);cursor:pointer}
+.zhbtn:hover{color:var(--ink)}
+.zhbtn::after{content:' ▾'}
+.zhbtn.on::after{content:' ▴'}
+.zhbox{display:none;background:#F7F9FA;border:1px solid var(--rule);border-top:0;padding:18px 26px;margin:0 0 18px;font-size:15px;line-height:1.95;color:#22323F}
+.zhbox.on{display:block}
+.zhbox p{margin:0 0 .9em}
+.zhbox p:last-child{margin:0}
+
+.q{background:var(--card);border:1px solid var(--rule);margin:14px 0 0;scroll-margin-top:142px}
+.q-top{padding:16px 22px 14px}
+.q-tag{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.q-n{font-family:var(--mono);font-size:13px;font-weight:600}
+.q-kind{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.prompt{font-size:14.5px;line-height:1.85;color:var(--ink-2);margin:0 0 11px;padding-left:11px;border-left:2px solid var(--rule)}
+.stem{font-family:var(--read);font-size:16.5px;line-height:1.85;margin:0 0 13px;color:#1a2836}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:2px 20px}
+@media (max-width:640px){.opts{grid-template-columns:1fr}}
+.opt{display:flex;gap:9px;font-family:var(--read);font-size:15.5px;line-height:1.6;padding:3px 0;color:#243342}
+.opt-k{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);padding-top:2px;flex:none}
+.reveal{display:block;width:100%;text-align:left;margin-top:14px;background:none;border:0;border-top:1px dashed var(--rule);padding:11px 0 0;font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--pen);cursor:pointer}
+.reveal:hover{color:var(--ink)}
+.reveal::after{content:' ▾'}
+.q.open .reveal::after{content:' ▴'}
+.q.open .reveal{color:var(--ink-3)}
+
+.body{display:none;border-top:1px solid var(--rule);background:#F7F9FA;padding:18px 22px 20px}
+.q.open .body{display:block}
+.ans{display:flex;align-items:baseline;gap:10px;margin:0 0 13px;flex-wrap:wrap}
+.ans-k{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--ink-3);flex:none;padding-top:2px}
+.ans-v{font-family:var(--read);font-size:18px;font-weight:600}
+.fills{list-style:none;margin:0 0 13px;padding:0}
+.fill{display:flex;gap:11px;align-items:baseline;padding:7px 0;border-bottom:1px dotted var(--rule)}
+.fill-k{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);flex:none;width:26px}
+.fill-w{font-family:var(--read);font-size:17px;font-weight:600;flex:none}
+.fill-n{font-size:13.5px;color:var(--ink-2);line-height:1.7}
+.zh{font-size:15px;line-height:1.85;margin:0 0 14px;color:#22323F}
+.why{font-size:14.5px;line-height:1.85;margin:0 0 4px;color:#22323F;border-top:1px solid var(--rule);padding-top:12px}
+.lines{margin:0;padding:0;list-style:none;border-top:1px solid var(--rule)}
+.line{display:flex;gap:11px;padding:9px 0;border-bottom:1px solid var(--rule);font-size:14.5px;line-height:1.75;color:var(--ink-2)}
+.line-k{font-family:var(--mono);font-size:12.5px;flex:none;width:28px;color:var(--ink-3);padding-top:2px}
+.line.right{color:var(--ink)}
+.line.right .line-k{color:var(--ink);font-weight:600}
+.line.right .line-k::after{content:'✓';display:block;font-size:12px;line-height:1.3}
+.line.wrong .line-k{color:var(--miss);opacity:.85}
+.line.wrong .line-k::after{content:'✗';display:block;font-size:12px;line-height:1.3}
+.evid{margin:15px 0 0;font-family:var(--read);font-size:14.5px;line-height:1.8;color:var(--ink-2);padding-left:13px;border-left:2px solid var(--hl)}
+.evid span{font-family:var(--han);font-size:11px;letter-spacing:.14em;color:var(--ink-3);display:block;margin-bottom:3px}
+
+.hl{background-image:linear-gradient(transparent 12%,var(--hl) 12%,var(--hl) 90%,transparent 90%);background-repeat:no-repeat;background-size:0% 100%;transition:background-size .55s cubic-bezier(.2,.75,.3,1);border-radius:1px}
+.hl.on{background-size:100% 100%}
+
+.sample{margin:15px 0 0;border:1px solid var(--rule);border-left:3px solid var(--ink);background:var(--card);padding:16px 20px}
+.sample p:not(.note-h){font-family:var(--read);font-size:15.5px;line-height:1.9;color:#1a2836;margin:0 0 1em}
+.sample p:last-child{margin-bottom:0}
+.bank.wide{grid-template-columns:1fr}
+.bank.wide .bank-i{font-size:15px;line-height:1.7;padding:10px 14px}
+.note{margin:15px 0 0;border:1px solid var(--rule);background:var(--card);padding:13px 16px}
+.note-h{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin:0 0 9px}
+.note-i{margin:0;padding:9px 0 0;border-top:1px dotted var(--rule)}
+.note-i:first-of-type{border-top:0;padding-top:0}
+.term{font-family:var(--read);font-size:16px;font-weight:600}
+.pos{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);margin:0 6px}
+.gloss{font-size:14.5px}
+.ex{font-family:var(--read);font-size:14px;color:var(--ink-2);line-height:1.7;margin:3px 0 0;display:block}
+.ex i{font-family:var(--han);font-style:normal;font-size:13px;color:var(--ink-3);display:block}
+
+.side{position:sticky;top:136px;align-self:start;max-height:calc(100vh - 164px);overflow:auto;padding-right:4px}
+@media (max-width:1020px){.side{position:static;max-height:none;scroll-margin-top:136px}}
+.side-h{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin:0 0 3px}
+.side-t{font-size:16px;font-weight:600;margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
+.card-list{margin:0;padding:0;list-style:none}
+.card-item{border-bottom:1px solid var(--rule);padding:11px 0}
+.card-item a{display:block;text-decoration:none;color:inherit}
+.card-item a:hover .term{background:var(--hl)}
+.jump{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);float:right;padding-top:5px}
+.side-note{font-size:12.5px;color:var(--ink-3);line-height:1.7;margin:16px 0 0}
+.foot{max-width:var(--maxw);margin:0 auto;padding:0 24px 48px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink-3)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+@media print{
+  body{background:#fff;font-size:10.5pt}
+  .top,.side,.reveal,.foot,.zhbtn{display:none!important}
+  .wrap{display:block;max-width:none;padding:0}
+  .q .body{display:block!important}
+  .zhbox{display:block!important}
+  .q{break-inside:avoid;border-color:#999;margin-bottom:9pt}
+  .passage{break-inside:avoid}
+  .hl{background-size:100% 100%!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <p class="eyebrow" id="brand"></p>
+    <h1 class="title" id="examTitle"></h1>
+    <p class="meta" id="examMeta"></p>
+    <nav class="bar" id="nav"></nav>
+  </div>
+</header>
+
+<div class="wrap"><main id="main"></main><aside class="side" id="side"></aside></div>
+<p class="foot" id="foot"></p>
+
+<script>
+/* ==========================================================================
+   ①  題目與詳解全部寫在下面的 EXAM 物件裡。要改題、加題、修字，只動這裡。
+
+   section（大題）：{ id, label, score, instruction, bank?, groups: [...] }
+   group（同一篇文章的題組）：{ passage?, zh?, questions: [...] }
+       passage 裡寫 __7__ 就會變成可點的空格，數字對應題號。
+       zh 是全文中譯，會做成可展開的按鈕。
+
+   question 依題型三選一：
+     選擇題   { n, kind, stem, options:{A..D}, answer:"B", translation, explain:{A..D}, evidence?, notes? }
+     單一填答 { n, kind, stem, answerText:"prejudice", why, notes? }
+     多格填答 { n, kind, prompt, stem, answers:[{k:"①", w:"字", note:"說明"}], notes? }
+   ========================================================================== */
+const EXAM = {
+  brand: "Vocabulary Competition",
+  title: "115單字比賽 集訓一 作業(1) 詳解｜Training Week 1 HW1",
+  meta: "Instructor: Howard Chang　·　範圍：集訓一作業(1)",
+  footer: "高雄女中 115學年度 英文單字比賽集訓用",
+  sections: [
+  /* ===================== 測驗一：聽英拼寫 ===================== */
+  {
+    id:"spelling", label:"測驗一、聽英拼寫", score:"50 字",
+    instruction:"下列各題依據聽力播放之英文拼寫出正確單字，每題播放兩次。括號內為拼字陷阱提示。本回最易拼錯的八個字：handkerchief、mortgage、miscellaneous、unprecedented、reminiscent、psychiatry、aesthetic、bureaucrat。",
+    bank:{
+      "1":"canyon　峽谷（can ＋ yon，只有一個 n 在中間）",
+      "2":"explode　爆炸（n. explosion 要改成 -sion）",
+      "3":"reservoir　水庫（-voir 法文字尾，不是 -vior）",
+      "4":"enthusiastic　熱衷的（-thu- 不是 -tu-）",
+      "5":"leopard　豹（leo ＋ pard，o 不發音）",
+      "6":"porcelain　瓷器（字尾 -lain 不是 -line）",
+      "7":"spontaneous　自發的（-tane- 中間是 a）",
+      "8":"temperature　溫度（-per-a-ture，中間的 a 常被漏掉）",
+      "9":"dreadful　可怕的（dread ＋ ful，只有一個 l）",
+      "10":"bureaucrat　官僚（bureau ＋ crat，-eau 法文字尾）",
+      "11":"peninsula　半島（pen ＋ insula，字尾無 r）",
+      "12":"exhibition　展覽（h 不發音但要寫）",
+      "13":"intervene　介入（inter ＋ vene）",
+      "14":"suspicion　懷疑（字尾 -cion 不是 -tion）",
+      "15":"handkerchief　手帕（hand ＋ kerchief，d 不發音）",
+      "16":"mortgage　房貸（t 不發音，但一定要寫）",
+      "17":"assault　襲擊（-ss- 雙寫，字尾 -ault）",
+      "18":"prominent　顯著的（-min- 不是 -men-）",
+      "19":"condemn　譴責（字尾 n 不發音）",
+      "20":"influential　有影響力的（-tial 不是 -cial）",
+      "21":"squirrel　松鼠（-rr- 雙寫）",
+      "22":"dinosaur　恐龍（字尾 -saur 不是 -sour）",
+      "23":"integrity　正直（integr- 與 integrate 同源）",
+      "24":"legitimate　合法的（-git- 不是 -gid-）",
+      "25":"circumstance　情況（circum ＋ stance）",
+      "26":"privilege　特權（-vil- 不是 -vel-）",
+      "27":"surgeon　外科醫師（字尾 -geon）",
+      "28":"collision　碰撞（-ll- 雙寫，字尾 -sion）",
+      "29":"exposure　暴露（expose ＋ ure，去 e）",
+      "30":"maintenance　維護（名詞是 -ten- 不是 -tain-）",
+      "31":"chronic　慢性的（ch 發 /k/ 音）",
+      "32":"fetch　去拿來（-tch 結尾）",
+      "33":"miniature　縮小模型（mini-a-ture，中間有 a）",
+      "34":"unprecedented　前所未有的（un ＋ precedent ＋ ed）",
+      "35":"miscellaneous　各式各樣的（-sce- 與 -ane- 都易錯）",
+      "36":"asthma　氣喘（-sthm- 連續三個子音）",
+      "37":"catastrophe　大災難（字尾 -phe 不是 -fe）",
+      "38":"municipal　市政的（-nic- 不是 -nip-）",
+      "39":"dispensable　可有可無的（反義 indispensable）",
+      "40":"predecessor　前任者（pre ＋ decessor，-cess- 雙 s）",
+      "41":"reminiscent　令人想起的（-min-is-cent）",
+      "42":"evacuate　疏散（e ＋ vacu ＋ ate，與 vacuum 同源）",
+      "43":"versatile　多才多藝的（字尾 -tile）",
+      "44":"psychiatry　精神醫學（ps- 開頭，p 不發音）",
+      "45":"hypocrite　偽君子（hypo ＋ crite；形容詞 hypocritical）",
+      "46":"aesthetic　美學的（ae- 開頭，字首組合最易漏）",
+      "47":"eclipse　日蝕、月蝕（e ＋ clipse）",
+      "48":"diabetes　糖尿病（字尾 -tes 不是 -tis）",
+      "49":"casualty　傷亡者（casual ＋ ty）",
+      "50":"cement　水泥（ce- 開頭，不是 se-）"
+    },
+    groups:[{ questions:[] }]
+  },
+
+  /* ===================== 測驗二：選擇題 ===================== */
+  {
+    id:"mc", label:"測驗二、選擇題", score:"25 題",
+    instruction:"依據英文句子選出一個正確或最佳的答案。答案：B A D B A　D B A D A　C C C B D　B D C A C　C D D C C",
+    groups:[{
+      questions:[
+        { n:1, kind:"形容詞",
+          stem:"Learning that her daughter had been accepted by National Taiwan University, the mother was so ______ that she laughed and cried at once.",
+          options:{A:"barren 貧瘠的、不毛的",B:"ecstatic 欣喜若狂的",C:"sterile 無菌的；不孕的",D:"versatile 多才多藝的"}, answer:"B",
+          translation:"得知女兒被台大錄取，這位母親欣喜若狂，又笑又哭。",
+          explain:{
+            A:"barren 是「貧瘠的」，形容土地或（引申）毫無成果的努力，不能形容人的情緒。",
+            B:"這是 so ... that 句型，結果子句是 she laughed and cried at once（又笑又哭）——情緒強烈到失控，正是 ecstatic（欣喜若狂）。ecstatic 的程度遠高於 happy，與「又笑又哭」的反應剛好相稱。",
+            C:"sterile 是「無菌的」或「不孕的」，也可引申為「毫無成果的」，三個意思都無法形容喜悅。",
+            D:"versatile 是「多才多藝的」，形容人的能力而非當下的情緒。"
+          },
+          notes:[
+            {term:"ecstatic", pos:"adj.", gloss:"欣喜若狂的（n. ecstasy 狂喜）", ex:"She was ecstatic about the news.", exZh:"她為這個消息欣喜若狂。"},
+            {term:"so ... that 的結果子句", pos:"技巧", gloss:"that 子句描述的反應就是空格的程度指標。反應越誇張，形容詞的強度就要越高。"}
+          ]},
+
+        { n:2, kind:"名詞",
+          stem:"We shouldn't expect too much from him, since there is little ______ of him changing his bad habits any time soon.",
+          options:{A:"prospect 可能性、前景",B:"calamity 災難",C:"magnificence 壯麗、宏偉",D:"majesty 威嚴；陛下"}, answer:"A",
+          translation:"我們不該對他期望太高，因為他短期內改掉壞習慣的可能性微乎其微。",
+          explain:{
+            A:"there is little ______ of + V-ing 是固定結構，意為「…的可能性很小」。前半句 We shouldn't expect too much from him（不該對他期望太高）正是因為改變的機率低。prospect 意為「前景、可能性」。",
+            B:"calamity 是「災難」，指已經發生的不幸事件，不能用來表示「可能性」。",
+            C:"magnificence 是「壯麗宏偉」，形容建築或景色，語意完全不合。",
+            D:"majesty 是「威嚴」或對君主的尊稱（Your Majesty），與機率無關。"
+          },
+          notes:[
+            {term:"prospect", pos:"n.", gloss:"可能性、前景（there is little／every prospect of）；複數 prospects 指「前途」", ex:"There is little prospect of an early settlement.", exZh:"早日達成和解的可能性不大。"},
+            {term:"of + V-ing 的意義上主詞", pos:"文法", gloss:"of him changing his bad habits 中，him 是動名詞的意義上主詞（正式寫法用所有格 his）。"}
+          ]},
+
+        { n:3, kind:"形容詞",
+          stem:"Producing large amounts of gold every year, this mountain area is a ______ source of wealth that attracts many people hoping to get rich.",
+          options:{A:"notorious 惡名昭彰的",B:"flagrant 公然惡劣的",C:"bombarded 被轟炸的",D:"prolific 多產的、產量豐富的"}, answer:"D",
+          translation:"這片山區每年產出大量黃金，是個產量豐富的財富來源，吸引許多想致富的人前來。",
+          explain:{
+            A:"notorious 是「惡名昭彰的」，帶強烈負面評價；但句中這片山區吸引人前來淘金，語氣是正面的。",
+            B:"flagrant 是「公然而惡劣的」，形容違規或侵權行為（a flagrant violation），不能形容產地。",
+            C:"bombarded 是「被轟炸的」或「被（問題、訊息）轟炸」，與產量無關。",
+            D:"句首的分詞構句 Producing large amounts of gold every year（每年產出大量黃金）就是答案的定義——產量豐富，正是 prolific。這個字也可形容作家、藝術家「作品豐富」。"
+          },
+          notes:[
+            {term:"prolific", pos:"adj.", gloss:"多產的、產量豐富的（a prolific writer／a prolific source）", ex:"He was one of the most prolific composers of his age.", exZh:"他是那個時代最多產的作曲家之一。"},
+            {term:"分詞構句定方向", pos:"技巧", gloss:"句首的分詞片語往往直接說明主詞的特性，答案通常就是它的同義改寫。"}
+          ]},
+
+        { n:4, kind:"動詞",
+          stem:"With enough courage and hard work, difficulties seem to disappear and obstacles ______ into thin air, as if by magic.",
+          options:{A:"permeate 滲透、瀰漫",B:"vanish 消失不見",C:"mortgage 抵押",D:"fluctuate 波動起伏"}, answer:"B",
+          translation:"只要有足夠的勇氣與努力，困難似乎就會消失，障礙也彷彿變魔術般地化為烏有。",
+          explain:{
+            A:"permeate 是「滲透、瀰漫」，主詞多為氣味、液體或思想，方向是「擴散開來」而非「消失」。",
+            B:"vanish into thin air 是固定片語，意為「消失得無影無蹤」。空格與前面的 disappear 並列（difficulties seem to disappear and obstacles ______），兩者必須同義；句尾的 as if by magic（彷彿變魔術般）也呼應這種憑空消失的意象。",
+            C:"mortgage 當動詞是「抵押（房產）」，受詞須為不動產，語意完全不合。",
+            D:"fluctuate 是「上下波動」，指數值的起伏（prices fluctuate），不是消失。"
+          },
+          notes:[
+            {term:"vanish into thin air", pos:"idiom", gloss:"消失得無影無蹤（thin air 稀薄的空氣）", ex:"The money seemed to vanish into thin air.", exZh:"那筆錢彷彿憑空消失了。"},
+            {term:"and 連接的同義並列", pos:"技巧", gloss:"disappear and ______ 兩個動詞並列，語意必須一致。看前者就能推後者。"}
+          ]},
+
+        { n:5, kind:"動詞",
+          stem:"If you keep ignoring your unhealthy eating habits, health problems will ______ themselves sooner or later, and it may be too late.",
+          options:{A:"manifest 顯現、表露",B:"penetrate 穿透",C:"endeavor 努力",D:"justify 為…辯護"}, answer:"A",
+          translation:"如果你一直忽視自己不健康的飲食習慣，健康問題遲早會顯現出來，而到時候可能就太遲了。",
+          explain:{
+            A:"manifest itself/themselves 是固定用法，意為「（問題、症狀）顯現出來」。主詞是 health problems（健康問題），反身代名詞 themselves 正是這個搭配的標記；sooner or later（遲早）也符合問題逐漸浮現的時間感。",
+            B:"penetrate 是「穿透」，受詞是障礙物或市場（penetrate the market），且不搭配反身代名詞。",
+            C:"endeavor 是「努力」，主詞須為人，且後面接不定詞（endeavor to do），不接反身代名詞。",
+            D:"justify 是「為…辯護、使正當化」；健康問題不會替自己辯解，語意不通。"
+          },
+          notes:[
+            {term:"manifest itself", pos:"phr.", gloss:"顯現出來（adj. 明顯的；n. manifestation 表現、徵兆）", ex:"The disease may not manifest itself for years.", exZh:"這種疾病可能多年後才會顯現。"},
+            {term:"反身代名詞是線索", pos:"技巧", gloss:"空格後若緊接 itself／themselves，先想哪個動詞有「自身顯現、自我呈現」的固定用法。"}
+          ]},
+
+        { n:6, kind:"形容詞",
+          stem:"With people of Asian, European, Native Hawaiian, and many other backgrounds, Hawaii clearly reflects the ______ diversity of the United States.",
+          options:{A:"elevated 升高的",B:"permanent 永久的",C:"ethical 倫理道德的",D:"ethnic 族裔的"}, answer:"D",
+          translation:"夏威夷擁有亞裔、歐裔、夏威夷原住民等多種背景的人口，清楚反映了美國的族裔多元性。",
+          explain:{
+            A:"elevated 是「升高的」，形容地勢或水準（elevated blood pressure），無法形容多元性的類型。",
+            B:"permanent 是「永久的」，指時間上的持久，與人口組成的性質無關。",
+            C:"ethical 是「倫理道德的」，與 ethnic 只差兩個字母，是本題最大的拼字陷阱。但它指的是道德規範（ethical standards），而句中列舉的 Asian, European, Native Hawaiian 全是族裔背景。",
+            D:"句首的 With people of Asian, European, Native Hawaiian, and many other backgrounds 把答案說死了——這些都是族裔分類，因此是 ethnic diversity（族裔多元）。"
+          },
+          notes:[
+            {term:"ethnic vs. ethical", pos:"辨析", gloss:"ethnic 族裔的（ethnic group／ethnic diversity）／ethical 倫理的（ethical issue／code of ethics）。拼字相近但意思毫不相干。", ex:"an ethnic minority / an ethical dilemma", exZh:"少數族裔／道德兩難"}
+          ]},
+
+        { n:7, kind:"動詞",
+          stem:"Hoping to improve his English, he ______ to an English-language newspaper last year and has read it every morning since.",
+          options:{A:"prescribed 開處方",B:"subscribed 訂閱",C:"transcribed 謄寫、轉錄",D:"inscribed 題字、銘刻"}, answer:"B",
+          translation:"為了提升英文能力，他去年訂閱了一份英文報紙，從那時起每天早上都閱讀。",
+          explain:{
+            A:"prescribe 是「開立處方」，主詞須為醫師，受詞是藥物（prescribe medicine），且搭配的介系詞不是 to。",
+            B:"subscribe to sth 是固定用法，意為「訂閱（報章雜誌）」。and 後面的 has read it every morning since（從那時起每天早上閱讀）正是訂閱之後的行為。四個選項同屬 -scribe（寫）字根家族，考的是字首的分辨。",
+            C:"transcribe 是「謄寫、轉錄（錄音、手稿）」，為及物動詞，後面不接 to。",
+            D:"inscribe 是「題字、銘刻」，用於獎盃或紀念碑（inscribe a name on a trophy）。"
+          },
+          notes:[
+            {term:"-scribe 字根家族", pos:"整理", gloss:"字根 scrib-／script- 表「寫」：subscribe 訂閱（sub- 在下方簽名）／prescribe 開處方（pre- 事先寫下）／transcribe 謄寫（trans- 轉換）／inscribe 銘刻（in- 刻入）／describe 描述。"},
+            {term:"subscribe to", pos:"phr. v.", gloss:"訂閱；也指「贊同（某種看法）」（subscribe to a theory）"}
+          ]},
+
+        { n:8, kind:"形容詞",
+          stem:"At international conferences, ______ interpreters play a key role, translating speeches into other languages while the speakers are still talking.",
+          options:{A:"simultaneous 同步的、同時發生的",B:"spontaneous 自發的、不假思索的",C:"propaganda 宣傳（名詞）",D:"perspective 觀點（名詞）"}, answer:"A",
+          translation:"在國際會議上，同步口譯員扮演關鍵角色，在講者還在說話的同時就把演說翻譯成其他語言。",
+          explain:{
+            A:"simultaneous interpretation（同步口譯）是專業術語。決定性線索在分詞構句 while the speakers are still talking（講者還在說話的同時）——兩件事同時進行，正是 simultaneous。",
+            B:"spontaneous 是「自發的、未經事先安排的」，強調的是「不假思索」而非「同時」。這是最容易混淆的選項，兩字都以 -taneous 結尾，但 simul- 表「同時」、spon- 表「自發」。",
+            C:"propaganda 是名詞「政治宣傳」，無法修飾 interpreters。",
+            D:"perspective 是名詞「觀點、透視法」，同樣不能當形容詞用。"
+          },
+          notes:[
+            {term:"simultaneous vs. spontaneous", pos:"辨析", gloss:"simultaneous 同時發生的（simul- 同時，同 simulcast）／spontaneous 自發的（spon- 自願）。字尾相同，字首決定意思。", ex:"simultaneous interpretation / a spontaneous reaction", exZh:"同步口譯／不假思索的反應"},
+            {term:"先看詞性再比語意", pos:"技巧", gloss:"本題 (C)(D) 都是名詞，無法修飾後面的名詞 interpreters，可直接刪去。"}
+          ]},
+
+        { n:9, kind:"形容詞",
+          stem:"If you love modern art, don't miss next week's exhibition, which will show works by ______ artists who are still creating today.",
+          options:{A:"classical 古典的",B:"redundant 多餘的；被裁員的",C:"colloquial 口語的",D:"contemporary 當代的"}, answer:"D",
+          translation:"如果你喜愛現代藝術，別錯過下週的展覽，展出的是至今仍在創作的當代藝術家作品。",
+          explain:{
+            A:"classical 是「古典的」，指久遠的傳統風格（classical music），與 who are still creating today（至今仍在創作）直接矛盾。",
+            B:"redundant 是「多餘累贅的」或英式用法的「被裁員的」，都不能形容藝術家的時代。",
+            C:"colloquial 是「口語的」，用於語言風格的分類，與藝術流派無關。",
+            D:"兩個線索：句首的 If you love modern art（如果你喜愛現代藝術）與關係子句 who are still creating today（至今仍在創作）。活在當下、仍在創作的，就是 contemporary artists（當代藝術家）。"
+          },
+          notes:[
+            {term:"contemporary", pos:"adj. / n.", gloss:"當代的；也指「同時代的人」（a contemporary of Shakespeare 莎士比亞的同代人）", ex:"The museum focuses on contemporary art.", exZh:"這間美術館專注於當代藝術。"},
+            {term:"modern vs. contemporary", pos:"辨析", gloss:"藝術史上 modern art 指二十世紀前中期的現代主義；contemporary art 指當下仍在進行的創作。日常用語則常互換。"}
+          ]},
+
+        { n:10, kind:"動名詞",
+          stem:"Martin Luther King Jr. dedicated his life to ______ for the civil rights of African Americans until he was assassinated in 1968.",
+          options:{A:"advocating 倡導、聲援",B:"affirming 肯定、確認",C:"contemplating 沉思、考慮",D:"recoiling 退縮、畏懼"}, answer:"A",
+          translation:"小馬丁・路德・金恩終其一生致力於為非裔美國人的公民權發聲，直到他在一九六八年遭到暗殺。",
+          explain:{
+            A:"advocate for sth 意為「為…發聲、倡議」，介系詞 for 正好對應空格後的結構。而 dedicate one's life to 後面接動名詞（to 是介系詞），形式也吻合。語意上，金恩博士畢生為民權奮鬥是歷史常識。",
+            B:"affirm 是「肯定、確認」，為及物動詞（affirm one's belief），後面不接 for。",
+            C:"contemplate 是「沉思、考慮」，受詞是計畫或想法，而且「思考」與 dedicated his life to（畢生奉獻）的行動力不相稱。",
+            D:"recoil 是「退縮、畏懼」，搭配 from（recoil from violence），語意與方向都相反。"
+          },
+          notes:[
+            {term:"advocate for", pos:"phr.", gloss:"為…倡議、發聲（advocate 也可當及物動詞直接接受詞）", ex:"She advocates for better working conditions.", exZh:"她為更好的工作環境發聲。"},
+            {term:"dedicate one's life to + V-ing", pos:"句型", gloss:"畢生致力於…；to 是介系詞，後面接動名詞。同類還有 be committed to、look forward to、object to。"}
+          ]},
+
+        { n:11, kind:"動詞",
+          stem:"With the help of sniffer dogs, airport police caught three travelers who were trying to ______ drugs through customs in their suitcases.",
+          options:{A:"sneer 譏笑",B:"intervene 介入、調停",C:"smuggle 走私、偷運",D:"intimidate 恐嚇"}, answer:"C",
+          translation:"在緝毒犬的協助下，機場警方逮到三名試圖把毒品藏在行李箱裡走私通關的旅客。",
+          explain:{
+            A:"sneer 是「譏笑、嘲諷」，為不及物動詞（sneer at sb），後面不能接 drugs。",
+            B:"intervene 是「介入、調停」，同樣是不及物動詞，而且主詞通常是第三方（政府、調停者），不是走私者。",
+            C:"三個線索疊在一起：sniffer dogs（緝毒犬）、through customs（通關）、in their suitcases（藏在行李箱裡）——把違禁品偷帶過海關，正是 smuggle。",
+            D:"intimidate 是「恐嚇」，受詞必須是人，不能接 drugs。"
+          },
+          notes:[
+            {term:"smuggle", pos:"vt.", gloss:"走私、偷運（smuggle sth into／through；n. smuggler 走私者）", ex:"They were caught smuggling cigarettes into the country.", exZh:"他們因走私香菸入境而被逮。"},
+            {term:"customs", pos:"n.", gloss:"海關（恆用複數並加 s）；custom 單數則是「習俗」。"}
+          ]},
+
+        { n:12, kind:"形容詞",
+          stem:"The salesman greeted the young woman warmly because he thought she was a ______ buyer who might purchase the most expensive car.",
+          options:{A:"respective 各自的",B:"permissive 寬容放任的",C:"prospective 潛在的、有望成為的",D:"deceptive 騙人的、具欺騙性的"}, answer:"C",
+          translation:"這名銷售員熱情地招呼那位年輕女子，因為他認為她是個可能買下最貴那台車的潛在買家。",
+          explain:{
+            A:"respective 是「各自的」，必須修飾複數名詞並指涉前面提過的對象（They went to their respective homes），單獨修飾 buyer 不成立。",
+            B:"permissive 是「寬容放任的」，形容教養方式或社會風氣（a permissive society），不能形容買家的身分。",
+            C:"關係子句 who might purchase the most expensive car（可能買下最貴那台車）中的 might（可能）是關鍵——還沒買，只是有可能，正是 prospective（潛在的、未來可能的）。這也解釋了銷售員為何熱情招呼。",
+            D:"deceptive 是「具欺騙性的」，帶負面意味；若銷售員認為她在騙人，就不會熱情接待了。"
+          },
+          notes:[
+            {term:"prospective", pos:"adj.", gloss:"潛在的、未來可能的（a prospective buyer／employer／student）", ex:"We showed the house to several prospective buyers.", exZh:"我們帶了幾位潛在買家看房。"},
+            {term:"-ective 字族辨析", pos:"整理", gloss:"respective 各自的／prospective 潛在的／retrospective 回顧的／perspective 觀點。字首決定意思。"}
+          ]},
+
+        { n:13, kind:"名詞",
+          stem:"The main ______ of our department this year is to cut costs and increase profits, but achieving this goal will not be easy.",
+          options:{A:"inspection 檢查、視察",B:"objection 反對、異議",C:"objective 目標",D:"injection 注射"}, answer:"C",
+          translation:"我們部門今年的主要目標是降低成本並提高獲利，但要達成這個目標並不容易。",
+          explain:{
+            A:"inspection 是「檢查、視察」，指查核的行為，不是要達成的標的。",
+            B:"objection 是「反對、異議」，與 objective 只差幾個字母，是本題最大的陷阱。但「部門的主要反對意見是降低成本」語意荒謬，而且後半句的 this goal（這個目標）直接否定了它。",
+            C:"決定性線索在後半句：but achieving this goal will not be easy（要達成這個目標並不容易）——goal（目標）回指空格，因此空格必為同義的 objective。",
+            D:"injection 是「注射」，醫療用語，與部門營運無關。"
+          },
+          notes:[
+            {term:"objective", pos:"n. / adj.", gloss:"目標（＝goal／aim）；當形容詞為「客觀的」（反義 subjective 主觀的）", ex:"Our main objective is customer satisfaction.", exZh:"我們的主要目標是顧客滿意度。"},
+            {term:"後文的同義詞回指", pos:"技巧", gloss:"後半句若用 this goal／this problem 回指空格，那個字就是答案的同義詞。這是最可靠的解題線索之一。"}
+          ]},
+
+        { n:14, kind:"動詞",
+          stem:"Some people believe the death penalty should be ______ completely, arguing that no government has the right to take a person's life.",
+          options:{A:"emphasized 強調",B:"abolished 廢除",C:"regulated 規範、管制",D:"dissented 持異議（不及物）"}, answer:"B",
+          translation:"有些人認為死刑應該被完全廢除，主張沒有任何政府有權奪走一個人的生命。",
+          explain:{
+            A:"emphasize 是「強調」，若成立會變成「死刑應被完全強調」，與後面反對死刑的論點矛盾。",
+            B:"分詞構句 arguing that no government has the right to take a person's life（主張沒有政府有權奪人性命）是明確的反死刑立場，加上副詞 completely（完全地）——要徹底取消一項制度，就是 abolish。",
+            C:"regulate 是「規範、管制」，意味著保留但加以限制；但 completely（完全）與「政府無權奪命」的主張指向的是全面廢止，不是管制。",
+            D:"dissent 是「持異議」，為不及物動詞（dissent from），不能用於被動語態。"
+          },
+          notes:[
+            {term:"abolish", pos:"vt.", gloss:"廢除（制度、法律、習俗）。n. abolition", ex:"Slavery was abolished in 1865.", exZh:"奴隸制於一八六五年被廢除。"},
+            {term:"the death penalty", pos:"n.", gloss:"死刑（＝capital punishment）"}
+          ]},
+
+        { n:15, kind:"形容詞",
+          stem:"Everyone wanted to know who had sent the ______ letter that exposed the scandal, since the writer had left no name.",
+          options:{A:"reluctant 不情願的",B:"literal 字面上的",C:"reckless 魯莽的",D:"anonymous 匿名的"}, answer:"D",
+          translation:"每個人都想知道是誰寄出了那封揭發醜聞的匿名信，因為寫信的人沒有留下姓名。",
+          explain:{
+            A:"reluctant 是「不情願的」，形容人的態度（be reluctant to do），不能形容一封信。",
+            B:"literal 是「字面上的」，與詮釋方式有關（a literal translation 直譯），與署名與否無關。",
+            C:"reckless 是「魯莽不顧後果的」，形容駕駛或行為，雖然揭發醜聞可能有風險，但句子強調的是身分不明。",
+            D:"since 子句把答案說死了：the writer had left no name（寫信的人沒留下姓名）——沒有署名就是 anonymous（匿名的），這也解釋了為何 Everyone wanted to know who had sent it。"
+          },
+          notes:[
+            {term:"anonymous", pos:"adj.", gloss:"匿名的（n. anonymity；adv. anonymously）", ex:"The tip came from an anonymous caller.", exZh:"這則線報來自一位匿名的來電者。"},
+            {term:"since 的兩種意思", pos:"用法", gloss:"此處 since 作「因為」解（＝because），不是「自從」。後面接的子句就是原因。"}
+          ]},
+
+        { n:16, kind:"名詞",
+          stem:"A medical study found that children who grew up on farms had fewer allergies than their ______ who grew up in big cities.",
+          options:{A:"encounters 相遇、遭遇",B:"counterparts 相對應的人、同類",C:"defendants 被告",D:"counterfeits 偽造品"}, answer:"B",
+          translation:"一項醫學研究發現，在農場長大的孩子比在大城市長大的同齡孩子有較少的過敏症狀。",
+          explain:{
+            A:"encounters 是「相遇、遭遇」，指事件而非人，無法成為比較的對象。",
+            B:"句子在比較兩組孩子：children who grew up on farms（農場長大的）對 ______ who grew up in big cities（城市長大的）。counterpart 意為「在另一群體中地位或角色相對應的人」，正是用來指稱對照組的標準字。",
+            C:"defendants 是「（法庭上的）被告」，法律用語，與醫學研究的對照組無關。",
+            D:"counterfeits 是「偽造品」，與 counterpart 只差字尾，是拼字陷阱；但它指的是假貨，不能指人。"
+          },
+          notes:[
+            {term:"counterpart", pos:"n.", gloss:"對應的人或物、同級者（one's counterpart in another company／country）", ex:"The minister met her Japanese counterpart.", exZh:"該部長會晤了日本的同級官員。"},
+            {term:"counterpart vs. counterfeit", pos:"辨析", gloss:"counterpart 對應者（人或物）／counterfeit 偽造品、贗品。字首相同、字尾不同。"}
+          ]},
+
+        { n:17, kind:"形容詞",
+          stem:"The ______ issue of nuclear power has divided Taiwanese society for decades, with supporters and opponents refusing to compromise with each other.",
+          options:{A:"negotiable 可協商的",B:"harmonious 和諧的",C:"contradictory 自相矛盾的",D:"controversial 具爭議性的"}, answer:"D",
+          translation:"核能這個具爭議性的議題數十年來分裂了台灣社會，支持者與反對者都拒絕彼此妥協。",
+          explain:{
+            A:"negotiable 是「可協商的」，但句尾明說 refusing to compromise with each other（拒絕彼此妥協）——正好是談不攏，語意相反。",
+            B:"harmonious 是「和諧的」，與 divided Taiwanese society（分裂社會）直接矛盾。",
+            C:"contradictory 是「自相矛盾的」，形容陳述或證據彼此牴觸（contradictory evidence）；但核能議題本身並不矛盾，矛盾的是人們的立場。這是語意最接近但角度錯誤的選項。",
+            D:"兩個線索：divided Taiwanese society for decades（數十年來分裂社會）與 supporters and opponents refusing to compromise（支持與反對雙方互不妥協）——引發對立與爭論，正是 controversial。"
+          },
+          notes:[
+            {term:"controversial", pos:"adj.", gloss:"具爭議性的（n. controversy 爭議）", ex:"The ruling remains highly controversial.", exZh:"這項裁決至今仍極具爭議。"},
+            {term:"controversial vs. contradictory", pos:"辨析", gloss:"controversial 是「引發眾人爭論的」（對象是社會）；contradictory 是「前後矛盾的」（對象是陳述本身）。"}
+          ]},
+
+        { n:18, kind:"動詞",
+          stem:"Worried about their future, many Hong Kong residents have decided to ______ from their homeland and start new lives in countries like Canada and Taiwan.",
+          options:{A:"inquire 詢問、查詢",B:"immigrate 移入（他國）",C:"emigrate 移出（本國）",D:"plummet 暴跌"}, answer:"C",
+          translation:"由於擔憂自身的未來，許多香港居民決定離開家鄉移居海外，在加拿大、台灣等國家展開新生活。",
+          explain:{
+            A:"inquire 是「詢問」，搭配 about（inquire about a job），語意完全不合。",
+            B:"immigrate 是「移入」，搭配的介系詞是 to（immigrate to Canada），強調的是「進入目的地」。但空格後是 from their homeland（從家鄉），方向相反——這是本題唯一需要分辨的地方。",
+            C:"決定性線索是介系詞 from。emigrate from 意為「從本國移出」，著眼於「離開」；句中 from their homeland（離開家鄉）正好對應。字首 e- 表「向外」（同 exit），im- 表「向內」。",
+            D:"plummet 是「（價格、數量）暴跌」，主詞須為可量化的數值，不能接人。"
+          },
+          notes:[
+            {term:"emigrate vs. immigrate", pos:"辨析", gloss:"emigrate from（離開原居地，e- 向外）／immigrate to（進入新國家，im- 向內）。同一件事的兩個角度，看介系詞就能判斷。", ex:"They emigrated from Ireland and immigrated to the US.", exZh:"他們離開愛爾蘭，移居美國。"},
+            {term:"migrate", pos:"vi.", gloss:"遷徙（中性，不分進出）；n. migration／migrant"}
+          ]},
+
+        { n:19, kind:"形容詞",
+          stem:"To emerge ______ in a chess match, you must think several moves ahead and predict what your opponent will do next.",
+          options:{A:"triumphant 得勝的、凱旋的",B:"righteous 正義凜然的",C:"imminent 迫在眉睫的",D:"obsessive 過度執著的"}, answer:"A",
+          translation:"要在棋局中勝出，你必須預先想好幾步，並預測對手接下來會怎麼走。",
+          explain:{
+            A:"emerge ＋ 形容詞 表示「以某種狀態出現、最終成為」，emerge triumphant 意為「最終獲勝」。句中 in a chess match（在棋局中）與 predict what your opponent will do（預測對手的行動）都指向勝負，而不定詞 To emerge...（為了…）正是在說明致勝的條件。",
+            B:"righteous 是「正義凜然的」，帶道德意味，與下棋的勝負無關。",
+            C:"imminent 是「迫在眉睫的」，形容即將發生的事件，不能形容人的狀態。",
+            D:"obsessive 是「過度執著的」，帶負面意味；深思熟慮不等於病態執著。"
+          },
+          notes:[
+            {term:"emerge + adj.", pos:"用法", gloss:"最終成為、以…狀態現身（emerge victorious／triumphant／unscathed 毫髮無傷）", ex:"She emerged victorious after a long campaign.", exZh:"經過漫長的選戰，她最終勝出。"},
+            {term:"triumphant", pos:"adj.", gloss:"得勝的、歡欣的（n. triumph 勝利）"}
+          ]},
+
+        { n:20, kind:"名詞",
+          stem:"Although everyone wants good health, many people care more about money, power, and the ______ that comes with a high social position.",
+          options:{A:"sanitation 公共衛生",B:"literacy 識字能力",C:"prestige 聲望、威望",D:"originality 原創性"}, answer:"C",
+          translation:"雖然每個人都想要健康，許多人卻更在意金錢、權力，以及隨著崇高社會地位而來的聲望。",
+          explain:{
+            A:"sanitation 是「公共衛生設施」，指下水道與廢棄物處理，與社會地位無關。",
+            B:"literacy 是「識字能力」，指讀寫技能；它是能力而不是地位帶來的附加價值。",
+            C:"空格與 money, power 並列，三者必須是同一類「人們追求的東西」；而關係子句 that comes with a high social position（隨崇高社會地位而來的）正是 prestige（聲望）的定義。",
+            D:"originality 是「原創性」，形容作品或想法的特質，不會「隨著社會地位而來」。"
+          },
+          notes:[
+            {term:"prestige", pos:"n.", gloss:"聲望、威望（adj. prestigious 享有盛譽的）", ex:"The award carries enormous prestige.", exZh:"這個獎項帶有極高的聲望。"},
+            {term:"並列的同類原則", pos:"技巧", gloss:"money, power, and the ______ 三者並列，必須同屬一個範疇。前兩項是人們追求的目標，第三項也必然是。"}
+          ]},
+
+        { n:21, kind:"名詞",
+          stem:"The constant noise from the construction site next door has become a real ______ to residents, who can hardly sleep at night.",
+          options:{A:"disciple 門徒、追隨者",B:"blunder 大錯、失誤",C:"nuisance 討厭的事物、擾人之事",D:"manicure 美甲"}, answer:"C",
+          translation:"隔壁工地持續不斷的噪音已成為住戶真正的困擾，他們晚上幾乎無法入睡。",
+          explain:{
+            A:"disciple 是「門徒、追隨者」，指人，不能用來形容噪音。",
+            B:"blunder 是「嚴重的失誤」，指人犯下的錯誤；噪音不是一次失誤，而是持續的干擾。",
+            C:"a nuisance to sb 是固定搭配，意為「對某人造成困擾的事物」。關係子句 who can hardly sleep at night（晚上幾乎無法入睡）說明了這份困擾的具體影響；形容詞 constant（持續不斷的）也符合 nuisance 的持續性。",
+            D:"manicure 是「美甲」，語意完全不合，只是形似的干擾字。"
+          },
+          notes:[
+            {term:"nuisance", pos:"n.", gloss:"討厭的人事物（a nuisance to sb；What a nuisance! 真討厭！）", ex:"Those late deliveries are a real nuisance.", exZh:"那些延遲的送貨真的很擾人。"},
+            {term:"public nuisance", pos:"法律用語", gloss:"公共妨害；在法律上指妨礙公眾權益的行為。"}
+          ]},
+
+        { n:22, kind:"動詞",
+          stem:"When serious floods hit eastern Australia, the government quickly ______ thousands of residents from low-lying areas before the water rose even higher.",
+          options:{A:"allocated 分配、撥給",B:"conferred 授予；商議",C:"commanded 命令、指揮",D:"evacuated 疏散、撤離"}, answer:"D",
+          translation:"當嚴重水災侵襲澳洲東部時，政府在水位進一步上升之前，迅速把低窪地區的數千名居民撤離。",
+          explain:{
+            A:"allocate 是「分配（資源、經費）」，受詞是可被分派的東西（allocate funds），搭配的介系詞是 to 不是 from。",
+            B:"confer 是「授予（學位、榮譽）」或「商議」，兩義都無法接 residents from low-lying areas。",
+            C:"command 是「命令、指揮」，若成立須接不定詞（commanded residents to leave），不能直接搭配 from。",
+            D:"空格後的 from low-lying areas（從低窪地區）與 before the water rose even higher（在水位進一步上升之前）都指向把人帶離危險區域。evacuate 意為「疏散、撤離」，是災害報導的標準用字。"
+          },
+          notes:[
+            {term:"evacuate", pos:"vt.", gloss:"疏散、撤離（evacuate sb from a place；n. evacuation）", ex:"Residents were evacuated before the typhoon arrived.", exZh:"颱風抵達前居民已被撤離。"},
+            {term:"low-lying", pos:"adj.", gloss:"低窪的（複合形容詞，加連字號）"}
+          ]},
+
+        { n:23, kind:"動詞",
+          stem:"After a ten-minute break, the chairperson asked everyone to stop chatting and ______ their seats so that the meeting could continue.",
+          options:{A:"restore 恢復、修復",B:"retreat 撤退",C:"retrieve 取回、找回",D:"resume 回到（原位）；繼續"}, answer:"D",
+          translation:"休息十分鐘之後，主席請大家停止閒聊並回到座位上，好讓會議能繼續進行。",
+          explain:{
+            A:"restore 是「修復、使恢復原狀」，受詞是建築、秩序或健康（restore order），不能用於「回到座位」。",
+            B:"retreat 是「撤退」，為不及物動詞，後面不接受詞，而且方向是離開而非回到。",
+            C:"retrieve 是「取回、找回」，受詞是遺失或存放的物品（retrieve a file），座位不會被取回。",
+            D:"resume one's seat 是正式用法，意為「回到原來的座位」。so that 子句的 the meeting could continue（會議得以繼續）也呼應 resume 的另一個核心意思「恢復進行」。四個選項同屬 re- 字首家族，考的是字根的分辨。"
+          },
+          notes:[
+            {term:"resume", pos:"vt. / vi.", gloss:"繼續、恢復（resume work／one's seat）；名詞 résumé 則是「履歷表」（發音與重音皆不同）", ex:"The talks will resume on Monday.", exZh:"會談將於週一恢復。"},
+            {term:"re- 字首家族", pos:"整理", gloss:"restore 恢復原狀／retreat 後撤／retrieve 取回／resume 繼續／reserve 保留。字根決定意思，不能只看字首。"}
+          ]},
+
+        { n:24, kind:"形容詞",
+          stem:"Full of insults and threats, the message that hackers posted on the government's website was so ______ that the whole nation condemned it.",
+          options:{A:"vulnerable 易受傷害的",B:"abrupt 突然的；唐突的",C:"outrageous 令人髮指的、駭人聽聞的",D:"repentant 悔悟的"}, answer:"C",
+          translation:"駭客張貼在政府網站上的那則訊息充滿辱罵與威脅，惡劣到舉國上下都加以譴責。",
+          explain:{
+            A:"vulnerable 是「易受傷害的」，形容處於弱勢的人或系統（a vulnerable group／vulnerable to attack），而這則訊息是攻擊者發出的，不是受害者。",
+            B:"abrupt 是「突然的」或「態度唐突的」，程度太輕——唐突不至於引發全國譴責。",
+            C:"兩個線索夾出答案：句首的分詞構句 Full of insults and threats（充滿辱罵與威脅）說明內容之惡劣，而 so ... that 的結果 the whole nation condemned it（舉國譴責）說明程度之嚴重。outrageous 正是「惡劣到令人憤慨」。",
+            D:"repentant 是「悔悟的」，形容做錯事後的反省；但駭客張貼威脅訊息時毫無悔意。"
+          },
+          notes:[
+            {term:"outrageous", pos:"adj.", gloss:"令人髮指的、駭人聽聞的（n. outrage 憤慨、暴行）", ex:"The remarks were simply outrageous.", exZh:"那些言論實在令人髮指。"},
+            {term:"前後夾擊找答案", pos:"技巧", gloss:"句首的分詞構句說「原因」，句尾的 that 子句說「結果」，中間的空格必然是能連起兩端的程度詞。"}
+          ]},
+
+        { n:25, kind:"名詞",
+          stem:"The famous scientist's ______ that the universe will keep expanding forever is still just an educated guess that needs to be tested.",
+          options:{A:"doctrine 教義、信條",B:"thesis 論文；論點",C:"hypothesis 假設",D:"expertise 專業知識"}, answer:"C",
+          translation:"這位知名科學家關於宇宙將永遠持續膨脹的假設，目前仍只是個有待驗證的有根據的推測。",
+          explain:{
+            A:"doctrine 是「教義、信條」，指被奉為圭臬、不容質疑的主張（religious doctrine），與 needs to be tested（有待驗證）的性質完全相反。",
+            B:"thesis 是「學位論文」或「（已提出論證的）論點」，但句中強調的是它還只是推測、尚未驗證，分量上還稱不上 thesis。這是語意最接近的干擾選項。",
+            C:"決定性線索在後半句：is still just an educated guess that needs to be tested（仍只是個有待驗證的有根據推測）——這正是 hypothesis 的教科書定義：可被檢驗的科學假設。",
+            D:"expertise 是「專業知識」，為不可數名詞，且指的是能力而非一項主張，後面也不能接 that 同位語子句。"
+          },
+          notes:[
+            {term:"hypothesis", pos:"n.", gloss:"假設（複數 hypotheses；test／confirm a hypothesis）", ex:"Further experiments will test this hypothesis.", exZh:"後續實驗將檢驗這項假設。"},
+            {term:"an educated guess", pos:"phr.", gloss:"有根據的推測（不是瞎猜，但也尚未證實）"}
+          ]}
+      ]
+    }]
+  },
+
+  /* ===================== 測驗三：單題題組（一） ===================== */
+  {
+    id:"set1", label:"測驗三、單題題組（一）", score:"5 題",
+    instruction:"從下列選項中選出最適合的答案，每個選項限用一次。答案：C A D E B",
+    bank:{A:"ballots 選票",B:"intellect 智力、才智",C:"wither 枯萎、凋零",D:"mocks 模擬考",E:"derive 獲得、取得"},
+    groups:[{
+      questions:[
+        { n:26, kind:"動詞", answer:"C", answerText:"wither",
+          stem:"Without enough investment, this country's industries may slowly ______ away, leaving thousands of workers without jobs.",
+          translation:"若沒有足夠的投資，這個國家的產業可能會慢慢凋零，使數千名勞工失業。",
+          why:"may 後面需要原形動詞，且空格後接副詞 away 而非受詞，必須是不及物用法。wither away 意為「逐漸凋零、衰敗」，原指植物枯萎，引申為產業或制度的萎縮。語意上，Without enough investment（缺乏投資）是原因，leaving thousands of workers without jobs（數千人失業）是結果，中間正是產業的衰亡。",
+          notes:[{term:"wither (away)", pos:"vi.", gloss:"枯萎、凋零；引申為「（力量、制度）逐漸消亡」", ex:"Without support, the tradition slowly withered away.", exZh:"缺乏支持，這項傳統逐漸消亡。"},
+                 {term:"分詞構句表結果", pos:"文法", gloss:"leaving thousands of workers without jobs 置於句尾，說明主要動作所造成的結果。"}]},
+
+        { n:27, kind:"名詞", answer:"A", answerText:"ballots",
+          stem:"He denied reports that voters had been forced to cast their ______ for a certain candidate during the election.",
+          translation:"他否認有報導指稱選民在選舉期間被迫投票給特定候選人。",
+          why:"cast one's ballot 是固定搭配，意為「投下選票」（cast 在此為「投擲」之意）。空格前有所有格 their，且主詞 voters 為複數，所以用複數形 ballots。語境中的 voters、candidate、election 三個字也把答案鎖死在選舉用語上。",
+          notes:[{term:"cast a ballot / vote", pos:"phr.", gloss:"投票（cast-cast-cast，三態同形）", ex:"Over a million people cast their ballots early.", exZh:"超過百萬人提前投票。"},
+                 {term:"ballot", pos:"n.", gloss:"選票、投票（by secret ballot 不記名投票）"}]},
+
+        { n:28, kind:"名詞", answer:"D", answerText:"mocks",
+          stem:"In Taiwan, 12th graders usually take several ______ before the real exam to check their progress in each subject.",
+          translation:"在台灣，高三生通常會在正式考試前參加好幾次模擬考，以檢視自己在各科的進度。",
+          why:"take several ______ 中，空格是 take 的受詞，且 several 後面須接可數名詞複數。決定性線索是 before the real exam（在正式考試之前）——正式考試之前舉行、用來檢視進度的，就是模擬考。mock 當名詞（英式用法，常用複數 mocks）即指「模擬考」，當形容詞則是 a mock exam。",
+          notes:[{term:"mock", pos:"n. / adj. / vt.", gloss:"模擬考（英式，常用複數）；形容詞為「模擬的、假的」（a mock trial 模擬法庭）；動詞為「嘲笑」", ex:"She did well in her mocks.", exZh:"她模擬考考得不錯。"},
+                 {term:"take an exam", pos:"用法", gloss:"參加考試用 take，不是 join 或 attend。"}]},
+
+        { n:29, kind:"動詞", answer:"E", answerText:"derive",
+          stem:"Many people ______ a sense of achievement and self-worth from their work, not just a paycheck.",
+          translation:"許多人從工作中獲得的不只是一份薪水，還有成就感與自我價值。",
+          why:"空格是主要動詞，主詞 Many people 為複數故用原形；後接受詞 a sense of achievement 與介系詞 from。derive A from B 是固定用法，意為「從 B 中得到 A」，常用於抽象的滿足感或樂趣（derive pleasure／satisfaction from）。句尾的 not just a paycheck（不只是一份薪水）也印證這是在談工作帶來的回報。",
+          notes:[{term:"derive A from B", pos:"phr.", gloss:"從 B 獲得 A（derive pleasure／comfort／income from）；被動 be derived from 則指「源自於」", ex:"She derives great satisfaction from teaching.", exZh:"她從教學中獲得極大的滿足。"},
+                 {term:"a sense of + 抽象名詞", pos:"用法", gloss:"一種…的感受（a sense of achievement／belonging／humor）"}]},
+
+        { n:30, kind:"名詞", answer:"B", answerText:"intellect",
+          stem:"His talent, sharp ______, and strong will to overcome any obstacle made him the leading lawyer in the state.",
+          translation:"他的天賦、敏銳的才智，以及克服任何障礙的堅強意志，使他成為該州首屈一指的律師。",
+          why:"空格前有形容詞 sharp 修飾，且與 His talent、strong will 並列為三個名詞主詞，因此必須是名詞。sharp intellect 是固定搭配，意為「敏銳的才智」。三者並列的邏輯也成立：天賦、才智、意志，都是成就一位頂尖律師的個人特質。",
+          notes:[{term:"intellect", pos:"n.", gloss:"才智、思考能力（adj. intellectual 智識的；n. 知識分子）", ex:"He was a man of formidable intellect.", exZh:"他是個才智過人的人。"},
+                 {term:"三項並列的主詞", pos:"技巧", gloss:"A, B, and C 並列當主詞時，三者詞性必須一致。看已知的兩個是名詞，空格就必為名詞。"}]}
+      ]
+    }]
+  },
+
+  /* ===================== 測驗三：單題題組（二） ===================== */
+  {
+    id:"set2", label:"測驗三、單題題組（二）", score:"5 題",
+    instruction:"從下列選項中選出最適合的答案，每個選項限用一次。答案：E A B C D",
+    bank:{A:"melancholic 憂鬱哀傷的",B:"plausible 看似合理的、說得通的",C:"permissible 被允許的",D:"imperative 刻不容緩的、極為必要的",E:"hospitable 好客的、熱情款待的"},
+    groups:[{
+      questions:[
+        { n:31, kind:"形容詞", answer:"E", answerText:"hospitable",
+          stem:"The hostess was cheerful and very ______, warmly welcoming every guest and making everyone feel at home.",
+          translation:"女主人開朗而且非常好客，熱情地歡迎每一位賓客，讓所有人都賓至如歸。",
+          why:"空格與 cheerful 並列，兩個形容詞語氣必須同向，都是正面的。句尾的分詞構句 warmly welcoming every guest and making everyone feel at home（熱情歡迎每位賓客、讓大家賓至如歸）就是答案的具體描述——熱情款待客人，正是 hospitable。主詞 hostess（女主人）也與這個字的字根相呼應。",
+          notes:[{term:"hospitable", pos:"adj.", gloss:"好客的（n. hospitality 款待）；字根 hosp- 表「主人、接待」，同源字有 hospital、hotel、host", ex:"The locals were warm and hospitable.", exZh:"當地人熱情好客。"},
+                 {term:"feel at home", pos:"phr.", gloss:"感到自在、賓至如歸"}]},
+
+        { n:32, kind:"形容詞", answer:"A", answerText:"melancholic",
+          stem:"Written after his wife's death, the musician's ______ songs are full of grief and loneliness.",
+          translation:"這位音樂家在妻子過世後所寫的憂鬱歌曲，充滿了悲傷與孤寂。",
+          why:"空格修飾名詞 songs，需要形容詞。兩個線索都指向哀傷：句首的分詞構句 Written after his wife's death（寫於妻子過世之後）交代了創作背景，而 are full of grief and loneliness（充滿悲傷與孤寂）則直接描述了曲子的情緒。melancholic 意為「憂鬱哀傷的」，比 sad 更帶有一種綿長沉鬱的質感。",
+          notes:[{term:"melancholic", pos:"adj.", gloss:"憂鬱的、哀傷的（n. melancholy 憂鬱；拼字注意 -choly）", ex:"The film has a melancholic tone throughout.", exZh:"這部電影從頭到尾帶著憂鬱的基調。"},
+                 {term:"grief", pos:"n.", gloss:"（尤指喪親的）深切悲痛（v. grieve）"}]},
+
+        { n:33, kind:"形容詞", answer:"B", answerText:"plausible",
+          stem:"Experts agree the theory is ______ and makes sense, but more evidence is needed to prove it.",
+          translation:"專家同意這個理論看似合理、說得通，但仍需要更多證據來證明它。",
+          why:"空格與 and 後面的 makes sense（說得通）並列，兩者必須同義，因此空格要表達「聽起來合理」。plausible 意為「看似合理但尚未證實」，而 but 之後的 more evidence is needed to prove it（還需要更多證據證明）正好點出這個字的關鍵語感——合理歸合理，還沒被證明。",
+          notes:[{term:"plausible", pos:"adj.", gloss:"看似合理的、說得過去的（常暗示「尚未證實」；反義 implausible）", ex:"That sounds like a plausible explanation.", exZh:"那聽起來是個說得通的解釋。"},
+                 {term:"make sense", pos:"phr.", gloss:"說得通、合理；主詞為事物。（make sense of sth 則是「弄懂某事」）"}]},
+
+        { n:34, kind:"形容詞", answer:"C", answerText:"permissible",
+          stem:"At our school, it is ______ to use phones during breaks, but students must turn them off during class.",
+          translation:"在我們學校，下課時間使用手機是被允許的，但上課時學生必須關機。",
+          why:"it is ______ to V 的結構中，it 是虛主詞，空格需要形容詞。語意上，but 後面的 students must turn them off during class（上課時必須關機）形成對比——下課可以、上課不行，所以空格要表達「被准許的」。permissible 由 permit（允許）加字尾 -ible 構成。",
+          notes:[{term:"permissible", pos:"adj.", gloss:"被允許的、可容許的（v. permit／n. permission）", ex:"Smoking is not permissible in this area.", exZh:"這個區域不准吸菸。"},
+                 {term:"permissible vs. permissive", pos:"辨析", gloss:"permissible 是「（事情）被允許的」；permissive 是「（人、制度）寬容放任的」。主詞不同。"}]},
+
+        { n:35, kind:"形容詞", answer:"D", answerText:"imperative",
+          stem:"Many leaders felt it was absolutely ______ to end discrimination at once, believing the problem could not wait any longer.",
+          translation:"許多領導人認為立刻終結歧視是絕對刻不容緩的，他們相信這個問題再也不能等了。",
+          why:"同樣是 it is ______ to V 的虛主詞結構，需要形容詞。副詞 absolutely（絕對地）與 at once（立刻）已經透露了急迫性，而分詞構句 believing the problem could not wait any longer（相信問題再也不能等）更是直接的證據。imperative 意為「刻不容緩、絕對必要的」，語氣比 necessary 更強。",
+          notes:[{term:"imperative", pos:"adj. / n.", gloss:"刻不容緩的、極為必要的；名詞指「當務之急」。文法上也指「祈使語氣」", ex:"It is imperative that we act now.", exZh:"我們現在就行動是刻不容緩的。"},
+                 {term:"It is imperative that + S + (should) V", pos:"文法", gloss:"這類表「必要、要求」的形容詞後接的 that 子句用假設語氣，should 常省略。"}]}
+      ]
+    }]
+  },
+
+  /* ===================== 測驗三：單題題組（三） ===================== */
+  {
+    id:"set3", label:"測驗三、單題題組（三）", score:"5 題",
+    instruction:"從下列選項中選出最適合的答案，每個選項限用一次。答案：C B D A E",
+    bank:{A:"delinquent 違法的、偏差的（青少年）",B:"comet 彗星",C:"piety 虔誠",D:"champagne 香檳",E:"peculiar 奇特的、異樣的"},
+    groups:[{
+      questions:[
+        { n:36, kind:"名詞", answer:"C", answerText:"piety",
+          stem:"Known for his deep ______, the old man went to church every day and prayed for his family.",
+          translation:"這位以虔誠信仰聞名的老先生，每天上教堂為家人祈禱。",
+          why:"空格前有形容詞 deep 修飾、介系詞 for 引導，需要抽象名詞。主要子句 went to church every day and prayed for his family（每天上教堂為家人祈禱）就是答案的具體行為——宗教上的虔敬，正是 piety。這個字的形容詞是 pious，另有 filial piety（孝道）的常見用法。",
+          notes:[{term:"piety", pos:"n.", gloss:"虔誠（adj. pious）；filial piety 孝道", ex:"She was admired for her piety and kindness.", exZh:"她因虔誠與善良而受人敬重。"},
+                 {term:"Known for ...", pos:"分詞構句", gloss:"＝Being known for...，以…聞名；置於句首補述主詞。"}]},
+
+        { n:37, kind:"名詞", answer:"B", answerText:"comet",
+          stem:"Astronomers have discovered a ______ with a long, bright tail that is moving closer to Earth.",
+          translation:"天文學家發現了一顆拖著明亮長尾、正朝地球靠近的彗星。",
+          why:"空格前有冠詞 a，需要單數可數名詞。決定性線索是 with a long, bright tail（拖著一條明亮的長尾）——天體中有尾巴的只有彗星；主詞 Astronomers（天文學家）也鎖定了天文語境。comet 的尾巴是太陽風吹拂冰塵所形成的，這也是它最明顯的辨識特徵。",
+          notes:[{term:"comet", pos:"n.", gloss:"彗星（Halley's Comet 哈雷彗星）", ex:"The comet will be visible to the naked eye.", exZh:"這顆彗星將可用肉眼觀測到。"},
+                 {term:"天體字彙", pos:"整理", gloss:"comet 彗星／meteor 流星／asteroid 小行星／satellite 衛星／galaxy 星系。單字比賽常考成一組。"}]},
+
+        { n:38, kind:"名詞", answer:"D", answerText:"champagne",
+          stem:"Sparkling ______ is the socialite's favorite kind of wine, but she will drink other fizzy drinks if none is available.",
+          translation:"氣泡香檳是這位社交名媛最愛的酒，但若沒有香檳，她也會喝其他氣泡飲料。",
+          why:"空格前有形容詞 Sparkling（有氣泡的），且 is the socialite's favorite kind of wine（是她最愛的一種酒）直接點明這是酒類。句尾的 other fizzy drinks（其他氣泡飲料）中的 other 更是關鍵——既然說「其他」氣泡飲料，空格本身就必須是一種氣泡飲品。champagne 是法國香檳區出產的氣泡酒，拼字中的 -pagne 要注意。",
+          notes:[{term:"champagne", pos:"n.", gloss:"香檳（源自法國 Champagne 地區；注意拼字與發音 /ʃæmˈpeɪn/）", ex:"They opened a bottle of champagne to celebrate.", exZh:"他們開了一瓶香檳慶祝。"},
+                 {term:"other 的提示功能", pos:"技巧", gloss:"other fizzy drinks（其他氣泡飲料）表示前面提過的也是氣泡飲料。看到 other 就往前找同類。"}]},
+
+        { n:39, kind:"形容詞", answer:"A", answerText:"delinquent",
+          stem:"The police are worried about the rise in ______ behavior among teenagers, such as shoplifting and damaging public property.",
+          translation:"警方憂心青少年偏差行為的增加，例如順手牽羊與破壞公物。",
+          why:"空格修飾名詞 behavior，需要形容詞。such as 後面列舉的 shoplifting and damaging public property（順手牽羊、破壞公物）都是輕微的違法行為，而主詞是 The police、對象是 teenagers——青少年的違法偏差行為，正是 delinquent behavior。名詞 a juvenile delinquent 即「少年犯」。",
+          notes:[{term:"delinquent", pos:"adj. / n.", gloss:"違法的、行為偏差的；名詞指「少年犯」（juvenile delinquency 少年犯罪）", ex:"The program helps delinquent youths return to school.", exZh:"這個計畫幫助行為偏差的青少年重返校園。"},
+                 {term:"shoplifting", pos:"n.", gloss:"順手牽羊、商店行竊（shop ＋ lift）"}]},
+
+        { n:40, kind:"形容詞", answer:"E", answerText:"peculiar",
+          stem:"The medicine gave me a ______ feeling, as if tiny needles were pricking my skin all over.",
+          translation:"這種藥讓我產生一種奇特的感覺，彷彿有無數細小的針在扎我全身的皮膚。",
+          why:"空格前有冠詞 a、後接名詞 feeling，需要形容詞。as if 引導的比喻 as if tiny needles were pricking my skin all over（彷彿有細針扎遍全身）描述的是一種難以名狀、不尋常的感受，正是 peculiar（奇特的、異樣的）。注意這個字另有「特有的」之意（be peculiar to ＝ 為…所獨有）。",
+          notes:[{term:"peculiar", pos:"adj.", gloss:"奇特的、異樣的；也指「特有的」（be peculiar to sth 為…所獨有）", ex:"The soup had a peculiar taste.", exZh:"這湯有一種奇怪的味道。"},
+                 {term:"as if + 假設語氣", pos:"文法", gloss:"as if 引導與事實相反的比喻時，be 動詞用 were（本句的 as if tiny needles were pricking）。"}]}
+      ]
+    }]
+  },
+
+  /* ===================== 測驗四：段落題組 ===================== */
+  {
+    id:"passage", label:"測驗四、段落題組", score:"5 題",
+    instruction:"依據短文選出最適合的答案，每個選項限用一次。答案：A D E C B",
+    bank:{A:"designated 指定的、規定的",B:"scrutiny 嚴密審視、監督",C:"subject 使遭受（be subject to）",D:"indictment 起訴書、起訴",E:"committed 犯下（罪行）"},
+    groups:[{
+      passage:`The grand jury is an important part of the American legal system. It is composed of private citizens who are appointed to serve for a(n) __41__ period of time. Grand juries, which hold meetings in private, serve either of the two functions: charging or investigatory. A grand jury that is serving a charging function listens to evidence presented by the prosecutor and decides whether or not the prosecution has adequate evidence to charge a suspect with a crime; if the grand jury feels that there is adequate evidence, then it issues a(n) __42__, and the suspect must then proceed with a trial. A grand jury that is serving as investigatory function investigates cases of suspected dishonesty, often __43__ by public officials.
+
+The primary reason for the existence of the grand jury is that it is supposed to ensure that citizens are not __44__ to unfair prosecution; under the grand jury system, prosecutors must first convince an unbiased group of citizens that there is justification for the charge that they want to bring. However, the grand jury system has come under attack from numerous directions. One criticism of the grand jury results from the fact that the meetings are held in private; the grand jury is not open to public __45__ and is therefore not publicly responsible for its actions, and this has cast doubt on some of its findings. Another common criticism of the grand jury is that the evidence it hears is one-sided, from the perspective of the prosecution, so that the grand jury serves as the right arm of the prosecution rather than as a defender of the rights of a suspect.`,
+      zh:`大陪審團是美國法律制度中重要的一環。它由一般公民組成，這些人被指派在一段規定的期間內服務。大陪審團的會議不公開進行，並承擔兩種職能之一：起訴或調查。承擔起訴職能的大陪審團會聆聽檢察官提出的證據，並判定檢方是否有足夠的證據以犯罪起訴某位嫌疑人；若大陪審團認為證據充足，便會發出起訴書，該嫌疑人就必須進入審判程序。承擔調查職能的大陪審團則調查涉嫌不法的案件，這些案件往往是由公職人員所犯下的。
+
+大陪審團存在的首要理由，在於它應當確保公民不致遭受不公平的起訴；在大陪審團制度之下，檢察官必須先說服一群不帶偏見的公民，證明他們想提出的指控確有正當理由。然而，大陪審團制度已從許多方向遭受抨擊。對它的一項批評源自於會議不公開這件事：大陪審團不接受公眾的檢視，因此無須為自己的作為對外負責，這也讓它的某些結論受到質疑。另一項常見的批評是，它所聽取的證據是單方面的，只來自檢方的角度，以致於大陪審團成了檢方的右手，而非嫌疑人權利的捍衛者。`,
+      questions:[
+        { n:41, kind:"形容詞", answer:"A", answerText:"designated",
+          why:"a(n) ______ period of time 中，空格修飾名詞 period，需要形容詞。前面的 who are appointed to serve（被指派來服務）是關鍵——既然是被指派的職務，服務的期間自然是事先規定好的。designated 意為「被指定的、規定的」，與 appointed 語意同向，前後呼應。",
+          notes:[{term:"designated", pos:"adj.", gloss:"指定的、規定的（v. designate 指派、標示；a designated driver 指定駕駛）", ex:"Smoking is allowed only in designated areas.", exZh:"只有在指定區域才能吸菸。"},
+                 {term:"be composed of", pos:"phr.", gloss:"由…組成（＝consist of，但後者不用被動）"}]},
+
+        { n:42, kind:"名詞", answer:"D", answerText:"indictment",
+          why:"it issues a(n) ______ 中，空格是 issues 的受詞，前面有冠詞 a(n)，需要單數可數名詞。語意上，if the grand jury feels that there is adequate evidence（若認為證據充足）是條件，而 the suspect must then proceed with a trial（嫌疑人必須進入審判）是結果——介於兩者之間、由大陪審團發出的，就是「起訴書」。indictment 的 c 不發音，讀作 /ɪnˈdaɪtmənt/，是拼讀容易出錯的字。",
+          notes:[{term:"indictment", pos:"n.", gloss:"起訴書、起訴（v. indict 起訴；c 不發音，讀 /ɪnˈdaɪt/）", ex:"The grand jury handed down an indictment.", exZh:"大陪審團作出了起訴決定。"},
+                 {term:"issue", pos:"vt.", gloss:"發出、核發（issue a warning／a visa／an indictment）"}]},
+
+        { n:43, kind:"過去分詞", answer:"E", answerText:"committed",
+          why:"cases of suspected dishonesty, often ______ by public officials 中，空格後有 by ＋ 行為者，是被動結構的標記，因此需要過去分詞。commit a crime／an offense（犯下罪行）是固定搭配，此處為省略關係代名詞與 be 動詞的分詞片語（＝which are often committed by public officials）。語意上，不法行為是「被」公職人員犯下的，被動關係成立。",
+          notes:[{term:"commit", pos:"vt.", gloss:"犯下（罪行、錯誤）；也指「承諾、投入」（be committed to）", ex:"The crime was committed late at night.", exZh:"這起罪行是在深夜犯下的。"},
+                 {term:"看到 by 就想被動", pos:"技巧", gloss:"空格後若緊接 by ＋ 行為者，幾乎必然是過去分詞。這一步就能刪掉所有非分詞的選項。"}]},
+
+        { n:44, kind:"形容詞", answer:"C", answerText:"subject",
+          why:"citizens are not ______ to unfair prosecution 中，空格前有 be 動詞、後接介系詞 to，需要能構成 be ... to 結構的字。be subject to 意為「遭受、受制於」，後面接的往往是非自願承受的事物（unfair prosecution 不公平的起訴）。語意上，大陪審團的存在就是為了保障公民不被濫訴，與後半句 prosecutors must first convince an unbiased group of citizens（檢察官必須先說服不帶偏見的公民）相呼應。",
+          notes:[{term:"be subject to", pos:"phr.", gloss:"遭受、受制於（subject to change／approval／prosecution）。subject 在此為形容詞用法", ex:"All prices are subject to change without notice.", exZh:"所有價格可能隨時變動，恕不另行通知。"},
+                 {term:"prosecution", pos:"n.", gloss:"起訴、檢方（the prosecution 控方；反義 the defense 辯方）"}]},
+
+        { n:45, kind:"名詞", answer:"B", answerText:"scrutiny",
+          why:"is not open to public ______ 中，空格前有形容詞 public 修飾，需要名詞。public scrutiny 是固定搭配，意為「公眾的檢視與監督」。語意線索在前後兩端：前面說 the meetings are held in private（會議不公開），後面說 is therefore not publicly responsible for its actions（因此無須對外負責）——不接受外界檢視，正是這兩句的中間環節。",
+          notes:[{term:"scrutiny", pos:"n.", gloss:"嚴密的審視、監督（under scrutiny 受到檢視；v. scrutinize）", ex:"The deal came under intense public scrutiny.", exZh:"這筆交易受到公眾的嚴格檢視。"},
+                 {term:"cast doubt on", pos:"phr.", gloss:"使…受到質疑、對…投下疑慮"}]}
+      ]
+    }]
+  }
+  ]
+};
+
+/* ==========================================================================
+   ②  以下為程式碼，一般情況不需要修改。
+   ========================================================================== */
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const wordOf = q => q.options ? q.options[q.answer] : (q.answerText || '');
+const allQ = [];
+EXAM.sections.forEach(s => s.groups.forEach(g => g.questions.forEach(q => allQ.push(q))));
+const findQ = n => allQ.find(q => String(q.n) === String(n));
+
+document.getElementById('brand').textContent = EXAM.brand;
+document.getElementById('examTitle').textContent = EXAM.title;
+document.getElementById('examMeta').textContent = EXAM.meta;
+
+let noteCount = 0;
+allQ.forEach(q => noteCount += (q.notes || []).length);
+
+const nav = document.getElementById('nav');
+EXAM.sections.forEach(s => {
+  const a = document.createElement('a');
+  a.className = 'chip'; a.href = '#sec-' + s.id; a.textContent = s.label.replace(/^[一二三四五六]、/, m => m);
+  nav.appendChild(a);
+});
+const noteChip = document.createElement('a');
+noteChip.className = 'chip'; noteChip.href = '#side'; noteChip.textContent = '重點表 ' + noteCount;
+nav.appendChild(noteChip);
+const toggleAll = document.createElement('button');
+toggleAll.className = 'chip solid'; toggleAll.textContent = '全部展開';
+nav.appendChild(toggleAll);
+
+function renderPassage(g, i, sid) {
+  let html = esc(g.passage);
+  g.questions.forEach(q => {
+    if (!q.evidence) return;
+    const t = esc(q.evidence);
+    if (html.includes(t)) html = html.replace(t, `<span class="hl ev" data-ev="${q.n}">${t}</span>`);
+  });
+  html = html.replace(/__(\d+)__/g, (m, n) =>
+    `<button class="blank" data-blank="${n}" aria-label="第 ${n} 題空格">${n}</button>`);
+  const body = '<div class="passage">' +
+    html.split(/\n{2,}/).map(p => '<p>' + p.replace(/\n/g, ' ') + '</p>').join('') + '</div>';
+  if (!g.zh) return body;
+  const id = sid + '-' + i;
+  return body +
+    `<button class="zhbtn" data-zh="${id}">全文中譯</button>` +
+    `<div class="zhbox" id="zh-${id}">` +
+      g.zh.split(/\n{2,}/).map(p => '<p>' + esc(p).replace(/\n/g, ' ') + '</p>').join('') +
+    '</div>';
+}
+
+function renderQ(q) {
+  const parts = [];
+  if (q.options) {
+    const ks = Object.keys(q.options);
+    parts.push('<div class="opts">' + ks.map(k =>
+      `<div class="opt"><span class="opt-k">(${k})</span><span>${esc(q.options[k])}</span></div>`).join('') + '</div>');
+  }
+  const head = `<div class="q-tag"><span class="q-n">${String(q.n).padStart(2,'0')}</span><span class="q-kind">${esc(q.kind || '')}</span></div>` +
+    (q.prompt ? `<p class="prompt">${esc(q.prompt)}</p>` : '') +
+    (q.stem ? `<p class="stem">${esc(q.stem).replace(/\n/g,'<br>')}</p>` : '');
+
+  let ans = '';
+  if (q.answers) {
+    ans = '<ul class="fills">' + q.answers.map(a =>
+      `<li class="fill"><span class="fill-k">${esc(a.k)}</span><span class="fill-w hl" data-ansmulti>${esc(a.w)}</span><span class="fill-n">${esc(a.note || '')}</span></li>`).join('') + '</ul>';
+  } else {
+    const label = q.options ? `(${q.answer}) ${esc(wordOf(q))}` :
+      (q.answer ? `(${q.answer}) ${esc(q.answerText)}` : esc(q.answerText));
+    ans = `<p class="ans"><span class="ans-k">答案</span><span class="ans-v hl" data-ans="${q.n}">${label}</span></p>`;
+  }
+
+  let expl = '';
+  if (q.explain) {
+    expl = '<ul class="lines">' + Object.keys(q.options).map(k => {
+      const right = q.multi ? q.multi.includes(k) : k === q.answer;
+      return `<li class="line ${right ? 'right' : 'wrong'}"><span class="line-k">(${k})</span><span>${esc(q.explain[k] || '')}</span></li>`;
+    }).join('') + '</ul>';
+  }
+  const why = q.why ? `<p class="why">${esc(q.why)}</p>` : '';
+  const sample = q.sample ? `<div class="sample"><p class="note-h">參考範文</p>` +
+    q.sample.split(/\n{2,}/).map(p => `<p>${esc(p).replace(/\n/g,' ')}</p>`).join('') + '</div>' : '';
+  const evid = q.evidence ? `<p class="evid"><span>文中依據</span>${esc(q.evidence)}</p>` : '';
+  const notes = (q.notes || []).length ? `<div class="note"><p class="note-h">重點整理</p>` +
+    q.notes.map(nt => `<p class="note-i"><span class="term">${esc(nt.term)}</span><span class="pos">${esc(nt.pos || '')}</span><span class="gloss">${esc(nt.gloss || '')}</span>` +
+      (nt.ex ? `<span class="ex">${esc(nt.ex)}<i>${esc(nt.exZh || '')}</i></span>` : '') + '</p>').join('') + '</div>' : '';
+
+  return `<article class="q" id="q-${q.n}" data-n="${q.n}">
+    <div class="q-top">${head}${parts.join('')}
+      <button class="reveal" aria-expanded="false" aria-controls="body-${q.n}">看詳解</button>
+    </div>
+    <div class="body" id="body-${q.n}">
+      ${ans}${q.translation ? `<p class="zh">${esc(q.translation)}</p>` : ''}${expl}${why}${evid}${sample}${notes}
+    </div>
+  </article>`;
+}
+
+document.getElementById('main').innerHTML = EXAM.sections.map((s, i) => `
+  <section class="sec" id="sec-${s.id}">
+    <div class="sec-head">
+      <span class="sec-num">${String(i+1).padStart(2,'0')}</span>
+      <h2 class="sec-label">${esc(s.label)}</h2>
+      <span class="sec-score">${esc(s.score || '')}</span>
+    </div>
+    ${s.instruction ? `<p class="sec-inst">${esc(s.instruction)}</p>` : ''}
+    ${s.bank ? `<div class="bank${s.bankWide ? ' wide' : ''}">${Object.keys(s.bank).map(k =>
+      `<div class="bank-i" data-bank="${k}"><span>(${k})</span>${esc(s.bank[k])}</div>`).join('')}</div>` : ''}
+    ${s.groups.map((g, gi) => (g.passage ? renderPassage(g, gi, s.id) : '') + g.questions.map(renderQ).join('')).join('')}
+  </section>`).join('');
+
+const items = [];
+allQ.forEach(q => (q.notes || []).forEach(nt => items.push({ ...nt, n: q.n })));
+document.getElementById('side').innerHTML = `
+  <p class="side-h">Notes</p>
+  <p class="side-t">本卷重點 ${items.length} 則</p>
+  <ul class="card-list">${items.map(nt => `
+    <li class="card-item"><a href="#q-${nt.n}">
+      <span class="jump">第 ${nt.n} 題</span>
+      <span class="term">${esc(nt.term)}</span><span class="pos">${esc(nt.pos || '')}</span>
+      <div class="gloss">${esc(nt.gloss || '')}</div>
+    </a></li>`).join('')}</ul>
+  <p class="side-note">點任一則可跳到出處題目。用瀏覽器列印（Ctrl／⌘ + P）會自動展開全部詳解與中譯，可直接印成講義。</p>`;
+
+document.getElementById('foot').textContent = `共 ${allQ.length} 題 · ${EXAM.footer}`;
+
+function setOpen(card, open) {
+  card.classList.toggle('open', open);
+  const btn = card.querySelector('.reveal');
+  btn.setAttribute('aria-expanded', open);
+  btn.firstChild.nodeValue = open ? '收合詳解' : '看詳解';
+  const n = card.dataset.n;
+  card.querySelectorAll('.hl').forEach(h => h.classList.toggle('on', open));
+  const ev = document.querySelector(`[data-ev="${n}"]`);
+  if (ev) ev.classList.toggle('on', open);
+  const q = findQ(n);
+  if (q && q.answer && q.answerText) {
+    const bi = document.querySelector(`[data-bank="${q.answer}"]`);
+    if (bi) bi.classList.toggle('used', open);
+  }
+  const bl = document.querySelector(`[data-blank="${n}"]`);
+  if (bl) {
+    if (open) {
+      bl.classList.add('filled');
+      bl.innerHTML = `<sup>${n}</sup><span class="hl">${esc(wordOf(q))}</span>`;
+      requestAnimationFrame(() => bl.querySelector('.hl').classList.add('on'));
+    } else {
+      bl.classList.remove('filled');
+      bl.textContent = n;
+    }
+  }
+}
+document.addEventListener('click', e => {
+  const rv = e.target.closest('.reveal');
+  if (rv) { const c = rv.closest('.q'); setOpen(c, !c.classList.contains('open')); return; }
+  const zb = e.target.closest('.zhbtn');
+  if (zb) { zb.classList.toggle('on'); document.getElementById('zh-' + zb.dataset.zh).classList.toggle('on'); return; }
+  const bl = e.target.closest('.blank');
+  if (bl) {
+    const c = document.getElementById('q-' + bl.dataset.blank);
+    if (!c.classList.contains('open')) setOpen(c, true);
+    c.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+});
+toggleAll.addEventListener('click', () => {
+  const open = toggleAll.textContent === '全部展開';
+  document.querySelectorAll('.q').forEach(c => setOpen(c, open));
+  toggleAll.textContent = open ? '全部收合' : '全部展開';
+});
+window.addEventListener('beforeprint', () => {
+  document.querySelectorAll('.q').forEach(c => setOpen(c, true));
+  document.querySelectorAll('.zhbox').forEach(b => b.classList.add('on'));
+  toggleAll.textContent = '全部收合';
+});
+</script>
+</body>
+</html>
