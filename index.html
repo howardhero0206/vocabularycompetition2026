@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>115單字比賽 集訓四 練習 詳解｜Training Week 4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E7EBEE; --card:#FDFDFC;
+  --ink:#10202F; --ink-2:#56687A; --ink-3:#7C8B99;
+  --rule:#C6D0D8; --pen:#17457E; --hl:#FFE773; --miss:#A34234;
+  --mono:'IBM Plex Mono',ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace;
+  --read:'Literata',Georgia,'Times New Roman',serif;
+  --han:'PingFang TC','Microsoft JhengHei','Noto Sans TC',system-ui,sans-serif;
+  --maxw:1180px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--han);font-size:16px;line-height:1.75}
+:focus-visible{outline:2px solid var(--pen);outline-offset:3px;border-radius:2px}
+
+.top{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.top-in{max-width:var(--maxw);margin:0 auto;padding:14px 24px 0}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);margin:0 0 4px}
+.title{font-size:23px;font-weight:600;margin:0;line-height:1.3}
+.meta{font-family:var(--mono);font-size:12px;color:var(--ink-2);margin:4px 0 0;letter-spacing:.04em}
+.bar{display:flex;gap:7px;align-items:center;flex-wrap:wrap;padding:12px 0 11px;margin-top:10px;border-top:1px solid var(--rule)}
+.chip{font-family:var(--mono);font-size:12px;letter-spacing:.04em;border:1px solid var(--rule);background:transparent;color:var(--ink-2);padding:5px 10px;border-radius:999px;cursor:pointer;text-decoration:none;transition:border-color .15s,color .15s,background .15s}
+.chip:hover{border-color:var(--pen);color:var(--pen)}
+.chip.solid{margin-left:auto;border-color:var(--ink);color:var(--ink);font-weight:500}
+.chip.solid:hover{background:var(--ink);color:var(--card)}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:28px 24px 96px;display:grid;gap:36px;grid-template-columns:minmax(0,1fr) 288px}
+@media (max-width:1020px){.wrap{grid-template-columns:minmax(0,1fr);gap:44px}}
+
+.sec{margin:0 0 48px;scroll-margin-top:136px}
+.sec-head{display:flex;align-items:baseline;gap:12px;padding-bottom:9px;border-bottom:2px solid var(--ink);flex-wrap:wrap}
+.sec-num{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--ink-3)}
+.sec-label{font-size:18px;font-weight:600;margin:0}
+.sec-score{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);margin-left:auto}
+.sec-inst{font-size:13.5px;color:var(--ink-2);margin:9px 0 0}
+
+.bank{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin:16px 0 0}
+@media (max-width:760px){.bank{grid-template-columns:repeat(2,1fr)}}
+.bank-i{background:var(--card);padding:8px 10px;font-family:var(--read);font-size:14.5px}
+.bank-i span{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);margin-right:5px}
+.bank-i.used{background:#F2F5F6;color:var(--ink-3)}
+
+.passage{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--ink);padding:22px 26px;margin:18px 0 0;font-family:var(--read);font-size:16.5px;line-height:1.95;color:#1a2836}
+.passage p{margin:0 0 1em}
+.passage p:last-child{margin-bottom:0}
+.blank{display:inline-block;min-width:70px;text-align:center;border:0;border-bottom:1.5px solid var(--ink);font-family:var(--mono);font-size:13px;color:var(--pen);cursor:pointer;background:none;padding:0 4px;line-height:1.4}
+.blank:hover{background:rgba(23,69,126,.07)}
+.blank.filled{font-family:var(--read);font-size:16.5px;color:var(--ink);border-bottom-color:transparent;min-width:0}
+.blank sup{font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-right:2px}
+.zhbtn{display:block;margin:0 0 18px;background:var(--card);border:1px solid var(--rule);border-top:0;width:100%;text-align:left;padding:8px 26px;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;color:var(--pen);cursor:pointer}
+.zhbtn:hover{color:var(--ink)}
+.zhbtn::after{content:' ▾'}
+.zhbtn.on::after{content:' ▴'}
+.zhbox{display:none;background:#F7F9FA;border:1px solid var(--rule);border-top:0;padding:18px 26px;margin:0 0 18px;font-size:15px;line-height:1.95;color:#22323F}
+.zhbox.on{display:block}
+.zhbox p{margin:0 0 .9em}
+.zhbox p:last-child{margin:0}
+
+.q{background:var(--card);border:1px solid var(--rule);margin:14px 0 0;scroll-margin-top:142px}
+.q-top{padding:16px 22px 14px}
+.q-tag{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.q-n{font-family:var(--mono);font-size:13px;font-weight:600}
+.q-kind{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.prompt{font-size:14.5px;line-height:1.85;color:var(--ink-2);margin:0 0 11px;padding-left:11px;border-left:2px solid var(--rule)}
+.stem{font-family:var(--read);font-size:16.5px;line-height:1.85;margin:0 0 13px;color:#1a2836}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:2px 20px}
+@media (max-width:640px){.opts{grid-template-columns:1fr}}
+.opt{display:flex;gap:9px;font-family:var(--read);font-size:15.5px;line-height:1.6;padding:3px 0;color:#243342}
+.opt-k{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);padding-top:2px;flex:none}
+.reveal{display:block;width:100%;text-align:left;margin-top:14px;background:none;border:0;border-top:1px dashed var(--rule);padding:11px 0 0;font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--pen);cursor:pointer}
+.reveal:hover{color:var(--ink)}
+.reveal::after{content:' ▾'}
+.q.open .reveal::after{content:' ▴'}
+.q.open .reveal{color:var(--ink-3)}
+
+.body{display:none;border-top:1px solid var(--rule);background:#F7F9FA;padding:18px 22px 20px}
+.q.open .body{display:block}
+.ans{display:flex;align-items:baseline;gap:10px;margin:0 0 13px;flex-wrap:wrap}
+.ans-k{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--ink-3);flex:none;padding-top:2px}
+.ans-v{font-family:var(--read);font-size:18px;font-weight:600}
+.fills{list-style:none;margin:0 0 13px;padding:0}
+.fill{display:flex;gap:11px;align-items:baseline;padding:7px 0;border-bottom:1px dotted var(--rule)}
+.fill-k{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);flex:none;width:26px}
+.fill-w{font-family:var(--read);font-size:17px;font-weight:600;flex:none}
+.fill-n{font-size:13.5px;color:var(--ink-2);line-height:1.7}
+.zh{font-size:15px;line-height:1.85;margin:0 0 14px;color:#22323F}
+.why{font-size:14.5px;line-height:1.85;margin:0 0 4px;color:#22323F;border-top:1px solid var(--rule);padding-top:12px}
+.lines{margin:0;padding:0;list-style:none;border-top:1px solid var(--rule)}
+.line{display:flex;gap:11px;padding:9px 0;border-bottom:1px solid var(--rule);font-size:14.5px;line-height:1.75;color:var(--ink-2)}
+.line-k{font-family:var(--mono);font-size:12.5px;flex:none;width:28px;color:var(--ink-3);padding-top:2px}
+.line.right{color:var(--ink)}
+.line.right .line-k{color:var(--ink);font-weight:600}
+.line.right .line-k::after{content:'✓';display:block;font-size:12px;line-height:1.3}
+.line.wrong .line-k{color:var(--miss);opacity:.85}
+.line.wrong .line-k::after{content:'✗';display:block;font-size:12px;line-height:1.3}
+.evid{margin:15px 0 0;font-family:var(--read);font-size:14.5px;line-height:1.8;color:var(--ink-2);padding-left:13px;border-left:2px solid var(--hl)}
+.evid span{font-family:var(--han);font-size:11px;letter-spacing:.14em;color:var(--ink-3);display:block;margin-bottom:3px}
+
+.hl{background-image:linear-gradient(transparent 12%,var(--hl) 12%,var(--hl) 90%,transparent 90%);background-repeat:no-repeat;background-size:0% 100%;transition:background-size .55s cubic-bezier(.2,.75,.3,1);border-radius:1px}
+.hl.on{background-size:100% 100%}
+
+.sample{margin:15px 0 0;border:1px solid var(--rule);border-left:3px solid var(--ink);background:var(--card);padding:16px 20px}
+.sample p:not(.note-h){font-family:var(--read);font-size:15.5px;line-height:1.9;color:#1a2836;margin:0 0 1em}
+.sample p:last-child{margin-bottom:0}
+.bank.wide{grid-template-columns:1fr}
+.bank.wide .bank-i{font-size:15px;line-height:1.7;padding:10px 14px}
+.note{margin:15px 0 0;border:1px solid var(--rule);background:var(--card);padding:13px 16px}
+.note-h{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin:0 0 9px}
+.note-i{margin:0;padding:9px 0 0;border-top:1px dotted var(--rule)}
+.note-i:first-of-type{border-top:0;padding-top:0}
+.term{font-family:var(--read);font-size:16px;font-weight:600}
+.pos{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);margin:0 6px}
+.gloss{font-size:14.5px}
+.ex{font-family:var(--read);font-size:14px;color:var(--ink-2);line-height:1.7;margin:3px 0 0;display:block}
+.ex i{font-family:var(--han);font-style:normal;font-size:13px;color:var(--ink-3);display:block}
+
+.side{position:sticky;top:136px;align-self:start;max-height:calc(100vh - 164px);overflow:auto;padding-right:4px}
+@media (max-width:1020px){.side{position:static;max-height:none;scroll-margin-top:136px}}
+.side-h{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin:0 0 3px}
+.side-t{font-size:16px;font-weight:600;margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
+.card-list{margin:0;padding:0;list-style:none}
+.card-item{border-bottom:1px solid var(--rule);padding:11px 0}
+.card-item a{display:block;text-decoration:none;color:inherit}
+.card-item a:hover .term{background:var(--hl)}
+.jump{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);float:right;padding-top:5px}
+.side-note{font-size:12.5px;color:var(--ink-3);line-height:1.7;margin:16px 0 0}
+.foot{max-width:var(--maxw);margin:0 auto;padding:0 24px 48px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink-3)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+@media print{
+  body{background:#fff;font-size:10.5pt}
+  .top,.side,.reveal,.foot,.zhbtn{display:none!important}
+  .wrap{display:block;max-width:none;padding:0}
+  .q .body{display:block!important}
+  .zhbox{display:block!important}
+  .q{break-inside:avoid;border-color:#999;margin-bottom:9pt}
+  .passage{break-inside:avoid}
+  .hl{background-size:100% 100%!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <p class="eyebrow" id="brand"></p>
+    <h1 class="title" id="examTitle"></h1>
+    <p class="meta" id="examMeta"></p>
+    <nav class="bar" id="nav"></nav>
+  </div>
+</header>
+
+<div class="wrap"><main id="main"></main><aside class="side" id="side"></aside></div>
+<p class="foot" id="foot"></p>
+
+<script>
+/* ==========================================================================
+   ①  題目與詳解全部寫在下面的 EXAM 物件裡。要改題、加題、修字，只動這裡。
+
+   section（大題）：{ id, label, score, instruction, bank?, groups: [...] }
+   group（同一篇文章的題組）：{ passage?, zh?, questions: [...] }
+       passage 裡寫 __7__ 就會變成可點的空格，數字對應題號。
+       zh 是全文中譯，會做成可展開的按鈕。
+
+   question 依題型三選一：
+     選擇題   { n, kind, stem, options:{A..D}, answer:"B", translation, explain:{A..D}, evidence?, notes? }
+     單一填答 { n, kind, stem, answerText:"prejudice", why, notes? }
+     多格填答 { n, kind, prompt, stem, answers:[{k:"①", w:"字", note:"說明"}], notes? }
+   ========================================================================== */
+const EXAM = {
+  brand: "Vocabulary Competition",
+  title: "115單字比賽 集訓四 練習 詳解｜Training Week 4",
+  meta: "Instructor: Howard Chang　·　範圍：集訓三 (115/11/02)",
+  footer: "KGHS 115 英文單字比賽 集訓(四) 練習卷",
+  sections: [
+  {
+    id:"sp", label:"測驗一、聽英拼寫", score:"第 1-50 題",
+    instruction:"依聽力播放之英文拼寫出正確單字，每題播放兩次。點開可看音節、重音、音標與拼寫陷阱。",
+    groups:[{
+      questions:[
+        { n:1, kind:"adj.", answerText:"cordial", stem:"熱誠友好的、親切的",
+          translation:"COR-dial　/ˈkɔːrdʒəl/　重音在第一音節",
+          why:"字尾 -dial 發 /dʒəl/（d 加 i 讀成 /dʒ/），聽起來像 -jul，所以容易寫成 -jial 或 -gial。字根 cord 是「心」，記成「打從心裡」就不會錯。",
+          notes:[{term:"cordial / cord＝心", pos:"字根", gloss:"adj. 熱誠的（a cordial welcome／cordial relations 友好的關係）；adv. cordially。字根 cord 心：accord 一致／discord 不和／concord 和睦／record 記錄（記在心上）。本卷測驗二第 2 題也出現這個字當誘答。"}]},
+
+        { n:2, kind:"n.", answerText:"champagne", stem:"香檳（酒）",
+          translation:"cham-PAGNE　/ʃæmˈpeɪn/　重音在第二音節",
+          why:"法文借字，兩個陷阱：開頭 ch 發 /ʃ/（不是 /tʃ/ 或 /k/），以及字尾 -gne 發 /n/（g 不發音）。源自法國 Champagne 香檳區，專指該區產的氣泡酒。",
+          notes:[{term:"champagne / campaign", pos:"對照", gloss:"champagne 香檳／campaign 活動、戰役（本測驗第 5 題）。兩字拼法相似、尾音都是 /eɪn/，是本卷刻意放在一起的陷阱組。集訓二作業二測驗一第 24 題也考過 champagne。"}]},
+
+        { n:3, kind:"adj. / n.", answerText:"auxiliary", stem:"輔助的／助動詞、輔助設備",
+          translation:"aux-IL-ia-ry　/ɔːɡˈzɪliəri/　重音在第二音節",
+          why:"兩個難點：開頭 aux- 的 x 發 /ɡz/，以及字尾 -iary（四段 aux-il-ia-ry）最容易漏掉 i 寫成 auxilary。",
+          notes:[{term:"auxiliary", pos:"adj. / n.", gloss:"輔助的（an auxiliary engine／auxiliary troops 後備部隊）；文法上的 auxiliary verb 助動詞（be, do, have, will…）。同義：supplementary／subsidiary。"}]},
+
+        { n:4, kind:"n.", answerText:"bureaucracy", stem:"官僚體制、繁瑣的行政程序",
+          translation:"bu-REAU-cra-cy　/bjʊˈrɑːkrəsi/　重音在第二音節",
+          why:"法文字根 bureau（辦公處）＋ -cracy（統治），關鍵在 -reau- 這個組合（不是 -rau- 或 -ro-）。字尾是 -cracy 不是 -crasy。",
+          notes:[{term:"bureau / bureaucracy / bureaucrat", pos:"字族", gloss:"n. 局、處／n. 官僚體制／n. 官僚。集訓三作業一測驗一第 10 題考過 bureaucrat。字尾 -cracy 統治：democracy 民主／autocracy 專制／aristocracy 貴族統治／meritocracy 菁英治理。"}]},
+
+        { n:5, kind:"n. / v.", answerText:"campaign", stem:"（政治或宣傳）活動、戰役／發起活動",
+          translation:"cam-PAIGN　/kæmˈpeɪn/　重音在第二音節",
+          why:"字尾 -gn 的 g 不發音（讀 /peɪn/），與 sign、design、foreign 同一組。前半段是 cam-（不是 com-）。注意它與第 2 題的 champagne 拼法極相似，要分清楚。",
+          notes:[{term:"campaign", pos:"n. / v.", gloss:"活動、戰役（an election／advertising campaign；campaign for sth 為某事奔走）。n. campaigner 運動人士。集訓二作業二測驗一第 48 題也考過這個字。"}]},
+
+        { n:6, kind:"n.", answerText:"tariff", stem:"關稅、價目表",
+          translation:"TAR-iff　/ˈtærɪf/　重音在第一音節",
+          why:"字尾是雙 f（-iff），不要寫成 -if 或 -ife。前半段是 tar-（不是 ter-）。同型字：cliff、stiff、sniff。",
+          notes:[{term:"tariff", pos:"n.", gloss:"關稅（impose／lift tariffs on sth 對某物課徵／取消關稅）；也指費率表（a hotel tariff）。貿易字彙：quota 配額／embargo 禁運／subsidy 補貼／trade deficit 貿易逆差。"}]},
+
+        { n:7, kind:"n.", answerText:"premier", stem:"總理、首相",
+          translation:"pre-MIER　/prɪˈmɪr/　重音在第二音節",
+          why:"字尾是 -mier（不是 -mere 或 -meer）。最大的陷阱是它與 premiere（首映、首演，讀 /prɪˈmɪr/ 或 /prɪˈmjer/）只差一個 e，意思完全不同。",
+          notes:[{term:"premier / premiere", pos:"辨析", gloss:"premier 總理、首相；當形容詞是「首要的」（the premier league 頂級聯賽）／premiere 首映、首演（the world premiere 全球首映）。多一個 e 就換了意思。"}]},
+
+        { n:8, kind:"n.", answerText:"brassiere", stem:"胸罩（正式用語）",
+          translation:"bras-SIERE　/brəˈzɪr/　重音在第二音節",
+          why:"法文借字，兩個陷阱：雙 s（bras-siere）與字尾 -iere（不是 -ier 或 -ere）。日常口語縮寫為 bra。集訓三作業一測驗一第 12 題剛考過。",
+          notes:[{term:"brassiere", pos:"n.", gloss:"胸罩（正式書面語，日常用 bra）。同類法文借字：lingerie 女性內衣／boutique 精品店／chic 時髦的／couture 高級訂製服。"}]},
+
+        { n:9, kind:"n.", answerText:"rhinoceros", stem:"犀牛",
+          translation:"rhi-NOC-er-os　/raɪˈnɑːsərəs/　重音在第二音節",
+          why:"兩個陷阱：開頭的 rh-（與 rhythm、rhyme 同型），以及字尾是 -os 不是 -ous 或 -us。字源是希臘文 rhino（鼻）＋ keras（角）。口語簡稱 rhino。",
+          notes:[{term:"rh- 開頭的字", pos:"整理", gloss:"rhinoceros 犀牛／rhythm 節奏／rhyme 押韻／rhetoric 修辭／rheumatism 風濕。集訓三作業一測驗一第 20 題剛考過這個字。"}]},
+
+        { n:10, kind:"n.", answerText:"cassette", stem:"卡式錄音帶、匣式膠捲",
+          translation:"cas-SETTE　/kəˈset/　重音在第二音節",
+          why:"雙 s 加雙 t（cas-sette），是法文小稱字尾 -ette。不要寫成 casette 或 cassete。重音落在最後也是法文借字的特徵。",
+          notes:[{term:"-ette 法文小稱字尾", pos:"字尾", gloss:"cassette 小匣子／cigarette 香菸／silhouette 剪影／statuette 小雕像／kitchenette 小廚房。這類字的重音多在最後一音節。集訓三作業一測驗一第 23 題剛考過。"}]},
+
+        { n:11, kind:"adj.", answerText:"colloquial", stem:"口語的、日常談話的",
+          translation:"col-LO-qui-al　/kəˈloʊkwiəl/　重音在第二音節",
+          why:"兩個陷阱：開頭的雙 l（col-lo-），以及中間的 -qui- 要保留 u。字尾是 -al，四個音節都要寫出來。",
+          notes:[{term:"字根 loqu＝說話", pos:"字根", gloss:"colloquial 口語的／eloquent 辯才無礙的（本卷測驗二第 38 題考 eloquence）／soliloquy 獨白／loquacious 多話的。集訓三作業一測驗一第 42 題剛考過這個字。"}]},
+
+        { n:12, kind:"n.", answerText:"sergeant", stem:"中士、警官",
+          translation:"SER-geant　/ˈsɑːrdʒənt/　重音在第一音節",
+          why:"拼法與讀音嚴重脫節：拼 ser- 卻唸 /sɑːr/（像 sar-），字尾 -geant 唸 /dʒənt/。不要寫成 sargeant 或 sergeent。集訓三作業一測驗一第 46 題剛考過。",
+          notes:[{term:"軍階整理", pos:"整理", gloss:"private 士兵／corporal 下士／sergeant 中士／lieutenant 中尉／captain 上尉／major 少校／colonel 上校（讀 /ˈkɜːrnl/，拼讀也脫節）／general 將軍。"}]},
+
+        { n:13, kind:"n.", answerText:"hippopotamus", stem:"河馬",
+          translation:"hip-po-POT-a-mus　/ˌhɪpəˈpɑːtəməs/　主重音在第三音節",
+          why:"五個音節，雙 p 在前（hip-po-），字尾是 -mus 不是 -mous。字源是希臘文 hippo（馬）＋ potamos（河）。口語簡稱 hippo。集訓三作業一測驗一第 10 題剛考過。",
+          notes:[{term:"hippopotamus", pos:"n.", gloss:"河馬（複數 hippopotamuses 或 hippopotami）。希臘字根 hippo 馬：hippodrome 賽馬場。相關：rhinoceros 犀牛（本測驗第 9 題）。"}]},
+
+        { n:14, kind:"n.", answerText:"sovereignty", stem:"主權、統治權",
+          translation:"SOV-er-eign-ty　/ˈsɑːvrənti/　重音在第一音節",
+          why:"中間的 -eign- 與 foreign、reign 同一組拼法。另一個常見錯誤是寫成 sovereignity（多一個 i）：正確是 sovereign ＋ -ty。這是本季第三次出現，務必拿下。",
+          notes:[{term:"sovereignty / sovereign", pos:"字族", gloss:"n. 主權（national sovereignty）／n.·adj. 君主、有主權的（a sovereign state）。集訓三練習卷第 1 題、集訓三作業一第 16 題都考過。"}]},
+
+        { n:15, kind:"n.", answerText:"acquisition", stem:"取得、收購；（語言）習得",
+          translation:"ac-qui-SI-tion　/ˌækwəˈzɪʃn/　主重音在第三音節",
+          why:"開頭的 -cq- 組合是關鍵（ac-qui-），不要寫成 aquisition。中間的 -qui- 發 /kwə/，字尾 -sition 的 s 發 /z/。集訓三作業一測驗一第 40 題剛考過。",
+          notes:[{term:"acquire / acquisition", pos:"字族", gloss:"v. 取得、習得／n. 取得、收購（mergers and acquisitions 併購／language acquisition 語言習得）。本卷測驗二第 19 題的 merger 可一起複習。"}]},
+
+        { n:16, kind:"n.", answerText:"cupboard", stem:"碗櫃、櫥櫃",
+          translation:"CUP-board　/ˈkʌbərd/　重音在第一音節",
+          why:"拼法是 cup（杯）＋ board（板），但讀音是 /ˈkʌbərd/——p 不發音，board 也弱讀成 /bərd/。與第 21 題的 vineyard 同屬「組字法拼、縮讀法唸」的字。",
+          notes:[{term:"cupboard", pos:"n.", gloss:"碗櫃、櫥櫃。片語 skeletons in the cupboard 不可告人的家醜（美式用 closet）。集訓三作業一測驗一第 47 題剛考過。"}]},
+
+        { n:17, kind:"adj.", answerText:"unanimous", stem:"全體一致的、無異議的",
+          translation:"u-NAN-i-mous　/juˈnænɪməs/　重音在第二音節",
+          why:"四個音節 u-nan-i-mous，中間的 i 容易漏。字尾是 -mous 不是 -mus。字源是 un（一）＋ anim（心靈），字面是「同一個心」。集訓三作業一測驗一第 48 題剛考過。",
+          notes:[{term:"unanimous", pos:"adj.", gloss:"全體一致的（a unanimous decision／verdict）。adv. unanimously；n. unanimity。字根 anim 生命、心靈：animal 動物／animate 使有生命／magnanimous 寬宏大量的。"}]},
+
+        { n:18, kind:"n. / adj.", answerText:"melancholy", stem:"憂鬱、惆悵／憂鬱的",
+          translation:"MEL-an-chol-y　/ˈmelənkɑːli/　重音在第一音節",
+          why:"中間的 ch 發 /k/（希臘字源），不要寫成 melancoly。四個音節都要寫出來，字尾是 -y。本卷測驗二第 26 題考的就是這個字的用法。",
+          notes:[{term:"melancholy", pos:"n. / adj.", gloss:"憂鬱、惆悵（較文學的用字）。古希臘醫學認為憂鬱源於 melan（黑）＋ chole（膽汁）。集訓三作業一測驗一第 49 題剛考過。"}]},
+
+        { n:19, kind:"n.", answerText:"ingenuity", stem:"巧思、創造才能",
+          translation:"in-ge-NU-i-ty　/ˌɪndʒəˈnuːəti/　主重音在第三音節",
+          why:"最大的陷阱是它與形容詞 ingenious（有創意的）拼法不同：形容詞是 -genious，名詞卻是 -genuity。不要寫成 ingeniuity。集訓三作業一測驗一第 21 題剛考過。",
+          notes:[{term:"ingenious / ingenuity / ingenuous", pos:"辨析", gloss:"adj. 巧妙的／n. 巧思（拼法變成 -genuity）／adj. ingenuous 天真坦率的（與前兩者無關）。三字極易混淆。"}]},
+
+        { n:20, kind:"n.", answerText:"nuisance", stem:"討厭的人或事、妨害",
+          translation:"NUI-sance　/ˈnuːsns/　重音在第一音節",
+          why:"開頭的 nui- 發 /nuː/，u 後面還有一個 i，是最容易漏的地方（不要寫成 nusance）。字尾是 -sance 不是 -sence。集訓三作業一測驗一第 9 題剛考過。",
+          notes:[{term:"nuisance", pos:"n.", gloss:"討厭的人或事（What a nuisance!／a public nuisance 公共妨害）。集訓三練習卷測驗二第 38 題也出現過這個字當誘答。"}]},
+
+        { n:21, kind:"n.", answerText:"vineyard", stem:"葡萄園",
+          translation:"VINE-yard　/ˈvɪnjərd/　重音在第一音節",
+          why:"拼法是 vine（葡萄藤）＋ yard（院子），但讀音是 /ˈvɪnjərd/——第一音節的 i 唸短音 /ɪ/ 而不是 vine 的 /aɪ/，yard 也弱讀成 /jərd/。集訓三作業一測驗一第 7 題剛考過。",
+          notes:[{term:"vineyard", pos:"n.", gloss:"葡萄園。相關：vine 藤、葡萄藤／grape 葡萄／winery 酒莊／vintage 某年份的／harvest 採收。本測驗第 2 題的 champagne 也出自這個產業。"}]},
+
+        { n:22, kind:"n.", answerText:"daffodil", stem:"黃水仙",
+          translation:"DAF-fo-dil　/ˈdæfədɪl/　重音在第一音節",
+          why:"雙 f 在前（daf-fo-），字尾是 -dil 不是 -dill 或 -dle。三個音節的母音依序是 a-o-i，要逐段默念。",
+          notes:[{term:"daffodil", pos:"n.", gloss:"黃水仙（英國威爾斯的象徵花）。花卉整理：lily 百合／orchid 蘭花／tulip 鬱金香／jasmine 茉莉／chrysanthemum 菊花／magnolia 木蘭。"}]},
+
+        { n:23, kind:"n.", answerText:"dandruff", stem:"頭皮屑",
+          translation:"DAN-druff　/ˈdændrəf/　重音在第一音節",
+          why:"字尾是雙 f（-druff），與第 6 題的 tariff 同屬雙 f 結尾。不要寫成 -druf 或 -drough。它是不可數名詞，不加 s。",
+          notes:[{term:"dandruff", pos:"n.", gloss:"頭皮屑（不可數；anti-dandruff shampoo 抗頭皮屑洗髮精）。集訓三練習卷測驗二第 17 題也出現過這個字當誘答。"}]},
+
+        { n:24, kind:"n. / v.", answerText:"brooch（或 broach）", stem:"胸針／（broach）提出話題",
+          translation:"BROOCH　/broʊtʃ/　單音節",
+          why:"brooch（胸針）與 broach（提出話題、開啟）是同音異義字，讀音都是 /broʊtʃ/，所以聽寫時兩種拼法都成立，本題答案欄也並列。要靠語意分辨：別在衣服上的是 brooch，broach a subject 是把話題提出來。",
+          notes:[{term:"brooch / broach", pos:"辨析", gloss:"n. brooch 胸針（pin on a brooch）／v. broach 提出（broach a subject／the topic 開啟話題）；broach 也指「打開（酒桶）」。集訓三作業一測驗三第 31 題考過 brooch。"}]},
+
+        { n:25, kind:"n.", answerText:"sulfur（英式 sulphur）", stem:"硫、硫磷",
+          translation:"SUL-fur　/ˈsʌlfər/　重音在第一音節",
+          why:"美式拼 sulfur，英式拼 sulphur（ph 代替 f），兩種都算對，本題答案欄也並列。字尾是 -fur／-phur，不要寫成 -fer 或 -for。",
+          notes:[{term:"sulfur", pos:"n.", gloss:"硫（元素符號 S；sulfuric acid 硫酸／sulfur dioxide 二氧化硫）。英美拼法差異的其他例子：color／colour、center／centre、analyze／analyse、defense／defence。"}]},
+
+        { n:26, kind:"n.", answerText:"freight", stem:"貨運、運費",
+          translation:"FREIGHT　/freɪt/　單音節",
+          why:"母音組合 -eigh- 發 /eɪ/（與 eight、weight、neighbor 同型），而字尾 -ght 的 gh 不發音。不要寫成 fraight 或 frieght——ei 的順序是關鍵。集訓二作業二測驗一第 14 題也考過。",
+          notes:[{term:"freight", pos:"n. / v.", gloss:"貨運、運費（air／sea freight／a freight train 貨運列車）。相關：cargo 貨物／shipment 裝運／logistics 物流／consignment 託運貨物。"}]},
+
+        { n:27, kind:"n. / v.", answerText:"wrench", stem:"扳手／猛扭、猛拉",
+          translation:"WRENCH　/rentʃ/　單音節",
+          why:"開頭的 w 不發音（wr- 組合），是這個字最大的陷阱。同組：wrist 手腕／write 寫／wrap 包／wrong 錯的／wreck 殘骸／wrinkle 皺紋。",
+          notes:[{term:"wrench", pos:"n. / v.", gloss:"n. 扳手（美式；英式 spanner）、劇痛的離別／v. 猛扭（wrench one's ankle 扭傷腳踝／wrench sth open 猛力扳開）。a monkey wrench 活動扳手。"}]},
+
+        { n:28, kind:"adj.", answerText:"fertile", stem:"肥沃的、能生育的；（想像力）豐富的",
+          translation:"FER-tile　/ˈfɜːrtl/　重音在第一音節",
+          why:"字尾是 -tile（與 versatile、futile 同型），不要寫成 -tle 或 -til。重音在第一音節，第二音節弱讀成 /tl/。",
+          notes:[{term:"fertile / fertility", pos:"字族", gloss:"adj. 肥沃的、能生育的（fertile soil／a fertile imagination 豐富的想像力）／n. fertility 肥沃、生育力（the fertility rate 生育率）／n. fertilizer 肥料。反義 barren／infertile。"}]},
+
+        { n:29, kind:"v.", answerText:"gobble", stem:"狼吞虎嚥；（火雞）咯咯叫",
+          translation:"GOB-ble　/ˈɡɑːbl/　重音在第一音節",
+          why:"雙 b 是關鍵（gob-ble），字尾 -ble 與 bubble、wobble、nibble 同型。不要寫成 goble 或 gobel。",
+          notes:[{term:"gobble", pos:"v.", gloss:"狼吞虎嚥（gobble up／down one's food）；也指火雞的叫聲。進食動詞：devour 大口吃掉／nibble 小口啃／munch 大聲咀嚼／gulp 大口吞／savor 細細品味。"}]},
+
+        { n:30, kind:"adj.", answerText:"weary", stem:"疲憊的、厭倦的",
+          translation:"WEA-ry　/ˈwɪri/　重音在第一音節",
+          why:"母音組合 ea 發 /ɪ/（像 weir），所以聽起來像 weer-y，容易寫成 weery 或 wiery。注意它與 wary（警戒的，讀 /ˈweri/）只差一個字母，意思完全不同。",
+          notes:[{term:"weary / wary", pos:"辨析", gloss:"weary 疲憊厭倦的（be weary of sth 對某事厭倦）／wary 警戒的（be wary of sb 對某人有所戒心）。兩字拼法只差一個 e，常被互換。n. weariness 疲憊。"}]},
+
+        { n:31, kind:"n.", answerText:"abdomen", stem:"腹部",
+          translation:"AB-do-men　/ˈæbdəmən/　重音在第一音節（也可讀 ab-DO-men）",
+          why:"三個音節 ab-do-men，字尾是 -men 不是 -man 或 -min。形容詞 abdominal 的重音跑到第二音節。集訓三作業一測驗一第 1 題剛考過。",
+          notes:[{term:"abdomen / abdominal", pos:"字族", gloss:"n. 腹部／adj. 腹部的（abdominal pain 腹痛／abdominal muscles 腹肌）。相關：chest 胸部／torso 軀幹／pelvis 骨盆。"}]},
+
+        { n:32, kind:"n.", answerText:"thermometer", stem:"溫度計、體溫計",
+          translation:"ther-MOM-e-ter　/θərˈmɑːmɪtər/　重音在第二音節",
+          why:"拆成 thermo（熱）＋ meter（計量器）就不會錯。注意兩個 m 分屬不同音節（-mom-e-ter），而且字尾是 -meter 不是 -metre（那是英式的「公尺」）。",
+          notes:[{term:"字根 therm＝熱", pos:"字根", gloss:"thermometer 溫度計／thermal 熱的（thermal underwear 保暖衣）／thermos 保溫瓶／hypothermia 體溫過低／geothermal 地熱的（本卷測驗二第 6 題出現）。"}]},
+
+        { n:33, kind:"n.", answerText:"binoculars", stem:"雙筒望遠鏡",
+          translation:"bi-NOC-u-lars　/bɪˈnɑːkjələrz/　重音在第二音節",
+          why:"拆成 bi（二）＋ ocul（眼）＋ -ars。兩個陷阱：中間的 -cu- 要保留 u，以及它恆用複數（a pair of binoculars），字尾的 s 不能漏。",
+          notes:[{term:"字根 ocul＝眼", pos:"字根", gloss:"binoculars 雙筒望遠鏡／monocle 單片眼鏡／oculist 眼科醫師／inoculate 接種疫苗（原意是「植入芽眼」）。恆複數的器物：scissors 剪刀／pliers 鉗子／tweezers 鑷子。"}]},
+
+        { n:34, kind:"adj.", answerText:"obstinate", stem:"固執的、頑強的",
+          translation:"OB-sti-nate　/ˈɑːbstɪnət/　重音在第一音節",
+          why:"重音在第一音節，字尾 -nate 弱讀成 /nət/，所以聽起來像 -net，不要寫成 obstinet。中間的 i 不可漏。本卷測驗二第 2 題考的就是這個字的用法。",
+          notes:[{term:"obstinate", pos:"adj.", gloss:"固執的（be obstinate about sth）。n. obstinacy。集訓三練習卷測驗一第 36 題、集訓三作業一測驗二第 20 題都出現過。同義：stubborn／headstrong／inflexible。"}]},
+
+        { n:35, kind:"n.", answerText:"antonym", stem:"反義字",
+          translation:"AN-to-nym　/ˈæntənɪm/　重音在第一音節",
+          why:"字尾 -nym（希臘文「名字」）發 /nɪm/，不要寫成 -nim 或 -nyme。中間的 o 是連接母音，容易漏寫成 antnym。",
+          notes:[{term:"-nym＝名字", pos:"字尾", gloss:"antonym 反義字／synonym 同義字／homonym 同形同音異義字／pseudonym 筆名／acronym 首字母縮寫字／anonymous 匿名的。"}]},
+
+        { n:36, kind:"n. / v.", answerText:"vacuum", stem:"真空；吸塵器／用吸塵器清掃",
+          translation:"VAC-uum　/ˈvækjuːm/　重音在第一音節",
+          why:"英文裡極少見的「雙 u」拼法（vac-uum），是全字最大的陷阱，很多人只寫一個 u。字根 vac 是「空」。",
+          notes:[{term:"字根 vac＝空", pos:"字根", gloss:"vacuum 真空／vacant 空的／vacancy 空缺／vacation 假期／evacuate 疏散（集訓三作業二第 42 題考過）／vacuous 空洞的。a vacuum cleaner 吸塵器。"}]},
+
+        { n:37, kind:"n.", answerText:"cavalry", stem:"騎兵（隊）",
+          translation:"CAV-al-ry　/ˈkævlri/　重音在第一音節",
+          why:"注意字母順序是 cav-al-ry，不要寫成 Calvary（那是耶穌受難的各各他山，是完全不同的專有名詞）。字根 caval 來自拉丁文的「馬」。",
+          notes:[{term:"cavalry / Calvary", pos:"辨析", gloss:"cavalry 騎兵隊（字根 caval 馬，同 cavalier 騎士、chivalry 騎士精神）／Calvary 各各他（專有名詞，須大寫）。兩字字母幾乎相同、順序不同。對照 infantry 步兵／artillery 砲兵。"}]},
+
+        { n:38, kind:"adj.", answerText:"feeble", stem:"虛弱的、無力的；（理由）站不住腳的",
+          translation:"FEE-ble　/ˈfiːbl/　重音在第一音節",
+          why:"雙 e 發長音 /iː/（fee-），字尾 -ble 與 feasible、noble 同型。不要寫成 feable 或 feeble 的 ea 版本。",
+          notes:[{term:"feeble", pos:"adj.", gloss:"虛弱的（a feeble voice／a feeble old man）；也指「薄弱的」（a feeble excuse 站不住腳的藉口）。adv. feebly。同義：frail 孱弱的／flimsy 薄弱的／weak。"}]},
+
+        { n:39, kind:"n. / adj.", answerText:"arithmetic", stem:"算術／算術的",
+          translation:"名詞 a-RITH-me-tic　/əˈrɪθmətɪk/　重音在第二音節；形容詞 ar-ith-MET-ic 重音在第三音節",
+          why:"名詞與形容詞同形但重音不同，是這個字的特別處。拼法上注意 -rith-（th 在中間）與字尾 -metic（不是 -matic）。",
+          notes:[{term:"arithmetic", pos:"n. / adj.", gloss:"算術（mental arithmetic 心算）。數學分支：algebra 代數／geometry 幾何／calculus 微積分／statistics 統計學／trigonometry 三角學。"}]},
+
+        { n:40, kind:"n. / v.", answerText:"parrot", stem:"鸚鵡／鸚鵡式學舌、照本宣科",
+          translation:"PAR-rot　/ˈpærət/　重音在第一音節",
+          why:"雙 r 是關鍵（par-rot），不要寫成 parot。字尾是 -rot 不是 -rat 或 -rott。集訓二測驗一第 29 題也考過這個字。",
+          notes:[{term:"parrot", pos:"n. / v.", gloss:"n. 鸚鵡／v. 不加思索地重複別人的話（parrot sb's words）。adv. parrot-fashion 死記硬背地。相關：mimic 模仿（本卷測驗二第 32 題出現）／imitate 仿效。"}]},
+
+        { n:41, kind:"n.", answerText:"Fahrenheit", stem:"華氏（溫度）",
+          translation:"FAHR-en-heit　/ˈfærənhaɪt/　重音在第一音節",
+          why:"源自德國物理學家的姓，首字母一定要大寫。拼寫陷阱在前後兩段：Fahr-（不是 Far-）與 -heit（不是 -hite 或 -height）。集訓三練習卷測驗一第 2 題剛考過。",
+          notes:[{term:"Fahrenheit / Celsius", pos:"字彙", gloss:"華氏／攝氏。32°F ＝ 0°C。Celsius 也要大寫（又作 centigrade，此字不大寫）。本測驗第 32 題的 thermometer 可一起複習。"}]},
+
+        { n:42, kind:"n.", answerText:"carbohydrate", stem:"碳水化合物、醣類",
+          translation:"car-bo-HY-drate　/ˌkɑːrboʊˈhaɪdreɪt/　主重音在第三音節",
+          why:"拆成 carbo（碳）＋ hydrate（水合物）就不會拼錯。常見錯誤是漏掉中間的 o 寫成 carbhydrate，或把 hy- 寫成 hi-。集訓三練習卷測驗一第 10 題剛考過。",
+          notes:[{term:"carbohydrate", pos:"n.", gloss:"碳水化合物（口語簡稱 carbs）。同類營養素：protein 蛋白質／fat 脂肪／fiber 纖維／calcium 鈣／cholesterol 膽固醇。"}]},
+
+        { n:43, kind:"n.", answerText:"hypocrite", stem:"偽君子、言行不一的人",
+          translation:"HYP-o-crite　/ˈhɪpəkrɪt/　重音在第一音節",
+          why:"注意 y 與 i 的位置：hyp-（y）、-crite（i），且字尾的 i 發 /ɪ/ 不是 /aɪ/。名詞 hypocrisy 重音跑到第二音節且拼成 -crisy（沒有 t）。集訓三練習卷第 12 題、作業二第 45 題都考過。",
+          notes:[{term:"hypocrite / hypocrisy", pos:"字族", gloss:"n. 偽君子／n. 偽善／adj. hypocritical 偽善的。字首 hypo- 在下、不足：hypothesis 假設／hypothermia 體溫過低／hypodermic 皮下的。"}]},
+
+        { n:44, kind:"n.", answerText:"maintenance", stem:"維修、保養、維持",
+          translation:"MAIN-te-nance　/ˈmeɪntənəns/　重音在第一音節",
+          why:"經典陷阱：動詞 maintain 的第二音節是 -tain，但名詞變成 -ten-，而且字尾是 -ance 不是 -ence。不要寫成 maintainance。這是本季第三次出現。",
+          notes:[{term:"maintain / maintenance", pos:"字族", gloss:"vt. 維持、保養、主張／n. 維修保養（routine maintenance／under maintenance 維修中）。集訓三練習卷第 14 題、作業二第 30 題都考過。"}]},
+
+        { n:45, kind:"adj.", answerText:"preliminary", stem:"初步的、預備的",
+          translation:"pre-LIM-i-nar-y　/prɪˈlɪmɪneri/　重音在第二音節",
+          why:"五個音節都要寫出來：pre-lim-i-nar-y。最常漏的是第三音節的 i。字尾是 -nary 不是 -nery。本卷測驗二第 10 題考的就是這個字的用法。",
+          notes:[{term:"preliminary", pos:"adj. / n.", gloss:"初步的、預賽的（preliminary results／rounds）。字首 pre- 之前 ＋ limin（門檻，同 eliminate）。集訓三練習卷第 23 題、作業二第 26 題都出現過。"}]},
+
+        { n:46, kind:"n. / v.", answerText:"herald", stem:"先驅、預兆／預示、宣告",
+          translation:"HER-ald　/ˈherəld/　重音在第一音節",
+          why:"注意是 her- ＋ -ald，不要寫成 herold 或 harald。與人名 Harold 只差一個字母，聽寫時靠第一個母音 /e/ 判斷。集訓三練習卷測驗一第 7 題剛考過。",
+          notes:[{term:"herald", pos:"v. / n.", gloss:"v. 預示、宣告（The move heralds a new era.）／n. 先驅、預兆。許多報紙以 Herald 為名。"}]},
+
+        { n:47, kind:"n.", answerText:"cocoon", stem:"（蠶）繭",
+          translation:"co-COON　/kəˈkuːn/　重音在第二音節",
+          why:"三個 o 的位置是陷阱：c-o-c-oo-n。第一音節只有一個 o，第二音節是雙 oo。不要寫成 coccoon 或 cocon。集訓三練習卷測驗一第 16 題剛考過。",
+          notes:[{term:"cocoon", pos:"n. / v.", gloss:"繭；也可比喻「保護殼」（cocoon oneself 把自己包起來）。相關：caterpillar 毛毛蟲／pupa 蛹／chrysalis 蝶蛹／metamorphosis 變態。"}]},
+
+        { n:48, kind:"n.", answerText:"mustache（英式 moustache）", stem:"小鬍子、八字鬍",
+          translation:"MUS-tache　/ˈmʌstæʃ/（也可讀 mus-TACHE）　重音多在第一音節",
+          why:"美式拼 mustache，英式拼 moustache（多一個 o），兩種都算對。字尾 -tache 發 /tæʃ/，不要寫成 -tash 或 -tasche。集訓三作業一測驗一第 28 題剛考過。",
+          notes:[{term:"mustache", pos:"n.", gloss:"小鬍子（grow a mustache 留鬍子）。相關：beard 下巴鬍／sideburns 鬢角／stubble 鬍渣／goatee 山羊鬍／shave 刮鬍子。"}]},
+
+        { n:49, kind:"n.", answerText:"porcelain", stem:"瓷器、瓷",
+          translation:"POR-ce-lain　/ˈpɔːrsəlɪn/　重音在第一音節",
+          why:"字尾 -lain 發 /lɪn/ 而不是 /leɪn/，所以照音寫很容易變成 -lin 或 -len。記成 por ＋ ce ＋ lain（與 lie 的過去分詞 lain 同拼）。這是本季第三次出現。",
+          notes:[{term:"porcelain", pos:"n.", gloss:"瓷（細白半透明）。對照 china 瓷器（小寫）／pottery 陶器／ceramic 陶瓷的／clay 黏土。集訓三練習卷第 34 題、作業二第 6 題都考過。"}]},
+
+        { n:50, kind:"adj. / n.", answerText:"delinquent", stem:"行為不良的、違法的／少年犯",
+          translation:"de-LIN-quent　/dɪˈlɪŋkwənt/　重音在第二音節",
+          why:"字尾是 -quent（qu 後面接 e），不要寫成 -quant 或 -kwent。中間的 -lin- 發 /lɪŋ/。集訓三練習卷測驗二第 5 題也出現過這個字當誘答。",
+          notes:[{term:"delinquent", pos:"adj. / n.", gloss:"行為不良的、違法的（a juvenile delinquent 少年犯）；財務上指「逾期未付的」（a delinquent account）。n. delinquency 違法行為、失職。"}]}
+      ]
+    }]
+  },
+
+  {
+    id:"mc", label:"測驗二、選擇", score:"第 1-45 題",
+    instruction:"依句意選出最適當的答案。答案：C A D B A　C D B D A　C B A D C　B A C D B　A D C B D　A C B A D　B D A C A　D B C A D　C B A C B",
+    groups:[{
+      questions:[
+        { n:1, kind:"名詞",
+          stem:"Not until the rescue team reached the collapsed tunnel did they grasp the true ______ of the disaster, which had trapped forty miners underground.",
+          options:{A:"longevity 長壽、持久",B:"precision 精確度",C:"magnitude 規模、重大程度",D:"revenue 收入、稅收"}, answer:"C",
+          translation:"直到救援隊抵達坍塌的隧道，他們才真正體會到這場災難的規模——有四十名礦工被困在地下。",
+          explain:{
+            A:"longevity 意為「長壽、（事物的）持久」；一場災難不會有「長壽」，而且與後面被困四十人的描述對不上。",
+            B:"precision 意為「精確度」，用於測量或工藝（with great precision 極為精確地）；災難的本質無關精不精準。",
+            C:"the magnitude of sth 意為「某事的規模、嚴重程度」。兩個線索：動詞 grasp the true ______（真正體會到…）要求空格是需要親眼所見才能理解的量級，而關係子句 which had trapped forty miners underground（四十名礦工被困地下）正說明了災情之重。magnitude 也是地震規模的專業用字。",
+            D:"revenue 意為「收入、稅收」，是財務概念；災難不會有「收入」。"
+          },
+          notes:[
+            {term:"magnitude", pos:"n.", gloss:"規模、重大程度（the magnitude of the problem／an earthquake of magnitude 7.0 芮氏七級地震）。adj. magnificent 宏偉的；字根 magn 大：magnify 放大／magnanimous 寬宏大量的。", ex:"Few grasped the magnitude of the crisis.", exZh:"很少人領會到這場危機的規模。"},
+            {term:"Not until ... 的倒裝", pos:"句型", gloss:"Not until ＋ 子句／片語置於句首時，主句要倒裝（did they grasp）。同義寫法：It was not until ... that they grasped ...（本卷第 4 題用的就是這個句型）。"}
+          ]},
+
+        { n:2, kind:"形容詞",
+          stem:"So ______ was the old fisherman that no amount of reasoning from his doctors or children could persuade him to stop sailing alone at eighty.",
+          options:{A:"obstinate 固執的、不肯讓步的",B:"cordial 熱誠友好的",C:"humble 謙遜的、卑微的",D:"sociable 善於交際的"}, answer:"A",
+          translation:"這位老漁夫固執到了這種程度：醫師與子女再怎麼勸說，都無法讓他在八十歲時停止獨自出海。",
+          explain:{
+            A:"obstinate 意為「固執的、不肯讓步的」。決定性線索是 So ... that 的結果子句：no amount of reasoning from his doctors or children could persuade him（醫師與子女再多的勸說都無法說服他）——勸不動、不肯改，正是固執的定義。本卷測驗一第 34 題也考了這個字的拼寫。",
+            B:"cordial 意為「熱誠友好的」；友善與聽不聽勸無關，而且無法解釋為何沒人勸得動他。本卷測驗一第 1 題考過這個字的拼寫。",
+            C:"humble 意為「謙遜的」；謙遜的人通常會虛心接受建議，與「勸不動」正好相反。這是本題最需要分辨的選項。",
+            D:"sociable 意為「善於交際的」；但他的行為是 sailing alone（獨自出海），與愛交際相矛盾。"
+          },
+          notes:[
+            {term:"obstinate", pos:"adj.", gloss:"固執的（be obstinate about sth；an obstinate refusal）。n. obstinacy 固執；adv. obstinately。語氣比 stubborn 正式，常帶批評意味。", ex:"He was too obstinate to admit his mistake.", exZh:"他太固執，不肯承認自己的錯。"},
+            {term:"So ＋ adj. ＋ be 動詞 ＋ 主詞 ＋ that ...", pos:"句型", gloss:"把 so ＋ 形容詞移到句首時主句倒裝（So obstinate was he that ...）。原句等於 The old fisherman was so obstinate that ...。本卷第 33 題的 Such was ... that 是同一類倒裝。"}
+          ]},
+
+        { n:3, kind:"過去分詞",
+          stem:"Had it not been for the pilot's quick thinking, the collision could not have been ______, and hundreds of passengers might have lost their lives.",
+          options:{A:"quantified 被量化",B:"inscribed 被刻上（文字）",C:"dubbed 被取綽號、被配音",D:"averted 被避免、被防止"}, answer:"D",
+          translation:"若非這位機師反應敏捷，這場碰撞就不可能被避免，數百名乘客可能已失去性命。",
+          explain:{
+            A:"quantify 意為「量化」，是把事情轉成可測量的數字（quantify the damage 量化損失）；但本句談的是事故有沒有發生，不是能不能計算。",
+            B:"inscribe 意為「刻上文字」（inscribe a name on a ring）；一場碰撞不是可以被刻上的對象。",
+            C:"dub 意為「給…取綽號」或「為影片配音」；它與事故的發生與否無關。",
+            D:"avert 意為「避免、防止（災難發生）」。兩個線索：假設語氣 Had it not been for the pilot's quick thinking（若非機師反應敏捷）說明是人的及時處置改變了結果，而 hundreds of passengers might have lost their lives（數百乘客可能喪命）顯示被防止的是一場災難。集訓三練習卷測驗二第 19 題也考過這個字。"
+          },
+          notes:[
+            {term:"avert", pos:"vt.", gloss:"① 避免、防止（avert a crisis／disaster／collision）② 把目光移開（avert one's eyes）。n. aversion 厭惡。", ex:"His quick action averted a tragedy.", exZh:"他迅速的行動避免了一場悲劇。"},
+            {term:"Had it not been for ...", pos:"句型", gloss:"若非…（＝If it had not been for ...／But for ...），與過去事實相反的假設。主句用 could／might have ＋ p.p.。本卷第 8、28、39 題也都是倒裝假設句。"}
+          ]},
+
+        { n:4, kind:"名詞",
+          stem:"It was not until the company's accounts were placed under public ______ that investors discovered the chairman had secretly moved millions into his own pocket.",
+          options:{A:"morale 士氣",B:"scrutiny 嚴密審查、仔細檢視",C:"legacy 遺產、遺留的影響",D:"welfare 福利、福祉"}, answer:"B",
+          translation:"直到這家公司的帳目被放到公眾的嚴密檢視之下，投資人才發現董事長私下把數百萬搬進自己的口袋。",
+          explain:{
+            A:"morale 意為「士氣」（boost morale 提振士氣），指群體的精神狀態；帳目不會有士氣。注意它與 moral（道德的）只差一個 e。",
+            B:"be placed under scrutiny 是固定搭配，意為「被置於嚴密檢視之下」。兩個線索：受詞 the company's accounts（公司帳目）是被查核的對象，而結果 investors discovered the chairman had secretly moved millions（投資人發現董事長私下搬錢）說明正是這番檢視才查出弊端。",
+            C:"legacy 意為「遺產、遺留的影響」；帳目不是遺產，而且 under public legacy 不成搭配。",
+            D:"welfare 意為「福利、福祉」；under public welfare 無法表達「被公開檢查」這個意思。"
+          },
+          notes:[
+            {term:"scrutiny", pos:"n.", gloss:"嚴密審查（come under scrutiny 受到檢視／be subjected to close scrutiny）。v. scrutinize 細查。集訓三作業一測驗二第 25 題也出現過這個字當誘答。", ex:"His finances came under intense scrutiny.", exZh:"他的財務受到了嚴密的檢視。"},
+            {term:"It was not until ... that ...", pos:"句型", gloss:"直到…才…。that 之後不倒裝（investors discovered）。對照本卷第 1 題的 Not until ＋ 倒裝，兩者意思相同、結構不同。"}
+          ]},
+
+        { n:5, kind:"過去分詞",
+          stem:"No sooner had the singer ______ her new album at the press conference than fans flooded social media with requests for a world tour.",
+          options:{A:"unveiled 揭曉、首度公開",B:"smothered 悶住、覆蓋窒息",C:"transcribed 謄寫成文字",D:"paraphrased 改寫、換句話說"}, answer:"A",
+          translation:"這位歌手才剛在記者會上揭曉她的新專輯，粉絲就湧入社群媒體要求舉辦世界巡迴。",
+          explain:{
+            A:"unveil 意為「揭幕、首度公開」，是新作品或新產品發表的標準用字。兩個線索：場合 at the press conference（在記者會上）與反應 fans flooded social media with requests for a world tour（粉絲湧入社群要求巡演）——東西一公開就引發熱潮。集訓三練習卷測驗二第 31 題也考過。",
+            B:"smother 意為「悶住、覆蓋使窒息」；專輯不是被悶住的對象，而且粉絲的熱烈反應說明它是被公開而非被壓下。",
+            C:"transcribe 意為「謄寫、把錄音轉成文字」，受詞是訪談或錄音；一張專輯不是被謄寫的對象。",
+            D:"paraphrase 意為「改寫、換句話說」，受詞是文句或說法；專輯無法被改寫，而且記者會上做的是發表而非改寫。"
+          },
+          notes:[
+            {term:"unveil", pos:"vt.", gloss:"揭幕、首度公開（unveil a new model／an album／a statue／a plan）。un- 解除 ＋ veil 面紗。", ex:"The band unveiled their album last night.", exZh:"這個樂團昨晚發表了他們的專輯。"},
+            {term:"No sooner had ... than ...", pos:"句型", gloss:"一…就…。No sooner 置句首要倒裝（had the singer unveiled），而且後面搭配的連接詞是 than 不是 when。同義：Hardly／Scarcely had ... when ...（本卷第 31 題）。"}
+          ]},
+
+        { n:6, kind:"動名詞",
+          stem:"Only by ______ the island's abundant geothermal and offshore wind resources can Taiwan hope to reduce its heavy dependence on imported coal and natural gas.",
+          options:{A:"dismantling 拆解、廢除",B:"veiling 以面紗遮蓋",C:"exploiting 開發利用；剝削",D:"converging 匯聚、趨於一致"}, answer:"C",
+          translation:"唯有開發利用這座島嶼豐沛的地熱與離岸風力資源，臺灣才有望降低對進口煤炭與天然氣的高度依賴。",
+          explain:{
+            A:"dismantle 意為「拆解（機器）、廢除（制度）」；把資源拆掉並不能降低對進口能源的依賴，語意相反。",
+            B:"veil 意為「以面紗或頭巾遮蓋」，引申為「掩飾」；把資源遮起來無助於能源自主。",
+            C:"exploit 意為「開發利用（資源）」，在資源語境中是中性甚至正面的用字。兩個線索：受詞 abundant geothermal and offshore wind resources（豐沛的地熱與離岸風力資源）是待開發的天然資源，而目的 reduce its heavy dependence on imported coal and natural gas（降低對進口化石燃料的依賴）說明必須把自有資源用起來。",
+            D:"converge 意為「匯聚、趨於一致」，是不及物動詞（converge on a point）；它後面接不上 resources 這個直接受詞。"
+          },
+          notes:[
+            {term:"exploit", pos:"vt.", gloss:"① 開發利用（exploit natural resources／an opportunity）② 剝削（exploit workers）。n. exploitation 開發、剝削。同一個字的褒貶要看受詞：資源是開發，人是剝削。", ex:"The country has yet to exploit its solar potential.", exZh:"該國尚未開發它的太陽能潛力。"},
+            {term:"Only by V-ing ... can ＋ 主詞 ...", pos:"句型", gloss:"Only ＋ 介系詞片語置於句首時主句倒裝（can Taiwan hope）。同類：Only then did he realize ...／Only when ... did ...（本卷第 34 題）。"}
+          ]},
+
+        { n:7, kind:"形容詞",
+          stem:"The more ______ the evidence against the suspect became, the harder it was for his lawyers to convince the jury of his innocence.",
+          options:{A:"obscure 模糊不清的、鮮為人知的",B:"trivial 瑣碎的、微不足道的",C:"fiscal 財政的、會計年度的",D:"compelling （證據）強而有力的、令人信服的"}, answer:"D",
+          translation:"對嫌犯不利的證據愈是強而有力，他的律師就愈難讓陪審團相信他是無辜的。",
+          explain:{
+            A:"obscure 意為「模糊不清的」；證據愈模糊，律師的辯護反而愈容易，與 the harder（愈難）的方向相反。",
+            B:"trivial 意為「瑣碎的、微不足道的」；瑣碎的證據威脅不大，同樣無法導致辯護愈來愈難。",
+            C:"fiscal 意為「財政的」（fiscal policy 財政政策）；它是經濟領域的形容詞，不能評價證據的證明力。",
+            D:"compelling evidence 是固定搭配，意為「強而有力的證據」。決定性線索是 The more ... the harder 的正比結構：證據的證明力愈強，說服陪審團相信 his innocence（他的無辜）就愈困難。集訓三作業一測驗二第 36 題也考過這個字。"
+          },
+          notes:[
+            {term:"compelling", pos:"adj.", gloss:"① 強而有力的（compelling evidence／an argument）② 引人入勝的（a compelling story）。v. compel 強迫（compel sb to V）。", ex:"There is compelling evidence of foul play.", exZh:"有強力的證據顯示其中有不法行為。"},
+            {term:"The more ..., the more ...", pos:"句型", gloss:"愈…就愈…。兩個比較級各自置於子句句首（The more compelling the evidence became, the harder it was ...）。注意兩邊的語意方向要能合理對應。"}
+          ]},
+
+        { n:8, kind:"過去分詞",
+          stem:"Should the dam fail during the storm, the villages downstream would be ______ within minutes, leaving residents almost no time to escape to higher ground.",
+          options:{A:"embedded 被嵌入、被深植",B:"inundated 被淹沒；被（大量事物）淹沒",C:"rehabilitated 被復健、被修復",D:"converted 被轉換"}, answer:"B",
+          translation:"萬一水壩在暴風雨中潰決，下游的村落幾分鐘內就會被淹沒，居民幾乎沒有時間逃往高地。",
+          explain:{
+            A:"embed 意為「嵌入、深植」（embedded in concrete／deeply embedded beliefs）；村落不會被「嵌進」什麼，而且與水壩潰決的後果不符。",
+            B:"inundate 意為「淹沒」，正是水患的標準用字（也可比喻被大量事物淹沒：be inundated with requests）。三個線索：起因 Should the dam fail（水壩若潰決）、位置 the villages downstream（下游村落）、以及 escape to higher ground（逃往高地）——要往高處逃，顯然是水淹上來了。",
+            C:"rehabilitate 意為「復健、修復（建築或名譽）」；那是災後重建的事，不是潰堤當下幾分鐘內發生的狀況。",
+            D:"convert 意為「轉換（用途、形式、信仰）」；村落不會在幾分鐘內「被轉換」。"
+          },
+          notes:[
+            {term:"inundate", pos:"vt.", gloss:"① 淹沒（The fields were inundated.）② 使應付不暇（be inundated with emails／requests）。n. inundation 氾濫。同義：flood／submerge／swamp。", ex:"The storm surge inundated the coastal town.", exZh:"暴潮淹沒了這座海濱小鎮。"},
+            {term:"Should ＋ 主詞 ＋ V 原形", pos:"句型", gloss:"萬一…（＝If sb should V），省略 if 後把 should 提前的倒裝假設句。語氣比 If 更委婉、更書面。本卷第 3、28、39 題也是這類倒裝。"}
+          ]},
+
+        { n:9, kind:"動詞",
+          stem:"It is high time that the government ______ the outdated regulations that have prevented young entrepreneurs from starting businesses in Taiwan's financial technology sector.",
+          options:{A:"reinforced 加強、強化",B:"subsidized 補助、資助",C:"prescribed 開處方、規定",D:"abolished 廢除（制度、法規）"}, answer:"D",
+          translation:"政府早就該廢除那些阻礙年輕創業者投入臺灣金融科技產業的過時法規了。",
+          explain:{
+            A:"reinforce 意為「加強、強化」；若把過時法規再強化，年輕創業者的困境只會更嚴重，與句中的批判語氣相反。",
+            B:"subsidize 意為「補助、資助」，受詞是人或產業（subsidize farmers）；法規不是可以被補助的對象。",
+            C:"prescribe 意為「開處方」或「明文規定」；但問題不在於缺少規定，而在於既有的規定已經過時。",
+            D:"abolish 意為「廢除（制度、法律、習俗）」。兩個線索：形容詞 outdated（過時的）與關係子句 that have prevented young entrepreneurs from starting businesses（阻礙年輕創業者創業）——既過時又有害，就該廢除；It is high time that 的催促語氣也支持一個果斷的動作。"
+          },
+          notes:[
+            {term:"abolish", pos:"vt.", gloss:"廢除（abolish slavery／the death penalty／a law）。n. abolition 廢除；n. abolitionist 廢奴主義者。對照 repeal 廢止（法律的正式用語）。", ex:"The country abolished the tax in 2019.", exZh:"該國在二○一九年廢除了這項稅。"},
+            {term:"It is high time that ＋ 過去式", pos:"句型", gloss:"早就該…了（帶有抱怨或催促）。that 子句用過去式表示現在該做卻還沒做（It's high time he left.）。也可寫成 It is time for sb to V。"}
+          ]},
+
+        { n:10, kind:"形容詞",
+          stem:"Little did the young violinist know that the ______ audition she nearly skipped would launch a career spanning five decades and three continents.",
+          options:{A:"preliminary 初步的、初選的",B:"rhetorical 修辭的",C:"stationary 固定不動的",D:"habitual 習慣性的"}, answer:"A",
+          translation:"這位年輕小提琴家當時毫不知情：那場她差點沒去的初選，將開啟一段橫跨五十年、三大洲的職業生涯。",
+          explain:{
+            A:"a preliminary audition 意為「初選、初試」。兩個線索：she nearly skipped（她差點沒去）說明這場試奏在當時看來並不重要，而後果 would launch a career spanning five decades（將開啟橫跨五十年的職涯）形成強烈對比——初選不起眼，卻是一切的起點。本卷測驗一第 45 題也考了這個字的拼寫。",
+            B:"rhetorical 意為「修辭的」（a rhetorical question 反詰問句），用於語言技巧；一場音樂試奏不會是「修辭的」。",
+            C:"stationary 意為「固定不動的」（a stationary vehicle）；它形容物體不移動，無法形容一場試奏。注意它與 stationery（文具）同音不同義。",
+            D:"habitual 意為「習慣性的」，表示經常反覆（a habitual gambler）；但本句強調的是這場試奏獨一無二且差點錯過，與「常態」相反。"
+          },
+          notes:[
+            {term:"preliminary", pos:"adj. / n.", gloss:"初步的、預賽的（a preliminary round／audition／report）。字首 pre- 之前 ＋ limin 門檻。", ex:"She was eliminated in the preliminary round.", exZh:"她在初賽就被淘汰了。"},
+            {term:"Little did ＋ 主詞 ＋ 原形動詞", pos:"句型", gloss:"（當時）渾然不知…。否定副詞 little 置句首要倒裝（Little did he know that ...）。同類倒裝詞：never／seldom／rarely／hardly／not only（本卷第 12 題）。"}
+          ]},
+
+        { n:11, kind:"動詞",
+          stem:"Deprived of sunlight and fresh water for months, the once-thriving garden began to ______, and by midsummer nearly every plant in it had died.",
+          options:{A:"flourish 繁盛、茁壯",B:"abound 大量存在、充滿",C:"wither 枯萎、凋零",D:"revolve 旋轉、繞行"}, answer:"C",
+          translation:"連續數月被剝奪陽光與清水之後，這座曾經生機蓬勃的花園開始枯萎，到了仲夏，園裡幾乎每一株植物都死了。",
+          explain:{
+            A:"flourish 意為「繁盛、茁壯」；但下一句 nearly every plant in it had died（幾乎每株植物都死了）說明花園是在衰敗，語意完全相反。注意 once-thriving（曾經蓬勃）的 once 已暗示好光景屬於過去。",
+            B:"abound 意為「大量存在」（Fish abound in the lake.）；它表達的是數量豐富，與植物死亡的結局矛盾。",
+            C:"wither 意為「（植物）枯萎、凋零」。兩個線索：原因 Deprived of sunlight and fresh water for months（數月缺乏陽光與水）是植物死亡的直接條件，而結果 nearly every plant had died（幾乎全數死亡）確認了衰亡的過程。",
+            D:"revolve 意為「旋轉、繞行」（revolve around the sun）；花園不會旋轉，語意不通。"
+          },
+          notes:[
+            {term:"wither", pos:"v.", gloss:"① （植物）枯萎（flowers withering in the heat）② （希望、支持）消退（Support for the plan withered.）。adj. withered 枯萎的。片語 wither away 逐漸消亡。", ex:"The crops withered in the drought.", exZh:"作物在乾旱中枯死了。"},
+            {term:"Deprived of ... 的分詞構句", pos:"句型", gloss:"過去分詞置句首表被動原因（＝Because it had been deprived of ...）。v. deprive sb of sth 剝奪某人某物；n. deprivation（sleep deprivation 睡眠不足）。"}
+          ]},
+
+        { n:12, kind:"動詞",
+          stem:"Not only did the typhoon ______ the island's power grid, but it also destroyed thousands of acres of crops just weeks before harvest.",
+          options:{A:"nurture 培育、養育",B:"disrupt 使中斷、擾亂",C:"simulate 模擬、假裝",D:"regulate 管制、調節"}, answer:"B",
+          translation:"這場颶風不僅使島上的電網中斷，還在收成前幾週摧毀了數千英畝的農作物。",
+          explain:{
+            A:"nurture 意為「培育、養育」，是正面的滋養；颶風不會培育電網，而且與並列的 destroyed（摧毀）語氣不符。",
+            B:"disrupt 意為「使中斷、擾亂」。兩個線索：受詞 the island's power grid（島上的電網）正是 disrupt 的典型對象，而 but it also destroyed thousands of acres of crops（還摧毀數千英畝作物）與空格並列，兩者都必須是颶風造成的破壞。",
+            C:"simulate 意為「模擬、假裝」（simulate an earthquake 模擬地震）；颶風不是在模擬電網，語意不通。",
+            D:"regulate 意為「管制、調節」，主詞通常是政府或機制（regulate the industry）；自然災害不會去「管制」電網。"
+          },
+          notes:[
+            {term:"disrupt", pos:"vt.", gloss:"使中斷、擾亂（disrupt traffic／supply chains／a meeting）。n. disruption 中斷；adj. disruptive 破壞秩序的、顛覆性的（a disruptive technology 顛覆性技術）。", ex:"The strike disrupted rail services.", exZh:"這場罷工使鐵路運輸中斷。"},
+            {term:"Not only ... but also ... 的倒裝", pos:"句型", gloss:"Not only 置句首時，它所在的子句要倒裝（Not only did the typhoon disrupt ...），but also 的子句不倒裝。這是最常考的倒裝句型之一。"}
+          ]},
+
+        { n:13, kind:"名詞",
+          stem:"Wealthy as the tycoon was, he lived a life of remarkable ______, wearing the same worn jacket for decades and always taking the bus.",
+          options:{A:"thrift 節儉、儉省",B:"prestige 威望、聲譽",C:"agony 極度的痛苦",D:"fidelity 忠誠、忠實度"}, answer:"A",
+          translation:"這位大亨雖然富有，卻過著極為節儉的生活：同一件破舊外套穿了數十年，出門總是搭公車。",
+          explain:{
+            A:"a life of thrift 意為「節儉的生活」。決定性線索是分詞構句舉出的兩個細節：wearing the same worn jacket for decades and always taking the bus（同一件舊外套穿數十年、總是搭公車）——有錢卻不花錢，正是節儉；而 Wealthy as ... was 的讓步語氣也要求空格與「富有」形成對比。",
+            B:"prestige 意為「威望、聲譽」；但穿舊外套、搭公車並不是在累積威望，而且與 Wealthy as 的對比結構對不上。",
+            C:"agony 意為「極度的痛苦」；節省地生活不等於痛苦，而且本句沒有任何痛苦的描述。",
+            D:"fidelity 意為「忠誠」或「（音質的）保真度」；它形容對人或原作的忠實，無法解釋花錢習慣。"
+          },
+          notes:[
+            {term:"thrift", pos:"n.", gloss:"節儉（adj. thrifty 節儉的／a thrift shop 二手慈善商店）。對照 stingy 吝嗇的（負面）／frugal 省儉的／extravagant 奢侈的。", ex:"Her thrift allowed her to retire early.", exZh:"她的節儉讓她得以提早退休。"},
+            {term:"形容詞 ＋ as ＋ 主詞 ＋ be 動詞", pos:"句型", gloss:"雖然…（讓步）。Wealthy as he was ＝ Although he was wealthy。同類：Young as she is, she is capable. 也可用 though 取代 as。"}
+          ]},
+
+        { n:14, kind:"過去分詞",
+          stem:"With her suitcase ______ with souvenirs, books, and gifts for her relatives, Grace could barely zip it closed before leaving for the airport.",
+          options:{A:"festooned 以花彩或裝飾懸掛裝點",B:"hunched 弓著背、拱起",C:"nestled 舒適地安放、依偎坐落",D:"swollen 脹滿的、腫脹的"}, answer:"D",
+          translation:"行李箱被紀念品、書籍和給親戚的禮物塞得脹滿，葛瑞絲在前往機場之前幾乎拉不上拉鍊。",
+          explain:{
+            A:"festoon 意為「以花彩、綵帶裝點」（a hall festooned with lanterns 掛滿燈籠的大廳），講的是表面的懸掛裝飾；但本句的東西是裝「進」箱子裡而不是掛在外面。這是本題最需要分辨的選項。",
+            B:"hunch 意為「弓背、拱起」，主詞通常是人的身體（hunched over a desk 弓著背趴在桌上）；行李箱不會弓背。",
+            C:"nestle 意為「舒適地依偎、坐落於」（a village nestled in the valley）；它強調安穩地嵌在某處，無法表達「塞得太滿」。",
+            D:"swollen（swell 的過去分詞）意為「脹滿、腫脹」。決定性線索是結果：could barely zip it closed（幾乎拉不上拉鍊）——塞到脹起來才會關不上；而 souvenirs, books, and gifts 三類物品也說明塞了太多東西。"
+          },
+          notes:[
+            {term:"swell / swollen", pos:"v.", gloss:"v. 膨脹、腫起（swell-swelled-swollen；My ankle is swollen. 我的腳踝腫了）。n. swelling 腫脹。也可指人數或聲音增長（The crowd swelled to 10,000.）。", ex:"Her bag was swollen with paperwork.", exZh:"她的包被文件塞得脹滿。"},
+            {term:"With ＋ 受詞 ＋ 過去分詞", gloss:"附帶狀況的獨立結構（With her suitcase swollen ...＝因為行李箱脹滿）。同類：With his arms folded 雙臂交叉著／With the work finished 工作完成後。", pos:"句型"}
+          ]},
+
+        { n:15, kind:"形容詞",
+          stem:"However ______ the offer may seem, never transfer money to a stranger online; scammers often promise huge profits to lure victims into their traps.",
+          options:{A:"brutal 殘酷的、毫不留情的",B:"orthodox 正統的、傳統的",C:"lucrative 獲利豐厚的、賺錢的",D:"fierce 兇猛的、激烈的"}, answer:"C",
+          translation:"無論這個提議看起來多麼有利可圖，都絕對不要在網路上匯錢給陌生人；詐騙者常用鉅額獲利的承諾把受害者誘入陷阱。",
+          explain:{
+            A:"brutal 意為「殘酷的、毫不留情的」；若提議看起來殘酷，根本不會有人上當，無法解釋為何需要警告。",
+            B:"orthodox 意為「正統的、傳統的」；詐騙手法的誘人之處不在於它守舊，而且它與 huge profits 的誘因對不上。",
+            C:"lucrative 意為「獲利豐厚的」。決定性線索是分號後的說明：scammers often promise huge profits to lure victims（詐騙者常以鉅額獲利誘人上鉤）——正因為看起來很賺，警告才有必要；However ＋ 形容詞的讓步語氣也要求空格是具吸引力的特質。集訓三作業二第 21 題也考過這個字。",
+            D:"fierce 意為「兇猛的、激烈的」（fierce competition 激烈競爭）；一個投資提議不會「兇猛」。"
+          },
+          notes:[
+            {term:"lucrative", pos:"adj.", gloss:"獲利豐厚的（a lucrative contract／market／deal）。多用於生意與市場，形容個人薪資則用 well-paid。", ex:"It sounded like a lucrative opportunity.", exZh:"那聽起來像是個很賺錢的機會。"},
+            {term:"However ＋ adj. ＋ 主詞 ＋ 動詞", pos:"句型", gloss:"無論多麼…（＝No matter how ＋ adj.）。形容詞緊跟在 however 之後（However lucrative the offer may seem ...）。同類：Whatever／Whichever／Whoever。"}
+          ]},
+
+        { n:16, kind:"名詞",
+          stem:"What sets this translator apart is her sensitivity to ______, as she captures the subtle shades of meaning that most machine translations simply miss.",
+          options:{A:"symmetry 對稱",B:"nuance 細微的差別、語意的層次",C:"hygiene 衛生、保健習慣",D:"verge 邊緣"}, answer:"B",
+          translation:"這位譯者的出眾之處在於她對細微語意差別的敏感度，她能捕捉到大多數機器翻譯完全漏掉的微妙語意層次。",
+          explain:{
+            A:"symmetry 意為「對稱」，是形狀或結構上的均衡；翻譯講求的是語意的精準，不是圖形的對稱。",
+            B:"sensitivity to nuance 意為「對細微差別的敏感度」。決定性線索是 as 子句的同義改寫：she captures the subtle shades of meaning（她捕捉到微妙的語意層次）——subtle shades of meaning 幾乎就是 nuance 的定義。",
+            C:"hygiene 意為「衛生、保健習慣」；它與翻譯工作毫無關聯。集訓三作業二測驗三第 44 題考過這個字。",
+            D:"verge 意為「邊緣」（on the verge of tears 快要哭出來）；它不能表達語意的細微層次。"
+          },
+          notes:[
+            {term:"nuance", pos:"n.", gloss:"細微的差別、語意或情感的層次（subtle nuances of meaning／cultural nuances）。adj. nuanced 層次細膩的（a nuanced argument 細緻的論述）。", ex:"Much of the nuance is lost in translation.", exZh:"許多細微的語意在翻譯中流失了。"},
+            {term:"set sb apart", pos:"phr. v.", gloss:"使某人與眾不同（What sets her apart is ...）。同義：distinguish sb from others／stand out（本卷第 44 題的 exquisite 可一起看）。"}
+          ]},
+
+        { n:17, kind:"原形動詞",
+          stem:"Rather than ______ to pressure from angry investors, the CEO stood by her decision to delay the product launch until every safety test was completed.",
+          options:{A:"surrender 屈服、投降",B:"condescend 居高臨下地俯就、不屑地同意",C:"linger 徘徊、留連不去",D:"descend 下降、降臨"}, answer:"A",
+          translation:"這位執行長沒有向憤怒投資人的壓力屈服，而是堅持她的決定：延後產品上市，直到每一項安全測試都完成。",
+          explain:{
+            A:"surrender to pressure 是固定搭配，意為「向壓力屈服」。決定性線索是 Rather than 的對比：the CEO stood by her decision（執行長堅持自己的決定）——空格必須是「堅持」的反面，而 pressure from angry investors（來自憤怒投資人的壓力）正是她沒有順從的對象。",
+            B:"condescend 意為「（傲慢地）俯就、不屑地同意」，搭配 condescend to V（condescend to speak to sb 不屑地跟某人說話）；它帶有身分上的高低意味，不能表達向壓力低頭。這是本題最需要分辨的選項，因為它也接 to。",
+            C:"linger 意為「徘徊、留連」（linger over coffee 喝咖啡磨蹭很久）；它與面對壓力的態度無關。",
+            D:"descend 意為「下降、降臨」（descend the stairs／Darkness descended.）；它是空間或光線的下移，不是對壓力的讓步。注意 descend 與 condescend 同字根但語意不同。"
+          },
+          notes:[
+            {term:"surrender", pos:"v. / n.", gloss:"① 屈服（surrender to pressure／temptation）② 投降（surrender to the enemy）③ 交出（surrender one's passport）。n. 投降。", ex:"The mayor refused to surrender to public pressure.", exZh:"市長拒絕向輿論壓力屈服。"},
+            {term:"stand by", pos:"phr. v.", gloss:"① 堅守、支持（stand by a decision／by sb 支持某人）② 待命（stand by for further news）。相關：back down 退讓／give in 讓步／cave in 屈服。"}
+          ]},
+
+        { n:18, kind:"形容詞",
+          stem:"Whereas his elder brother was outgoing and loved crowds, Kevin was a ______ child who preferred reading alone in his room to playing with neighbors.",
+          options:{A:"vibrant 充滿活力的、鮮明的",B:"mischievous 愛搗蛋的、頑皮的",C:"solitary 獨來獨往的、喜歡獨處的",D:"robust 強健的、硬朗的"}, answer:"C",
+          translation:"相較於他外向又愛熱鬧的哥哥，凱文是個喜歡獨處的孩子，寧可一個人在房裡看書，也不要和鄰居玩。",
+          explain:{
+            A:"vibrant 意為「充滿活力的、色彩鮮明的」；它偏向外放的生命力，與 preferred reading alone in his room（寧可一個人在房裡看書）的性格不合。",
+            B:"mischievous 意為「愛搗蛋的、頑皮的」；頑皮的孩子通常好動愛玩，與獨自閱讀的描述相反。",
+            C:"solitary 意為「獨來獨往的、喜歡獨處的」。兩個線索：Whereas 引導的對比要求空格與 outgoing and loved crowds（外向、愛熱鬧）相反，而 preferred reading alone in his room to playing with neighbors（寧可獨自看書而不與鄰居玩）正是獨處型性格的具體描寫。本卷測驗一的字庫中也出現過這個字。",
+            D:"robust 意為「強健的、硬朗的」，形容體格或系統；它描述的是身體狀況，不是社交傾向。"
+          },
+          notes:[
+            {term:"solitary", pos:"adj.", gloss:"獨自的、喜歡獨處的（a solitary walk／a solitary child；solitary confinement 單獨監禁）。n. solitude 獨處。字根 sol 單獨：sole 唯一的／solo 獨奏。", ex:"He led a solitary life in the mountains.", exZh:"他在山中過著獨居的生活。"},
+            {term:"prefer A to B", pos:"句型", gloss:"喜歡 A 而不喜歡 B（prefer reading to playing；介系詞用 to 不用 than）。也可寫 prefer to V rather than V 原形。"}
+          ]},
+
+        { n:19, kind:"名詞",
+          stem:"Now that the merger has been approved, the two firms will control ninety percent of the market, creating a virtual ______ that worries consumer groups.",
+          options:{A:"franchise 加盟經營權、特許權",B:"recession 經濟衰退",C:"tenure 任期、終身職",D:"monopoly 獨占、壟斷"}, answer:"D",
+          translation:"既然這樁併購已獲核准，這兩家公司將掌控九成的市場，形成實質上的壟斷，令消費者團體感到憂心。",
+          explain:{
+            A:"franchise 意為「加盟經營權」，是品牌授權他人開店的模式；它描述的是經營方式，不是市占率過高的狀態。",
+            B:"recession 意為「經濟衰退」，指整體經濟萎縮；但本句講的是兩家公司市占過高，不是景氣下滑。",
+            C:"tenure 意為「任期」或「教職的終身職」；它與市場結構無關。",
+            D:"a virtual monopoly 意為「實質上的壟斷」。兩個線索：數據 control ninety percent of the market（掌控九成市場）正是壟斷的門檻，而 worries consumer groups（令消費者團體憂心）說明這對消費者不利——壟斷會導致漲價與選擇減少。",
+          },
+          notes:[
+            {term:"monopoly", pos:"n.", gloss:"獨占、壟斷（have a monopoly on sth／a virtual monopoly 實質壟斷）。v. monopolize 壟斷。對照 oligopoly 寡占／antitrust 反托拉斯的。", ex:"The firm enjoyed a near monopoly for years.", exZh:"這家公司多年來近乎壟斷市場。"},
+            {term:"merger / acquisition", pos:"字彙", gloss:"merger 合併（v. merge）／acquisition 收購（本卷測驗一第 15 題考過拼寫）。合稱 M&A（mergers and acquisitions 併購）。"}
+          ]},
+
+        { n:20, kind:"副詞",
+          stem:"Whenever my grandmother tells the story of how she met my grandfather, it ______ ends with her laughing until tears roll down her cheeks.",
+          options:{A:"vertically 垂直地",B:"invariably 總是、必然地",C:"respectively 分別地、各自地",D:"skeptically 懷疑地"}, answer:"B",
+          translation:"每次我奶奶講她和爺爺相遇的故事，結尾總是她笑到眼淚滑下臉頰。",
+          explain:{
+            A:"vertically 意為「垂直地」，描述方向；一個故事不會「垂直地」結束。",
+            B:"invariably 意為「總是、無一例外地」。決定性線索是句首的 Whenever my grandmother tells the story（每當奶奶講這個故事）——Whenever 已確立這是每次都發生的事，空格要填一個表達「每次都如此」的頻率副詞。字面是 in-（不）＋ vary（變化）。集訓三練習卷測驗二第 28 題也考過這個字。",
+            C:"respectively 意為「分別地」，用於把多個項目一一對應（A and B cost $5 and $8 respectively）；本句只有一個結局，沒有需要分別對應的對象。",
+            D:"skeptically 意為「懷疑地」，是態度副詞；但故事的結尾是她笑到流淚，不是帶著懷疑結束。"
+          },
+          notes:[
+            {term:"invariably", pos:"adv.", gloss:"總是、必然（＝always, without exception）。adj. invariable 不變的。字首 in- 不 ＋ vary 變化。", ex:"He invariably forgets his umbrella.", exZh:"他總是忘記帶傘。"},
+            {term:"頻率副詞強度", pos:"整理", gloss:"invariably／always 百分之百 ＞ usually 通常 ＞ frequently 經常 ＞ occasionally 偶爾 ＞ rarely／seldom 很少 ＞ never 從不。本卷第 44 題的 Rarely have I ... 就是用 rarely 倒裝。"}
+          ]},
+
+        { n:21, kind:"副詞",
+          stem:"Thanks to years of practice, the interpreter can switch ______ between Mandarin, Japanese, and English, leaving listeners unaware that she is translating at all.",
+          options:{A:"seamlessly 無縫地、順暢得看不出接縫",B:"incidentally 順帶一提；偶然地",C:"loftily 高傲地",D:"dubiously 可疑地、半信半疑地"}, answer:"A",
+          translation:"多年練習的成果，讓這位口譯員能在中文、日文與英文之間順暢無縫地切換，聽眾甚至察覺不到她正在翻譯。",
+          explain:{
+            A:"switch seamlessly 意為「無縫地切換」。決定性線索是結果：leaving listeners unaware that she is translating at all（讓聽眾完全沒察覺她在翻譯）——轉換之間毫無停頓痕跡，正是 seamless（無接縫）的比喻用法；Thanks to years of practice（多年練習的成果）也支持這是正面的高超技巧。",
+            B:"incidentally 意為「順帶一提」或「偶然地」；口譯員的語言切換是刻意且專業的，不是偶然發生的。",
+            C:"loftily 意為「高傲地」，是態度上的自以為高人一等；它不能形容技術的流暢度。",
+            D:"dubiously 意為「可疑地、半信半疑地」；若切換得令人起疑，就不會是值得稱讚的本事了，語意相反。"
+          },
+          notes:[
+            {term:"seamless", pos:"adj.", gloss:"無縫的、順暢得看不出接點（a seamless transition／integration）。adv. seamlessly。n. seam 接縫（come apart at the seams 整個崩解）。", ex:"The handover was seamless.", exZh:"交接過程順暢無縫。"},
+            {term:"interpreter / translator", pos:"辨析", gloss:"interpreter 口譯員（即時口述）／translator 筆譯者（文字翻譯）。本卷第 16 題的 translator 正是另一種。simultaneous interpretation 同步口譯。"}
+          ]},
+
+        { n:22, kind:"副詞",
+          stem:"Despite repeated threats from the drug cartel, the journalist ______ refused to reveal her sources, insisting that protecting them was her highest duty.",
+          options:{A:"marginally 略微地、邊緣地",B:"superlatively 極致地（語法上指最高級）",C:"decently 像樣地、合宜地",D:"resolutely 堅決地、果斷地"}, answer:"D",
+          translation:"儘管一再受到販毒集團的威脅，這位記者仍堅決拒絕透露她的消息來源，堅稱保護他們是她最高的職責。",
+          explain:{
+            A:"marginally 意為「略微地」，表示程度很小；但 refused（拒絕）是斷然的行為，而且 Despite repeated threats（儘管一再受到威脅）的讓步語氣要求的是強硬而非輕微。",
+            B:"superlatively 意為「極致地」，多用於語法術語（the superlative degree 最高級）或誇張的讚美；它不是修飾「拒絕」這個行為的自然用字。",
+            C:"decently 意為「像樣地、合宜地」，形容待遇或行為得體；它無法表達面對威脅時的不屈。",
+            D:"resolutely 意為「堅決地」。兩個線索：讓步語氣 Despite repeated threats from the drug cartel（儘管一再受到販毒集團威脅）需要一個表現不屈的副詞，而 insisting that protecting them was her highest duty（堅稱保護來源是最高職責）更強化了這份決心。集訓三作業一測驗二第 21 題也考過這個字。"
+          },
+          notes:[
+            {term:"resolutely", pos:"adv.", gloss:"堅決地（resolutely refuse／oppose／defend）。adj. resolute 堅決的；n. resolution 決心、決議。", ex:"She resolutely stood her ground.", exZh:"她堅決地不退讓。"},
+            {term:"source", pos:"n.", gloss:"（新聞的）消息來源（protect one's sources 保護消息來源／according to sources close to the deal）。新聞倫理字彙：off the record 不供引述／anonymity 匿名／whistleblower 揭弊者。"}
+          ]},
+
+        { n:23, kind:"名詞",
+          stem:"In the ______ of the earthquake, volunteers from across the island poured into Hualien, bringing food, blankets, and medical supplies to homeless families.",
+          options:{A:"outset 開端、最初",B:"eruption （火山）爆發",C:"aftermath （災難的）餘波、過後的時期",D:"junction 交會處、路口"}, answer:"C",
+          translation:"地震過後，來自全島各地的志工湧入花蓮，為無家可歸的家庭帶來食物、毛毯與醫療物資。",
+          explain:{
+            A:"outset 意為「開端」，固定用法是 at the outset（一開始）而非 in the outset；而且志工送物資是災後的行動，不是地震剛開始的瞬間。",
+            B:"eruption 意為「火山爆發」；本句的災害明確是 the earthquake（地震），而且 in the eruption of the earthquake 語意重複又矛盾。",
+            C:"in the aftermath of sth 是固定片語，意為「在某災難之後的時期」。兩個線索：介系詞結構 In the ______ of the earthquake 正是這個片語的標準形式，而救援行動 bringing food, blankets, and medical supplies to homeless families（送食物、毛毯、醫療物資給無家可歸者）顯然發生在災後。",
+            D:"junction 意為「交會處、路口」，是空間概念；它無法表達時間上的「災後」。"
+          },
+          notes:[
+            {term:"in the aftermath of", pos:"phr.", gloss:"在…的餘波中、…過後（in the aftermath of the war／the storm／the scandal）。n. aftermath 後果、餘波（deal with the aftermath 處理善後）。", ex:"Looting broke out in the aftermath of the quake.", exZh:"地震過後發生了搶劫事件。"},
+            {term:"災後救援字彙", pos:"整理", gloss:"relief supplies 救援物資／shelter 收容所／evacuee 撤離者／debris 瓦礫／rescue team 救難隊／donate 捐贈／reconstruction 重建。"}
+          ]},
+
+        { n:24, kind:"原形動詞",
+          stem:"There is no denying that heavier fines can ______ some drivers from speeding, but critics argue that better road design would save far more lives.",
+          options:{A:"induce 誘使、引發",B:"deter 嚇阻、使卻步",C:"mute 使靜音",D:"applaud 鼓掌讚賞"}, answer:"B",
+          translation:"不可否認，更重的罰款能嚇阻部分駕駛超速，但批評者主張更好的道路設計能救下遠遠更多的生命。",
+          explain:{
+            A:"induce 意為「誘使、引發」，是促使某人去做某事（induce sb to V）；它的方向是「讓人做」，而本句要表達的是「讓人不要做」，方向完全相反。這是本題最需要分辨的選項。",
+            B:"deter sb from V-ing 是固定句型，意為「嚇阻某人做某事」。兩個線索：介系詞 from speeding（不去超速）只有 deter（以及 prevent、discourage 等）能構成這個結構，而主詞 heavier fines（更重的罰款）正是典型的嚇阻手段。",
+            C:"mute 意為「使靜音」（mute the TV）；它的受詞是聲音或裝置，不能接 sb from V-ing 這個結構。",
+            D:"applaud 意為「鼓掌讚賞」；罰款不會為超速鼓掌，而且它不接 from。"
+          },
+          notes:[
+            {term:"deter sb from V-ing", pos:"句型", gloss:"嚇阻某人做某事。n. deterrent 嚇阻物（a nuclear deterrent 核嚇阻力量）；n. deterrence 嚇阻。同結構：prevent／stop／discourage／prohibit sb from V-ing。", ex:"Tough penalties may deter offenders.", exZh:"嚴厲的罰則可能嚇阻違規者。"},
+            {term:"There is no V-ing", pos:"句型", gloss:"無法…（There is no denying that ... 不可否認／There is no telling what will happen 無從得知會發生什麼）。"}
+          ]},
+
+        { n:25, kind:"原形動詞",
+          stem:"The photographers crept toward the nesting cranes in complete silence, lest the slightest sound should ______ the birds and drive them away from their eggs.",
+          options:{A:"cultivate 栽培、培養",B:"harness 利用（自然力）、套上挽具",C:"render 使成為；提供",D:"startle 使驚嚇、使驚飛"}, answer:"D",
+          translation:"攝影師們完全無聲地朝築巢的鶴群匍匐前進，以免最輕微的聲響驚動這些鳥，把牠們從蛋邊趕走。",
+          explain:{
+            A:"cultivate 意為「栽培、培養」；鳥不是被栽培的對象，而且與聲響造成的後果無關。",
+            B:"harness 意為「利用（風力、水力）」或「替動物套上挽具」；野生的鶴不是被套挽具的對象，語意也與 drive them away（把牠們趕走）對不上。",
+            C:"render 意為「使成為」，用法是 render ＋ 受詞 ＋ 形容詞（render it useless）；本句空格後只有受詞 the birds，缺少補語，結構不完整。",
+            D:"startle 意為「使驚嚇」。兩個線索：主詞 the slightest sound（最輕微的聲響）是驚嚇的來源，而並列的結果 drive them away from their eggs（把牠們從蛋邊趕走）說明鳥是被嚇飛的；攝影師 in complete silence（完全無聲）的行動也正是為了避免這件事。集訓三作業二測驗三第 42 題也考過這個字。"
+          },
+          notes:[
+            {term:"startle", pos:"vt.", gloss:"使驚嚇、使嚇一跳（startle sb；be startled by sth；startle sb awake 把某人驚醒）。adj. startling 令人震驚的。", ex:"A sudden noise startled the deer.", exZh:"一聲突響驚動了那頭鹿。"},
+            {term:"lest ＋ 主詞 ＋ (should) V", pos:"句型", gloss:"以免、免得（lest he should forget／lest he forget，should 可省略而動詞用原形）。同義：for fear that ...／in case ...。"}
+          ]},
+
+        { n:26, kind:"名詞",
+          stem:"Standing before the crumbling walls of the abandoned school where she once studied, Ms. Lin could not help but feel a deep sense of ______.",
+          options:{A:"melancholy 憂鬱、惆悵",B:"animosity 敵意、仇恨",C:"glee 雀躍、歡欣",D:"zeal 熱忱、狂熱"}, answer:"A",
+          translation:"站在她曾經就讀、如今牆垣斑駁的廢棄校舍前，林女士忍不住感到一股深深的惆悵。",
+          explain:{
+            A:"a sense of melancholy 意為「一股惆悵感」。兩個線索：場景 the crumbling walls of the abandoned school where she once studied（她曾就讀、如今傾頹的廢校）是觸發懷舊與傷感的典型畫面，而 could not help but feel a deep sense of（忍不住感到一股深深的…）要求一個沉靜而綿長的情緒。本卷測驗一第 18 題也考了這個字的拼寫。",
+            B:"animosity 意為「敵意、仇恨」，是針對某人的強烈惡感；但本句沒有敵對的對象，面對母校廢墟也不會生恨。",
+            C:"glee 意為「雀躍、歡欣」，是愉快的情緒；傾頹的廢校不會帶來歡欣，語意相反。",
+            D:"zeal 意為「熱忱、狂熱」，是積極投入的動力；它與面對廢墟的靜默感傷不符。"
+          },
+          notes:[
+            {term:"melancholy", pos:"n. / adj.", gloss:"憂鬱、惆悵（a sense of melancholy；a melancholy tune 憂傷的曲調）。較文學的用字。古希臘醫學認為憂鬱源於 melan（黑）＋ chole（膽汁）。", ex:"A quiet melancholy settled over the room.", exZh:"一股靜靜的惆悵籠罩著房間。"},
+            {term:"cannot help but V", pos:"句型", gloss:"忍不住做某事（後接原形動詞）。同義：cannot help V-ing（後接動名詞）。兩種寫法的動詞形式不同，常考。"}
+          ]},
+
+        { n:27, kind:"過去分詞",
+          stem:"The legendary chef is said to have ______ his secret recipe from everyone except his eldest daughter, who runs the family's noodle shop in Tainan.",
+          options:{A:"erected 建造、豎立",B:"relished 享受、津津有味地品味",C:"withheld 保留不給、隱瞞",D:"navigated 導航、航行"}, answer:"C",
+          translation:"據說這位傳奇大廚對所有人都保留著他的祕方，只傳給了經營家族台南麵店的長女。",
+          explain:{
+            A:"erect 意為「建造、豎立」（erect a statue／a tent）；一份食譜不是可以被豎立的建物。",
+            B:"relish 意為「享受、津津有味地品味」；但空格後是 from everyone（對所有人），relish 不接 from，而且「享受祕方」無法解釋為何只有長女知道。",
+            C:"withhold sth from sb 是固定句型，意為「對某人保留不給、隱瞞某事」。兩個線索：介系詞 from everyone except his eldest daughter（除了長女之外的所有人）是這個句型的標準結構，而 secret recipe（祕密食譜）正是被守住不外傳的東西。",
+            D:"navigate 意為「導航、航行」，也可指「摸清複雜的體系」；食譜不是導航的對象，也不接 from。"
+          },
+          notes:[
+            {term:"withhold sth from sb", pos:"句型", gloss:"對某人保留、隱瞞某事（withhold information／payment／consent from sb）。三態 withhold-withheld-withheld。對照 hold back 保留、忍住。", ex:"He withheld key details from the police.", exZh:"他向警方隱瞞了關鍵細節。"},
+            {term:"be said to have ＋ p.p.", pos:"句型", gloss:"據說（過去）曾經…。完成式不定詞表示比主要動詞更早發生（He is said to have left. 據說他已經離開了）。"}
+          ]},
+
+        { n:28, kind:"名詞",
+          stem:"Were it not for the ______ of volunteers who clean the beach every weekend, this coastline would be buried under plastic bottles and fishing nets.",
+          options:{A:"monotony 單調乏味",B:"perseverance 堅持不懈、不屈不撓",C:"symptom 症狀",D:"hostage 人質"}, answer:"B",
+          translation:"要不是那些每個週末都去淨灘的志工堅持不懈，這段海岸線早就被塑膠瓶和漁網掩埋了。",
+          explain:{
+            A:"monotony 意為「單調乏味」；志工的付出值得肯定，若說是「志工的單調」則既不通順也無法解釋海岸得以保持乾淨。集訓三作業一測驗二第 24 題考過這個字。",
+            B:"perseverance 意為「堅持不懈」。兩個線索：關係子句 who clean the beach every weekend（每個週末都去淨灘）強調的是長期不間斷的投入，而假設語氣 Were it not for ...（要不是…）說明正因為有這份堅持，海岸才沒被垃圾掩埋。",
+            C:"symptom 意為「症狀」，是疾病或問題的徵象；志工不會有「症狀」，而且無法作為海岸乾淨的原因。",
+            D:"hostage 意為「人質」；它與淨灘行動毫無關聯。"
+          },
+          notes:[
+            {term:"perseverance", pos:"n.", gloss:"堅持不懈（with perseverance／Perseverance pays off. 堅持終有回報）。v. persevere 堅持（persevere in／with sth）；adj. persistent 持續不懈的。", ex:"Her perseverance finally paid off.", exZh:"她的堅持終於有了回報。"},
+            {term:"Were it not for ...", pos:"句型", gloss:"要不是…（＝If it were not for ...／But for ...），與現在事實相反的假設。對照本卷第 3 題的 Had it not been for ...（與過去事實相反）。"}
+          ]},
+
+        { n:29, kind:"形容詞",
+          stem:"The task of rebuilding the flood-damaged town seemed too ______ for the small volunteer group, yet within a year most families had moved back home.",
+          options:{A:"formidable 艱鉅的、令人望而生畏的",B:"tranquil 寧靜安詳的",C:"vulgar 粗俗的、低級的",D:"sedate 沉穩的、緩慢平靜的"}, answer:"A",
+          translation:"重建這座水患受損小鎮的任務，對這個小小的志工團體來說似乎太過艱鉅，然而不到一年，多數家庭都已搬回家園。",
+          explain:{
+            A:"formidable 意為「艱鉅的、令人望而生畏的」。兩個線索：對比 the small volunteer group（小小的志工團體）與龐大的 task of rebuilding the flood-damaged town（重建受災小鎮的任務），而 yet（然而）引導的轉折 most families had moved back home（多數家庭已搬回）更顯示他們克服了看似做不到的事。集訓三練習卷測驗二第 29 題也考過這個字。",
+            B:"tranquil 意為「寧靜安詳的」；一項重建任務不會「寧靜」，而且與 too ... for（對…來說太過…）的負擔語意不合。",
+            C:"vulgar 意為「粗俗的」，是對品味的負面評價；重建工作不涉及粗俗與否。",
+            D:"sedate 意為「沉穩的、步調緩慢平靜的」；它形容人的舉止或步調，無法表達任務的艱難程度。"
+          },
+          notes:[
+            {term:"formidable", pos:"adj.", gloss:"艱鉅的、令人生畏的（a formidable task／challenge／opponent）。注意它既可形容任務的艱難，也可形容對手的強大（帶敬意）。", ex:"They faced a formidable obstacle.", exZh:"他們面臨一個令人望而生畏的障礙。"},
+            {term:"too ... for sb", pos:"句型", gloss:"對某人而言太過…（The task was too formidable for them.）。對照 too ... to V 太…以致於不能（too tired to walk）。"}
+          ]},
+
+        { n:30, kind:"名詞",
+          stem:"The real problem is not so much a lack of funding as a rigid ______ that discourages junior staff from openly questioning their superiors.",
+          options:{A:"patent 專利",B:"kernel 果核、核心",C:"warrant 搜索票、授權令",D:"hierarchy 層級體制、上下尊卑的架構"}, answer:"D",
+          translation:"真正的問題與其說是經費不足，不如說是一套僵化的層級體制，讓資淺員工不敢公開質疑上級。",
+          explain:{
+            A:"patent 意為「專利」；它是智慧財產權，與員工敢不敢質疑上級的組織文化無關。",
+            B:"kernel 意為「果核、核心」；a rigid kernel 不成搭配，而且它無法解釋上下屬之間的互動。集訓三作業二第 16 題也出現過這個字當誘答。",
+            C:"warrant 意為「搜索票、授權令」（a search warrant）；它是司法文件，與公司內部的風氣無關。",
+            D:"a rigid hierarchy 是自然的搭配，意為「僵化的層級體制」。決定性線索是關係子句：discourages junior staff from openly questioning their superiors（讓資淺員工不敢公開質疑上級）——junior staff 與 superiors 的上下關係正是 hierarchy 的核心，而 rigid（僵化的）也是這個字的常見修飾語。"
+          },
+          notes:[
+            {term:"hierarchy", pos:"n.", gloss:"層級體制（a rigid／corporate hierarchy；the social hierarchy 社會階層）。adj. hierarchical 階層分明的。注意拼法 hier-ar-chy 與讀音 /ˈhaɪərɑːrki/。", ex:"The firm has a flat hierarchy.", exZh:"這家公司的層級很扁平。"},
+            {term:"not so much A as B", pos:"句型", gloss:"與其說是 A，不如說是 B（重點在 B）。He is not so much a scholar as a journalist. 他與其說是學者，不如說是記者。"}
+          ]},
+
+        { n:31, kind:"名詞",
+          stem:"Scarcely had the two leaders signed the ______ ending the border war when fighting broke out again, leaving diplomats wondering whether peace was ever possible.",
+          options:{A:"verdict （法庭的）裁決",B:"treaty 條約",C:"memoir 回憶錄",D:"diplomacy 外交（手段）"}, answer:"B",
+          translation:"兩國領袖才剛簽下結束邊界戰爭的條約，戰火就再度爆發，讓外交官們懷疑和平究竟是否可能。",
+          explain:{
+            A:"verdict 意為「（法庭的）裁決」，由陪審團或法官作出；國家領袖之間簽署的不是裁決書。",
+            B:"sign a treaty 是固定搭配，意為「簽署條約」。三個線索：主詞 the two leaders（兩國領袖）是締約的主體，分詞 ending the border war（結束邊界戰爭）說明這份文件的效力，而 diplomats（外交官）的出現也確立這是國際事務。",
+            C:"memoir 意為「回憶錄」，是個人的生平著作；它不會由兩位領袖共同簽署來結束戰爭。",
+            D:"diplomacy 意為「外交手段」，是抽象的作為方式；它不是可以被「簽署」的具體文件。這是本題最需要分辨的選項，因為它同屬國際事務的字彙。"
+          },
+          notes:[
+            {term:"treaty", pos:"n.", gloss:"條約（sign／ratify／violate a treaty；a peace treaty 和約）。集訓三作業一測驗二第 24 題考過 ratify（批准條約）。對照 pact 協定／accord 協議／truce 停火／armistice 休戰協定。", ex:"The treaty was signed in Geneva.", exZh:"這項條約在日內瓦簽署。"},
+            {term:"Scarcely had ... when ...", pos:"句型", gloss:"才剛…就…。Scarcely／Hardly 置句首要倒裝，搭配的連接詞是 when。對照 No sooner had ... than ...（本卷第 5 題），兩者的搭配詞不同，常考。"}
+          ]},
+
+        { n:32, kind:"原形動詞",
+          stem:"Under no circumstances should patients ______ their symptoms from the doctor, since even minor details can be crucial in reaching an accurate diagnosis.",
+          options:{A:"deploy 部署、調度",B:"supervise 監督、管理",C:"mimic 模仿、擬態",D:"conceal 隱瞞、隱藏"}, answer:"D",
+          translation:"病患在任何情況下都不應向醫師隱瞞自己的症狀，因為即使是微小的細節，對做出準確診斷都可能至關重要。",
+          explain:{
+            A:"deploy 意為「部署、調度」，受詞是軍力、人員或資源（deploy troops／resources）；症狀不是可以被部署的對象。",
+            B:"supervise 意為「監督、管理」；病患不會「監督」自己的症狀，而且它不接 from。",
+            C:"mimic 意為「模仿、擬態」；雖然醫學上可以說某疾病 mimics another（某病症狀類似另一種病），但主詞應是疾病而非病患，而且不接 from sb。這是本題最需要分辨的選項。",
+            D:"conceal sth from sb 是固定句型，意為「對某人隱瞞某事」。兩個線索：介系詞 from the doctor（對醫師）是這個句型的標準結構，而 since 引導的理由 even minor details can be crucial in reaching an accurate diagnosis（即使細節都可能影響準確診斷）正說明為何不該隱瞞。"
+          },
+          notes:[
+            {term:"conceal sth from sb", pos:"句型", gloss:"對某人隱瞞某事（conceal the truth／one's identity from sb）。n. concealment 隱匿。同義：hide／withhold（本卷第 27 題）／cover up。", ex:"She concealed her illness from her family.", exZh:"她向家人隱瞞了自己的病情。"},
+            {term:"Under no circumstances should ...", pos:"句型", gloss:"在任何情況下都不…。否定副詞片語置句首要倒裝（should patients conceal）。同類：On no account should you ...／By no means is it ...。"}
+          ]},
+
+        { n:33, kind:"形容詞",
+          stem:"Such was the ______ contrast between the glittering luxury hotels and the slums beside them that many tourists felt guilty about enjoying their holiday.",
+          options:{A:"stark 鮮明刺目的、赤裸裸的",B:"brisk 輕快的、生意興隆的",C:"minimal 極小的、最低限度的",D:"grave 嚴重的、嚴肅的"}, answer:"A",
+          translation:"閃閃發亮的豪華飯店與緊鄰的貧民窟之間對比如此鮮明刺目，使許多遊客對享受假期感到罪惡。",
+          explain:{
+            A:"a stark contrast 是固定搭配，意為「鮮明刺目的對比」。兩個線索：對比的兩端 the glittering luxury hotels（閃亮的豪華飯店）與 the slums beside them（緊鄰的貧民窟）是極端的反差，而結果 many tourists felt guilty（許多遊客感到罪惡）說明這份落差刺眼到令人不安。",
+            B:"brisk 意為「輕快的」或「（生意）興隆的」（a brisk walk／brisk business）；它不能形容對比的程度。",
+            C:"minimal 意為「極小的、最低限度的」；但若對比極小，遊客就不會感到罪惡了，語意完全相反。這是本題最需要分辨的選項。",
+            D:"grave 意為「嚴重的、嚴肅的」（a grave mistake／a grave expression）；它形容事態的嚴重或表情的凝重，但英文不說 a grave contrast，搭配不自然。"
+          },
+          notes:[
+            {term:"stark", pos:"adj.", gloss:"鮮明刺目的、赤裸裸的（a stark contrast／difference／reminder；the stark reality 殘酷的現實）。adv. starkly。片語 stark naked 一絲不掛。", ex:"The report paints a stark picture.", exZh:"這份報告描繪出一幅赤裸裸的景象。"},
+            {term:"Such ＋ be 動詞 ＋ 主詞 ＋ that ...", pos:"句型", gloss:"如此…以致於…。Such was the contrast that ...＝The contrast was such that ...。對照本卷第 2 題的 So ＋ adj. ＋ be ＋ 主詞 ＋ that。"}
+          ]},
+
+        { n:34, kind:"形容詞",
+          stem:"Only when the bridge began to sway dangerously did engineers realize that its design was fundamentally ______, despite having passed every safety inspection.",
+          options:{A:"coherent 條理連貫的",B:"intimate 親密的",C:"flawed 有缺陷的、有瑕疵的",D:"elaborate 精心設計的、繁複的"}, answer:"C",
+          translation:"直到橋梁開始危險地搖晃，工程師才意識到它的設計根本上有缺陷，儘管它通過了每一項安全檢查。",
+          explain:{
+            A:"coherent 意為「條理連貫的」，形容論述或計畫前後一致；若設計本身連貫合理，橋就不會危險搖晃了，語意相反。",
+            B:"intimate 意為「親密的」，用於人際關係；一座橋的設計不會「親密」。",
+            C:"fundamentally flawed 是固定搭配，意為「根本上有缺陷」。兩個線索：起因 the bridge began to sway dangerously（橋開始危險搖晃）是設計出問題的徵兆，而讓步子句 despite having passed every safety inspection（儘管通過每項安全檢查）形成反差——檢查沒抓到的根本缺陷。",
+            D:"elaborate 意為「精心設計的、繁複的」；它是對設計用心程度的描述，通常帶正面意味，無法解釋橋梁為何搖晃。"
+          },
+          notes:[
+            {term:"flawed", pos:"adj.", gloss:"有缺陷的（a flawed design／argument／study；fundamentally／fatally flawed 根本上／致命地有缺陷）。n. flaw 瑕疵；反義 flawless 完美無瑕的。", ex:"The study's method was deeply flawed.", exZh:"這項研究的方法有嚴重的缺陷。"},
+            {term:"Only when ... did ...", pos:"句型", gloss:"直到…才…。Only ＋ 時間子句置句首時，主句要倒裝（did engineers realize）。對照本卷第 6 題的 Only by V-ing ... can ...。"}
+          ]},
+
+        { n:35, kind:"過去式動詞",
+          stem:"It is no wonder that the startup failed; its founders ______ a business plan so complicated that even their own investors could not understand it.",
+          options:{A:"devised 構思、擬出（計畫或方法）",B:"endured 忍受、承受",C:"breached 違反、突破（防線）",D:"soothed 安撫、緩解"}, answer:"A",
+          translation:"這家新創公司會倒也不奇怪：它的創辦人擬出一份複雜到連自家投資人都看不懂的商業計畫。",
+          explain:{
+            A:"devise a plan 是固定搭配，意為「擬出、構思一項計畫」。兩個線索：主詞 its founders（創辦人）是計畫的制定者，而受詞 a business plan（商業計畫）正是 devise 的典型對象；so ... that 的結果 even their own investors could not understand it（連自家投資人都看不懂）也說明這份計畫是他們自己想出來的。",
+            B:"endure 意為「忍受」，受詞是痛苦或艱難的處境（endure hardship）；創辦人是制定計畫的人，不是在忍受它。",
+            C:"breach 意為「違反（合約、規定）」或「突破（防線）」；一份自己的商業計畫不是被違反的對象。",
+            D:"soothe 意為「安撫、緩解」（soothe a crying baby／soothe the pain）；計畫不是被安撫的對象。"
+          },
+          notes:[
+            {term:"devise", pos:"vt.", gloss:"構思、設計出（devise a plan／a scheme／a method／a strategy）。n. device 裝置（注意名詞拼法是 -ice，動詞是 -ise）。", ex:"They devised a clever solution.", exZh:"他們想出了一個巧妙的解決辦法。"},
+            {term:"device / devise", pos:"辨析", gloss:"device（名詞，裝置）／devise（動詞，構思）。同型對照：advice／advise、practice／practise（英式）。名詞用 c、動詞用 s。"}
+          ]},
+
+        { n:36, kind:"原形動詞",
+          stem:"Whatever the critics may say, the director refuses to ______ her artistic vision simply to attract a larger audience or please the film's wealthy sponsors.",
+          options:{A:"nourish 滋養、培育",B:"intensify 加強、強化",C:"endorse 公開支持、代言",D:"compromise 折損、犧牲（原則）"}, answer:"D",
+          translation:"不論影評人怎麼說，這位導演拒絕為了吸引更多觀眾或取悅片中的富有贊助者，而犧牲自己的藝術理念。",
+          explain:{
+            A:"nourish 意為「滋養、培育」；若導演「拒絕滋養自己的藝術理念」，語意就自相矛盾了——她顯然是在守護它。",
+            B:"intensify 意為「加強」；同樣地，拒絕強化自己的理念與整句的堅持語氣衝突。",
+            C:"endorse 意為「公開支持、代言」；導演不需要「支持」自己的理念，而且 endorse 的受詞通常是別人的主張或商品。",
+            D:"compromise 除了「妥協」，當及物動詞還有「折損、犧牲（原則或品質）」之意。兩個線索：refuses to（拒絕）加上目的 simply to attract a larger audience or please the film's wealthy sponsors（只為吸引更多觀眾或取悅金主）——為了外在利益而讓藝術理念打折，正是 compromise 的這層用法。"
+          },
+          notes:[
+            {term:"compromise", pos:"v. / n.", gloss:"① 折損、犧牲（compromise one's principles／standards／safety）② 妥協（compromise with sb）；n. 妥協（reach a compromise）。本題考的是容易被忽略的第一義。", ex:"We will not compromise on quality.", exZh:"我們不會在品質上打折扣。"},
+            {term:"Whatever the critics may say", pos:"句型", gloss:"不論…（讓步子句，may 表讓步語氣）。同類：Whatever happens／However hard it is（本卷第 15 題）／Whoever you are。"}
+          ]},
+
+        { n:37, kind:"名詞",
+          stem:"Given that the two villages share the same river, it is hardly surprising that a bitter ______ has developed between them over water rights.",
+          options:{A:"dignity 尊嚴",B:"rivalry 競爭、對立關係",C:"excess 過量、超額",D:"vogue 流行、時尚"}, answer:"B",
+          translation:"既然這兩座村落共用同一條河，兩者之間為了水權發展出激烈的對立，也就不太令人意外了。",
+          explain:{
+            A:"dignity 意為「尊嚴」，是個人或群體受尊重的狀態；它不會「在兩者之間發展起來」，而且與爭奪水權的衝突語意不合。",
+            B:"a bitter rivalry 是固定搭配，意為「激烈的對立、宿怨」。三個線索：形容詞 bitter（激烈而帶恨意的）、介系詞結構 between them（在兩者之間）、以及爭執的標的 over water rights（為了水權）——共用一條河卻各有需求，自然形成長期對立。",
+            C:"excess 意為「過量、超額」；它是數量概念，無法描述兩個村落之間的關係。",
+            D:"vogue 意為「流行、時尚」（in vogue 風行一時）；它與水權爭議毫無關聯。"
+          },
+          notes:[
+            {term:"rivalry", pos:"n.", gloss:"競爭、對立關係（a bitter／fierce rivalry；sibling rivalry 手足競爭）。n. rival 對手；v. rival 與…匹敵。", ex:"The rivalry between the clubs goes back decades.", exZh:"這兩家俱樂部的對立由來已數十年。"},
+            {term:"Given that ...", pos:"句型", gloss:"既然、考慮到…（＝Considering that ...）。也可接名詞：Given his age 考慮到他的年齡。本句搭配 it is hardly surprising that ...（並不令人意外）。"}
+          ]},
+
+        { n:38, kind:"名詞",
+          stem:"The old man spoke about the war with such ______ that the students fell silent, as if they could hear the bombs falling around them.",
+          options:{A:"ignorance 無知",B:"tact 圓融的分寸、得體",C:"eloquence 辯才、動人的口才",D:"obsession 執迷、著魔"}, answer:"C",
+          translation:"這位老人談起那場戰爭時如此動人，學生們都靜了下來，彷彿能聽見炸彈在自己周圍落下。",
+          explain:{
+            A:"ignorance 意為「無知」；若他講得外行，學生不會被震住到 fell silent（靜默無聲），而且 with such ignorance 的語氣是批評，與整句的感染力不符。",
+            B:"tact 意為「圓融的分寸、說話得體」，強調不傷人的細膩；但本句的效果是讓人如臨現場，重點在表達的力量而非分寸。這是本題最需要分辨的選項。",
+            C:"speak with eloquence 意為「談得辯才動人」。決定性線索是 such ... that 的結果：the students fell silent, as if they could hear the bombs falling around them（學生靜默，彷彿能聽見炸彈落下）——能讓聽者如臨其境，正是口才感染力的極致。本卷測驗一第 11 題的 colloquial 與這個字同字根 loqu（說話）。",
+            D:"obsession 意為「執迷、著魔」，帶有不健康的糾結；它形容說話者的心理狀態，無法解釋學生被打動的原因。"
+          },
+          notes:[
+            {term:"eloquence", pos:"n.", gloss:"辯才、動人的口才（speak with eloquence）。adj. eloquent 辯才無礙的（an eloquent speech）；adv. eloquently。集訓三練習卷測驗二第 35 題考過 eloquent。", ex:"He described the scene with great eloquence.", exZh:"他極為動人地描述了那個場景。"},
+            {term:"with such ... that ...", pos:"句型", gloss:"以如此…的方式，以致於…（He spoke with such eloquence that ...）。注意 such 後面接名詞（eloquence），so 後面接形容詞或副詞。"}
+          ]},
+
+        { n:39, kind:"原形動詞",
+          stem:"Were the government to strictly ______ the ban on selling e-cigarettes to minors, experts believe teenage vaping rates would fall dramatically within a few years.",
+          options:{A:"enforce 執行、強制實施（法令）",B:"overlook 忽視、俯視",C:"revive 使復甦、重振",D:"ponder 沉思、仔細考慮"}, answer:"A",
+          translation:"專家相信，若政府嚴格執行禁止向未成年人販售電子菸的規定，青少年的電子菸使用率將在幾年內大幅下降。",
+          explain:{
+            A:"enforce a ban 是固定搭配，意為「執行禁令」。兩個線索：副詞 strictly（嚴格地）是 enforce 的典型修飾語，而預期結果 teenage vaping rates would fall dramatically（青少年電子菸使用率將大幅下降）說明禁令被真正落實才會見效。",
+            B:"overlook 意為「忽視」；若政府忽視禁令，使用率只會上升而不會下降，語意完全相反。",
+            C:"revive 意為「使復甦、重振」（revive the economy／a tradition）；一項已存在的禁令不需要被「復甦」，而且與 strictly 的搭配不自然。",
+            D:"ponder 意為「沉思、仔細考慮」；光是考慮禁令並不會讓使用率下降，必須實際執行才有效果。這是本題最需要分辨的選項。"
+          },
+          notes:[
+            {term:"enforce", pos:"vt.", gloss:"執行、強制實施（enforce a law／a ban／regulations；strictly enforce 嚴格執行）。n. enforcement（law enforcement 執法機關）。", ex:"The rules exist but are rarely enforced.", exZh:"規定是有，但很少被執行。"},
+            {term:"Were ＋ 主詞 ＋ to V", pos:"句型", gloss:"倘若…（＝If sb were to V），與未來事實相反或假設性極強的語氣。省略 if 後把 were 提前。本卷第 3、8、28 題也是倒裝假設句。"}
+          ]},
+
+        { n:40, kind:"副詞",
+          stem:"It was ______ because of her fluent Japanese, rather than her impressive résumé, that Amy was chosen to lead the company's new office in Osaka.",
+          options:{A:"utterly 完全地、徹底地",B:"namely 也就是、即",C:"outright 直截了當地、徹底地",D:"solely 僅僅、純粹因為"}, answer:"D",
+          translation:"艾咪之所以被選中主持公司在大阪的新辦公室，純粹是因為她流利的日語，而不是她亮眼的履歷。",
+          explain:{
+            A:"utterly 意為「完全地、徹底地」，但它幾乎只修飾負面的形容詞或動詞（utterly ridiculous／utterly destroyed），不用來強調原因的唯一性。",
+            B:"namely 意為「也就是、即」，用來補充說明前面提到的項目（three cities, namely Taipei, Tainan, and Hualien）；它不能修飾 because of 表達「只因為」。",
+            C:"outright 意為「直截了當地」或「徹底地」（reject sth outright 斷然拒絕）；它強調態度的毫不含糊，而非原因的唯一。",
+            D:"solely 意為「僅僅、純粹」。決定性線索是 rather than 的對比：rather than her impressive résumé（而不是她亮眼的履歷）——既然排除了履歷，剩下的原因就只有日語一項，所以要用表達「唯一」的副詞。"
+          },
+          notes:[
+            {term:"solely", pos:"adv.", gloss:"僅僅、純粹（solely because of sth／be solely responsible for sth 負全責）。adj. sole 唯一的（the sole survivor 唯一倖存者）。", ex:"The decision was based solely on cost.", exZh:"這項決定純粹是依成本做出的。"},
+            {term:"It was ... that ... 的分裂句", pos:"句型", gloss:"強調句型：把要強調的部分放在 It was 與 that 之間（It was solely because of her Japanese that she was chosen.）。可強調主詞、受詞、時間或原因。"}
+          ]},
+
+        { n:41, kind:"名詞",
+          stem:"Contrary to popular belief, the ______ of cheating among university students has not risen sharply; it has stayed roughly the same for decades.",
+          options:{A:"abundance 豐富、大量",B:"vitality 活力、生命力",C:"prevalence 普及程度、盛行率",D:"residue 殘餘物、殘渣"}, answer:"C",
+          translation:"與一般看法相反，大學生作弊的盛行程度並沒有急遽上升；數十年來它大致維持在同樣的水準。",
+          explain:{
+            A:"abundance 意為「豐富、大量」，多用於資源或物產（an abundance of rainfall）；它強調數量多，但本句談的是「比率有沒有變化」，而且 the abundance of cheating 搭配不自然。",
+            B:"vitality 意為「活力、生命力」；作弊不會有「活力」，語意不通。",
+            C:"the prevalence of sth 意為「某現象的盛行率、普及程度」。兩個線索：動詞 has not risen sharply（沒有急遽上升）與 stayed roughly the same（大致維持不變）都是在描述一個可測量的比率，而 among university students（在大學生之間）也符合這個字用於群體現象的特性。",
+            D:"residue 意為「殘餘物、殘渣」，是實體的剩餘（chemical residue 化學殘留）；它無法描述一個行為的普及程度。"
+          },
+          notes:[
+            {term:"prevalence", pos:"n.", gloss:"盛行率、普及程度（the prevalence of obesity／smoking／a disease）。adj. prevalent 盛行的（be prevalent among sth）；v. prevail 盛行、獲勝。", ex:"The prevalence of myopia has soared.", exZh:"近視的盛行率急遽上升。"},
+            {term:"Contrary to popular belief", pos:"phr.", gloss:"與一般看法相反。相關：conventional wisdom 傳統看法／a common misconception 常見的誤解／counterintuitive 違反直覺的。"}
+          ]},
+
+        { n:42, kind:"形容詞",
+          stem:"Although the twins look identical, their personalities could not be more different: one is ______ and quick-tempered, while the other remains calm in every situation.",
+          options:{A:"amiable 和悅可親的",B:"quarrelsome 愛爭吵的、好與人爭執的",C:"noble 高貴的、崇高的",D:"tender 溫柔的、柔軟的"}, answer:"B",
+          translation:"雖然這對雙胞胎長得一模一樣，他們的性格卻南轅北轍：一個愛爭吵又容易發脾氣，另一個則在任何情況下都保持冷靜。",
+          explain:{
+            A:"amiable 意為「和悅可親的」；但空格與 quick-tempered（容易發脾氣的）並列，兩者必須同調，而和悅與易怒互相矛盾。",
+            B:"quarrelsome 意為「愛爭吵的」。兩個線索：並列的形容詞 quick-tempered（易怒的）要求空格同為負面的脾氣描述，而 while 引導的對比 the other remains calm in every situation（另一個總是保持冷靜）更確立了空格是「冷靜」的反面。字尾 -some 表「傾向於」。",
+            C:"noble 意為「高貴的、崇高的」，是品格評價；它與易怒的脾氣不同調，也形成不了與「冷靜」的對比。",
+            D:"tender 意為「溫柔的」；同樣與 quick-tempered 衝突。"
+          },
+          notes:[
+            {term:"-some＝傾向於", pos:"字尾", gloss:"quarrelsome 愛爭吵的／troublesome 麻煩的／burdensome 累人的／cumbersome 笨重的／meddlesome 愛插手的／wholesome 有益健康的。n. quarrel 爭吵。", ex:"He becomes quarrelsome after a few drinks.", exZh:"他喝幾杯之後就愛跟人吵。"},
+            {term:"could not be more ＋ adj.", pos:"句型", gloss:"再…也不過了、極其…（Their personalities could not be more different. 他們的性格再不同也不過了）。形式上是比較級，語意上是最高級。"}
+          ]},
+
+        { n:43, kind:"原形動詞",
+          stem:"After months of negotiation, the union reached an agreement with the airline, only to see the deal ______ when the company's new CEO rejected it.",
+          options:{A:"crumble 瓦解、崩散",B:"persist 持續存在、堅持",C:"yearn 渴望、嚮往",D:"tighten 使變緊、加嚴"}, answer:"A",
+          translation:"經過數月談判，工會與這家航空公司達成協議，結果卻看著這項協議在公司新任執行長否決後瓦解。",
+          explain:{
+            A:"crumble 意為「瓦解、崩散」，可比喻協議或制度的崩潰。兩個線索：only to（結果卻…）這個表示意外壞結果的結構要求空格是負面的轉折，而 when the company's new CEO rejected it（當新任執行長否決它）正是協議破局的原因。",
+            B:"persist 意為「持續存在、堅持」；若協議持續有效，就不符合 only to（結果卻）這個失望轉折，也與被否決的事實矛盾。這是語意方向相反的誘答。",
+            C:"yearn 意為「渴望」，是不及物動詞（yearn for sth），主詞必須是人；一項協議不會「渴望」。",
+            D:"tighten 意為「使變緊、加嚴」；協議被否決不是變嚴格，而是破局。"
+          },
+          notes:[
+            {term:"crumble", pos:"vi.", gloss:"① 瓦解、崩散（The deal／empire／hope crumbled.）② （建築）剝落傾頹（crumbling walls——本卷第 26 題用過）。n. 一種烤水果甜點。", ex:"Support for the policy began to crumble.", exZh:"對這項政策的支持開始瓦解。"},
+            {term:"only to V", pos:"句型", gloss:"結果卻…（表示意外且通常令人失望的結果）：He ran to the station, only to find the train gone. 他跑到車站，卻發現火車已經走了。"}
+          ]},
+
+        { n:44, kind:"形容詞",
+          stem:"Rarely have I tasted anything as ______ as the mango shaved ice at this tiny stall, which is worth every minute of the hour-long line.",
+          options:{A:"worthy 值得的、配得上的",B:"passive 被動的、消極的",C:"exquisite 極精緻美妙的",D:"dreary 沉悶乏味的"}, answer:"C",
+          translation:"我很少嚐過像這家小攤的芒果冰這麼精緻美味的東西，排一小時的隊每一分鐘都值得。",
+          explain:{
+            A:"worthy 意為「值得的、配得上的」，通常搭配 be worthy of sth（值得某事）；它評價的是價值或資格，不能直接形容食物的美味。而且 worth（值得）已出現在關係子句中，語意會重複。",
+            B:"passive 意為「被動的、消極的」，形容態度或語態；食物不會「被動」。",
+            C:"exquisite 意為「極精緻美妙的」，可形容味道、工藝或美感。兩個線索：Rarely have I tasted anything as ______ as ...（我很少嚐過這麼…的東西）是極高的讚美結構，而關係子句 worth every minute of the hour-long line（排一小時的隊都值得）說明這份美味非凡。",
+            D:"dreary 意為「沉悶乏味的」，是負面評價；它與願意排一小時隊的熱情完全矛盾。"
+          },
+          notes:[
+            {term:"exquisite", pos:"adj.", gloss:"極精緻美妙的（exquisite taste／craftsmanship／detail；exquisite pain 極度的痛苦）。注意重音可在第一或第二音節 /ˈekskwɪzɪt/ 或 /ɪkˈskwɪzɪt/。", ex:"The embroidery was exquisite.", exZh:"那刺繡精緻極了。"},
+            {term:"Rarely have I ...", pos:"句型", gloss:"我很少…。否定意味的頻率副詞（rarely／seldom／hardly／never／little）置句首時主句要倒裝。對照本卷第 10 題的 Little did he know。"}
+          ]},
+
+        { n:45, kind:"副詞",
+          stem:"For all its high price, the new electric scooter is ______ the best on the market, combining a long battery life with impressive safety features.",
+          options:{A:"seldom 很少、難得",B:"undoubtedly 無疑地、毫無疑問",C:"partially 部分地",D:"readily 樂意地；輕易地"}, answer:"B",
+          translation:"儘管價格高昂，這款新電動機車無疑是市場上最好的，它兼具長效電池與出色的安全配備。",
+          explain:{
+            A:"seldom 意為「很少」，是頻率副詞；它與最高級 the best 搭配會產生矛盾（很少是最好的？），而且無法呼應後面列舉的優點。",
+            B:"undoubtedly 意為「無疑地」。兩個線索：讓步語氣 For all its high price（儘管價格高昂）鋪陳出「貴但值得」的論點，而分詞構句 combining a long battery life with impressive safety features（兼具長效電池與出色安全配備）正是支持這個斷言的理由，所以語氣應是肯定而非保留。",
+            C:"partially 意為「部分地」；但 partially the best 語意不通——最好就是最好，沒有「部分最好」。這是本題最需要分辨的選項，因為它表面上像是在打折扣。",
+            D:"readily 意為「樂意地」或「輕易地」（readily available 隨手可得）；它無法修飾 the best 來表達評價的確定性。"
+          },
+          notes:[
+            {term:"undoubtedly", pos:"adv.", gloss:"無疑地（＝without doubt／unquestionably）。adj. undoubted 無疑的；v. doubt 懷疑。同義：certainly／definitely／arguably（可以說是，語氣較保留）。", ex:"She is undoubtedly the finest player of her generation.", exZh:"她無疑是她那一代最優秀的球員。"},
+            {term:"For all ...", pos:"phr.", gloss:"儘管（＝In spite of／Despite）。For all his wealth, he was unhappy. 儘管他有錢，他並不快樂。注意它後面接名詞片語，不接子句。"}
+          ]}
+      ]
+    }]
+  },
+
+  {
+    id:"g1", label:"測驗三、題組一", score:"第 46-50 題",
+    instruction:"六個選項選五個，有一個不會用到。答案：46 B　47 D　48 A　49 E　50 C（未使用：F adjacent）",
+    bank:{A:"impulse 衝動",B:"conviction 堅定的信念",C:"prone 易於…的、有…傾向的",D:"momentum 氣勢、動能",E:"sapped 耗損、削弱",F:"adjacent 鄰接的（本題組未使用）"},
+    bankWide:true,
+    groups:[{
+      questions:[
+        { n:46, kind:"名詞", answer:"B", answerText:"conviction 堅定的信念",
+          stem:"Despite years of criticism from other scientists, Dr. Chen held firm to her ______ that a virus caused the disease, and she was proved right.",
+          translation:"儘管多年來受到其他科學家的批評，陳博士依然堅守她認為病毒是致病原因的信念，最後證明她是對的。",
+          why:"空格前有所有格 her、後面接 that 同位語子句，要填一個能被 that 子句說明內容的名詞。三個線索：動詞 held firm to（堅守）、讓步語氣 Despite years of criticism（儘管多年受到批評）、以及結局 she was proved right（證明她是對的）——頂住批評仍不動搖的，正是 conviction（堅定的信念）。",
+          notes:[{term:"conviction", pos:"n.", gloss:"① 堅定的信念（hold a conviction that ...／with conviction 篤定地）② 定罪（a prior conviction 前科）。v. convince 使信服；adj. convinced 確信的。一字兩義差很遠。", ex:"She spoke with deep conviction.", exZh:"她說話時帶著深深的信念。"},
+            {term:"hold firm to", pos:"phr.", gloss:"堅守（hold firm to one's beliefs／principles）。同義：stand by（本卷測驗二第 17 題）／stick to／adhere to。"}]},
+
+        { n:47, kind:"名詞", answer:"D", answerText:"momentum 氣勢、動能",
+          stem:"After winning their first three matches, the team gathered so much ______ that few rivals could stop them on their way to the championship.",
+          translation:"在拿下前三場比賽之後，這支球隊累積了如此強勁的氣勢，少有對手能在他們邁向冠軍的路上攔住他們。",
+          why:"空格前有 so much（修飾不可數名詞），要填不可數名詞。兩個線索：起因 After winning their first three matches（連贏前三場）是氣勢累積的來源，而結果 few rivals could stop them（少有對手攔得住）正是 momentum 的比喻意涵——像運動中的物體一樣愈來愈難被擋下。gather momentum 是固定搭配。",
+          notes:[{term:"momentum", pos:"n.", gloss:"氣勢、動能（不可數：gather／build／lose momentum）。物理學上指「動量」。adj. momentous 重大的（a momentous decision）。", ex:"The campaign is gaining momentum.", exZh:"這場活動的氣勢正在增強。"},
+            {term:"momentum / momentous", pos:"對照", gloss:"n. momentum 氣勢／adj. momentous 重大的。兩字同源但詞性與用法完全不同。集訓二作業二第 64 題也出現過 momentum 當誘答。"}]},
+
+        { n:48, kind:"名詞", answer:"A", answerText:"impulse 衝動",
+          stem:"Shopping websites are designed to make customers buy on ______, so experts suggest leaving items in the cart for a day before paying.",
+          translation:"購物網站的設計就是要讓顧客衝動購物，所以專家建議在付款前先把商品留在購物車裡放一天。",
+          why:"buy on impulse 是固定片語，意為「衝動購買」。兩個線索：介系詞 on 加上這個片語的固定形式，而專家的建議 leaving items in the cart for a day before paying（付款前先放一天）正是用冷卻時間來對抗衝動——有建議就說明被針對的是未經思考的購買行為。",
+          notes:[{term:"on impulse", pos:"phr.", gloss:"一時衝動地（buy／act on impulse；an impulse purchase 衝動購物）。adj. impulsive 衝動的。集訓三作業二第 14 題考過 act on impulse 與 act on one's own initiative 的對比。", ex:"I bought it on impulse and regretted it.", exZh:"我一時衝動買了它，後來很後悔。"},
+            {term:"shopping cart", pos:"n.", gloss:"購物車（網購與實體皆可用；英式 trolley）。電商字彙：check out 結帳／add to cart 加入購物車／abandoned cart 棄置的購物車／free returns 免費退貨。"}]},
+
+        { n:49, kind:"過去式動詞", answer:"E", answerText:"sapped 耗損、削弱",
+          stem:"The long, humid summer ______ the energy of the young athletes, and by August many of them could barely finish their morning training sessions.",
+          translation:"漫長潮濕的夏天耗盡了這些年輕運動員的體力，到了八月，許多人連早上的訓練都幾乎撐不完。",
+          why:"空格在主詞之後、受詞之前，要填過去式及物動詞。兩個線索：受詞 the energy of the young athletes（年輕運動員的體力）正是 sap 的典型對象（sap one's energy／strength／morale），而結果 could barely finish their morning training sessions（連早訓都撐不完）說明體力確實被消磨掉了。",
+          notes:[{term:"sap", pos:"vt. / n.", gloss:"vt. 逐漸耗損、削弱（sap one's energy／strength／confidence／morale）／n. 樹液。語感是「慢慢被抽乾」。", ex:"The heat sapped our strength.", exZh:"高溫消磨掉我們的體力。"},
+            {term:"sap / drain / deplete", pos:"辨析", gloss:"三者都指耗盡。sap 強調逐漸抽乾（多接體力、士氣）／drain 耗盡（接資源、預算，集訓三練習卷第 13 題考過）／deplete 使存量減少（接資源、庫存）。"}]},
+
+        { n:50, kind:"形容詞", answer:"C", answerText:"prone 易於…的、有…傾向的",
+          stem:"Because Taiwan lies along the Pacific Ring of Fire, it is highly ______ to earthquakes, so all new buildings must meet strict safety standards.",
+          translation:"由於臺灣位於環太平洋火山帶上，很容易發生地震，因此所有新建築都必須符合嚴格的安全標準。",
+          why:"空格在 is highly 之後、to 之前，要填形容詞構成 be prone to sth（易於發生某事）。兩個線索：介系詞 to earthquakes 是這個片語的固定結構（未使用的 adjacent 雖然也接 to，但意思是「鄰接的」，說不通），而原因 lies along the Pacific Ring of Fire（位於環太平洋火山帶）與結果 must meet strict safety standards（必須符合嚴格安全標準）都指向地震風險高。",
+          notes:[{term:"be prone to", pos:"phr.", gloss:"易於、有…傾向（be prone to errors／injury／flooding；be prone to V 也可：be prone to forget）。同義：be susceptible／vulnerable／liable to sth。", ex:"The area is prone to landslides.", exZh:"這個地區容易發生山崩。"},
+            {term:"未使用選項 adjacent", pos:"備註", gloss:"adj. adjacent 鄰接的、緊鄰的（be adjacent to sth；adjacent rooms 相鄰的房間）。它同樣接 to，是本題最像的誘答，但「臺灣緊鄰地震」語意不通。"}]}
+      ]
+    }]
+  },
+
+  {
+    id:"g2", label:"測驗三、題組二（原卷題幹誤植）", score:"第 51-55 題",
+    instruction:"⚠ 原始檔的本題組題幹誤植：第 51 題開頭是「In the summer of 1858, London faced a crisis that no one could ignore, quite literally, because it could…」（一八五八年倫敦的「大惡臭」事件），但其後整段被貼成集訓三作業(2) 題組一的題目（膀胱、兩幅畫、林先生、婚紗、守門員），與本題組的字格完全無關。以下依原卷答案 F B D C A 保留字格與答案，並補上五個字的用法與例句；拿到正確的題幹後可立即補回。",
+    bank:{A:"legislation 立法、法規",B:"unprecedented 前所未有的",C:"commemorate 紀念、追念",D:"reluctant 不情願的、勉強的",E:"moderate 適度的（本題組未使用）",F:"sanitation 公共衛生、環境衛生"},
+    bankWide:true,
+    groups:[{
+      questions:[
+        { n:51, kind:"名詞", answer:"F", answerText:"sanitation 公共衛生、環境衛生",
+          stem:"In the summer of 1858, London faced a crisis that no one could ignore, quite literally, because it could ______（原卷題幹自此誤植，後文非本題組題目）",
+          translation:"一八五八年夏天，倫敦面臨一場沒有人能忽視的危機，而且是字面意義上的無法忽視，因為它…（題幹中斷）",
+          why:"依原卷答案為 sanitation（公共衛生）。這段史實是倫敦的「大惡臭」（the Great Stink）：一八五八年的酷暑讓泰晤士河的污水發出惡臭，連國會都幾乎無法開議，因而暴露出首都公共衛生設施的全面失能。句中 quite literally（字面意義上地）與 no one could ignore（沒人能忽視）正是在鋪陳這股無法迴避的臭味。sanitation 指的就是污水處理、排水與清潔等公共衛生基礎設施。",
+          notes:[{term:"sanitation", pos:"n.", gloss:"公共衛生、環境衛生設施（poor／improved sanitation；sanitation workers 清潔人員）。adj. sanitary 衛生的（sanitary conditions）；對照 hygiene 個人的衛生習慣。", ex:"Millions still lack access to basic sanitation.", exZh:"數百萬人仍無法取得基本的衛生設施。"},
+            {term:"the Great Stink", pos:"史實", gloss:"一八五八年倫敦大惡臭。泰晤士河因未經處理的污水在酷暑中發臭，促使國會迅速通過法案，由 Joseph Bazalgette 興建倫敦下水道系統，是公共衛生史上的轉捩點。"}]},
+
+        { n:52, kind:"形容詞", answer:"B", answerText:"unprecedented 前所未有的",
+          stem:"（原卷此題題幹誤植，見本大題說明）",
+          translation:"依原卷答案為 unprecedented（前所未有的）。",
+          why:"unprecedented 意為「史無前例的」，拆成 un（不）＋ precedent（先例）＋ -ed 就不會拼錯。它常用來形容規模、速度或情況前所未見：unprecedented growth／demand／scale／levels of pollution。若放回一八五八年倫敦的脈絡，可以形容那年夏天惡臭的嚴重程度，或是國會在十八天內通過法案的速度之空前。注意 -ce- 發 /sɪ/，不要寫成 -se-。",
+          notes:[{term:"unprecedented", pos:"adj.", gloss:"前所未有的（an unprecedented crisis／on an unprecedented scale）。n. precedent 先例（set a precedent 創下先例／without precedent 史無前例）。集訓三作業二測驗一第 34 題考過這個字的拼寫。", ex:"The heat wave was unprecedented in the city's history.", exZh:"這波熱浪在這座城市的歷史上前所未見。"},
+            {term:"字根 ced＝走", pos:"字根", gloss:"precedent 先例（先走一步）／precede 先於／recede 後退／concede 讓步／secede 脫離／exceed 超過。"}]},
+
+        { n:53, kind:"形容詞", answer:"D", answerText:"reluctant 不情願的、勉強的",
+          stem:"（原卷此題題幹誤植，見本大題說明）",
+          translation:"依原卷答案為 reluctant（不情願的）。",
+          why:"reluctant 意為「不情願的、勉強的」，固定句型是 be reluctant to V（不願做某事），也可說 a reluctant hero（勉強當上英雄的人）。放回史實脈絡，它很適合形容英國國會長年不願投入巨資整治泰晤士河，直到惡臭逼到眼前才改變態度。adv. reluctantly 不情願地；n. reluctance（with reluctance 勉為其難地）。",
+          notes:[{term:"be reluctant to V", pos:"句型", gloss:"不願做某事（be reluctant to admit／invest／change）。n. reluctance；adv. reluctantly。同義：be unwilling／hesitant to V；反義：be eager／willing to V。", ex:"Lawmakers were reluctant to fund the project.", exZh:"立法者不願為這項計畫撥款。"},
+            {term:"reluctant / hesitant", pos:"辨析", gloss:"reluctant 心裡不想做（態度上的不願）／hesitant 猶豫不決（還在考慮）。兩者都接 to V。"}]},
+
+        { n:54, kind:"原形動詞", answer:"C", answerText:"commemorate 紀念、追念",
+          stem:"（原卷此題題幹誤植，見本大題說明）",
+          translation:"依原卷答案為 commemorate（紀念）。",
+          why:"commemorate 意為「紀念（重要的人或事件）」，受詞是被紀念的對象：commemorate the victims／the anniversary／a victory。常見的名詞搭配是 a plaque／statue／ceremony to commemorate sth（紀念碑、雕像、紀念儀式）。放回史實脈絡，倫敦後來確實立碑紀念興建下水道的工程師 Bazalgette。拼法注意雙 m 加雙 m 的分布：com-mem-o-rate。",
+          notes:[{term:"commemorate", pos:"vt.", gloss:"紀念、追念（commemorate the dead／an event；a monument commemorating the battle）。n. commemoration（in commemoration of sth 為紀念某事）；adj. commemorative 紀念性的（a commemorative stamp 紀念郵票）。", ex:"A plaque commemorates the engineer's work.", exZh:"一塊紀念牌匾紀念這位工程師的功績。"},
+            {term:"commemorate / celebrate", pos:"辨析", gloss:"commemorate 莊重地紀念（多用於逝者或重大歷史事件）／celebrate 歡慶（生日、節日、成功）。語氣輕重不同，不可混用。"}]},
+
+        { n:55, kind:"名詞", answer:"A", answerText:"legislation 立法、法規",
+          stem:"（原卷此題題幹誤植，見本大題說明）",
+          translation:"依原卷答案為 legislation（立法、法規）。",
+          why:"legislation 意為「立法」或「（已通過的）法規」，是不可數名詞，所以不加 a／s（正確說法是 pass legislation 或 a piece of legislation）。放回史實脈絡，一八五八年的惡臭促使英國國會以空前的速度通過法案，授權興建倫敦下水道系統——這正是公共衛生立法的經典案例。字根 legis 是「法律」。",
+          notes:[{term:"legislation", pos:"n.", gloss:"立法、法規（不可數：pass／introduce／enact legislation；a piece of legislation 一項法規）。v. legislate 立法；n. legislature 立法機關；n. legislator 立法者。", ex:"New legislation was passed within weeks.", exZh:"新法規在幾週內就通過了。"},
+            {term:"字根 leg＝法律", pos:"字根", gloss:"legislation 立法／legal 合法的／legitimate 正當的／legacy 遺產／privilege 特權（privi 私人 ＋ leg 法律）／delegate 委派。"}]}
+      ]
+    }]
+  },
+
+  {
+    id:"g3", label:"測驗三、題組三（安慰劑效應 the Placebo Effect）", score:"第 56-60 題",
+    instruction:"依段落文意，從格中選出最適當的答案。答案：56 C　57 E　58 B　59 D　60 A",
+    bank:{A:"remedy 療法、解決之道",B:"subjective 主觀的",C:"empirical 實證的、基於觀察實驗的",D:"anticipation 預期、期待",E:"inhibit 抑制、阻礙"},
+    bankWide:true,
+    groups:[{
+      passage:"For centuries, doctors have noticed that some patients feel better after swallowing pills containing nothing but sugar. This puzzling phenomenon, known as the placebo effect, was long dismissed as mere imagination. Over the past few decades, however, researchers have gathered solid __56__ evidence that it is far more than wishful thinking.\n\nBrain scans show that when patients believe they are receiving real medicine, their brains release natural painkillers called endorphins, which __57__ the pain signals traveling through the nervous system. In other words, the improvement is physical and measurable rather than purely __58__ .\n\nWhat sets off this response? Scientists believe the key lies in __59__ . When we expect to feel better, the brain begins preparing the body for recovery before any treatment has had a chance to work. This explains why the details of a treatment matter so much. Even the color of a pill can make a difference, as many people expect red tablets to energize them and blue ones to calm them down. In one study, volunteers who were told that a painkiller was expensive reported greater relief than those told it was cheap, even though both groups had received the same sugar pill.\n\nStill, experts warn against overestimating its power. A sugar pill may ease headaches or nausea, but it is no __60__ for serious illnesses such as cancer or infections, which require proper medical care. Used wisely, however, the placebo effect reminds us that the mind and body are far more closely connected than we once believed.",
+      zh:"幾個世紀以來，醫師都注意到有些病人在吞下只含糖分的藥丸之後感覺好轉。這個令人費解的現象被稱為安慰劑效應，長期以來被當作純屬想像而不予理會。然而在過去數十年間，研究人員已蒐集到堅實的實證證據，顯示它遠不只是一廂情願的想法。\n\n腦部掃描顯示，當病人相信自己正在接受真正的藥物時，他們的大腦會釋放稱為腦內啡的天然止痛物質，而這些物質會抑制在神經系統中傳遞的疼痛訊號。換句話說，這種改善是生理上的、可測量的，而不是純粹主觀的。\n\n是什麼啟動了這個反應？科學家相信關鍵在於預期。當我們預期自己會好轉，大腦便在任何治療還來不及發揮作用之前，就開始為身體的復原做準備。這也解釋了為什麼治療的細節如此重要。就連藥丸的顏色都會造成差異，因為許多人預期紅色藥片能使人振奮、藍色藥片能讓人平靜。在一項研究中，被告知止痛藥價格昂貴的受試者，回報的緩解程度高於那些被告知藥很便宜的人，儘管兩組拿到的都是同一種糖片。\n\n不過，專家警告不要高估它的力量。糖片或許能緩解頭痛或噁心，但它不能作為癌症或感染等嚴重疾病的療法，那些病需要正規的醫療照護。然而只要善加運用，安慰劑效應提醒我們：心與身的連結，遠比我們過去所相信的更為緊密。",
+      questions:[
+        { n:56, kind:"形容詞", answer:"C", answerText:"empirical 實證的、基於觀察實驗的",
+          stem:"Over the past few decades, however, researchers have gathered solid ______ evidence that it is far more than wishful thinking.",
+          translation:"然而在過去數十年間，研究人員已蒐集到堅實的實證證據，顯示它遠不只是一廂情願的想法。",
+          why:"空格與 solid 並列修飾 evidence，要填形容詞。兩個線索：however 的轉折要推翻前一句的 was long dismissed as mere imagination（長期被當作純屬想像），而推翻想像最有力的就是觀察與實驗得來的證據；下一段的 Brain scans show ...（腦部掃描顯示）正是這類實證資料。empirical 意為「基於觀察或實驗的」。",
+          notes:[{term:"empirical", pos:"adj.", gloss:"實證的、經驗性的（empirical evidence／data／research／study）。adv. empirically；n. empiricism 經驗主義。對照 theoretical 理論的／anecdotal 僅憑個別事例的。", ex:"There is little empirical support for the claim.", exZh:"這個說法幾乎沒有實證支持。"},
+            {term:"wishful thinking", pos:"phr.", gloss:"一廂情願的想法。v. dismiss sth as sth 把某事視為…而不予理會（be dismissed as mere imagination 被當成純屬想像）。"}]},
+
+        { n:57, kind:"原形動詞", answer:"E", answerText:"inhibit 抑制、阻礙",
+          stem:"Their brains release natural painkillers called endorphins, which ______ the pain signals traveling through the nervous system.",
+          translation:"他們的大腦會釋放稱為腦內啡的天然止痛物質，而這些物質會抑制在神經系統中傳遞的疼痛訊號。",
+          why:"空格在關係代名詞 which 之後，要填動詞（主詞 endorphins 是複數，所以用原形）。兩個線索：主詞 natural painkillers（天然止痛物質）的作用就是減輕疼痛，而受詞 the pain signals traveling through the nervous system（在神經系統中傳遞的疼痛訊號）正是被壓制的對象。inhibit 意為「抑制」，是生理學的標準用字。",
+          notes:[{term:"inhibit", pos:"vt.", gloss:"抑制、阻礙（inhibit growth／the release of a hormone；inhibit sb from V-ing 使某人不敢做某事）。n. inhibition 抑制、拘謹；adj. inhibited 拘謹放不開的。", ex:"The drug inhibits the growth of bacteria.", exZh:"這種藥會抑制細菌的生長。"},
+            {term:"endorphin", pos:"n.", gloss:"腦內啡（體內的天然止痛與愉悅物質）。相關：dopamine 多巴胺／serotonin 血清素／adrenaline 腎上腺素／melatonin 褪黑激素。"}]},
+
+        { n:58, kind:"形容詞", answer:"B", answerText:"subjective 主觀的",
+          stem:"In other words, the improvement is physical and measurable rather than purely ______ .",
+          translation:"換句話說，這種改善是生理上的、可測量的，而不是純粹主觀的。",
+          why:"空格在 rather than purely 之後，要填形容詞。決定性線索是 rather than 的對比：physical and measurable（生理的、可測量的）——空格必須是這兩個詞的反面，也就是「只存在於感受裡、無法客觀量測」的 subjective（主觀的）。這也呼應第一段被推翻的 mere imagination（純屬想像）。",
+          notes:[{term:"subjective / objective", pos:"對照", gloss:"subjective 主觀的（a subjective judgment／subjective experience）／objective 客觀的。n. subjectivity 主觀性。集訓三作業二測驗二第 14 題也出現過 objective 當誘答。", ex:"Pain is highly subjective.", exZh:"疼痛是高度主觀的。"},
+            {term:"In other words", pos:"phr.", gloss:"換句話說（引導同義改寫）。看到它就知道前後兩句意思相同，是最好用的解題線索之一。同類：that is／namely／to put it another way。"}]},
+
+        { n:59, kind:"名詞", answer:"D", answerText:"anticipation 預期、期待",
+          stem:"Scientists believe the key lies in ______ . When we expect to feel better, the brain begins preparing the body for recovery before any treatment has had a chance to work.",
+          translation:"科學家相信關鍵在於預期。當我們預期自己會好轉，大腦便在任何治療還來不及發揮作用之前，就開始為身體的復原做準備。",
+          why:"空格在介系詞 in 之後，要填名詞。決定性線索是下一句的同義改寫：When we expect to feel better（當我們預期會好轉）——expect 的名詞化對應就是 anticipation；而 before any treatment has had a chance to work（在治療還沒生效之前）也說明效果來自事先的期待而非藥物本身。",
+          notes:[{term:"anticipation", pos:"n.", gloss:"預期、期待（in anticipation of sth 預期某事而…／with anticipation 滿懷期待地）。v. anticipate 預期（anticipate problems／anticipate V-ing）。", ex:"The crowd waited in eager anticipation.", exZh:"群眾滿懷期待地等著。"},
+            {term:"set off", pos:"phr. v.", gloss:"① 引發、觸發（set off a chain reaction／an alarm）② 出發。本段首句 What sets off this response? 問的就是「是什麼啟動了這個反應」。"}]},
+
+        { n:60, kind:"名詞", answer:"A", answerText:"remedy 療法、解決之道",
+          stem:"A sugar pill may ease headaches or nausea, but it is no ______ for serious illnesses such as cancer or infections, which require proper medical care.",
+          translation:"糖片或許能緩解頭痛或噁心，但它不能作為癌症或感染等嚴重疾病的療法，那些病需要正規的醫療照護。",
+          why:"a remedy for sth 是固定搭配，意為「某病的療法」。兩個線索：介系詞 for serious illnesses（針對嚴重疾病）是這個片語的標準結構，而 but 的轉折把 ease headaches or nausea（緩解頭痛噁心）與 require proper medical care（需要正規醫療）對比起來——糖片充其量緩解輕微症狀，稱不上真正的療法。",
+          notes:[{term:"remedy", pos:"n. / vt.", gloss:"n. 療法、解決之道（a remedy for a cold／a home remedy 偏方；be beyond remedy 無可救藥）／vt. 補救、矯正（remedy the situation）。adj. remedial 補救的（remedial classes 補救教學）。", ex:"There is no quick remedy for inflation.", exZh:"通膨沒有速效解方。"},
+            {term:"nausea", pos:"n.", gloss:"噁心、想吐（adj. nauseous 令人噁心的／感到噁心的）。症狀字彙：dizziness 暈眩／fatigue 疲勞／inflammation 發炎／infection 感染。"}]}
+      ]
+    }]
+  },
+
+  {
+    id:"g4", label:"測驗四、段落題組（快時尚的代價）", score:"第 61-65 題",
+    instruction:"依段落文意，從格中選出最適當的答案。答案：61 E　62 D　63 B　64 A　65 C",
+    bank:{A:"notorious 惡名昭彰的",B:"accumulate 累積、堆積",C:"consumption 消費（量）",D:"synthetic 合成的、人造的",E:"disposable 用完即丟的、一次性的"},
+    bankWide:true,
+    groups:[{
+      passage:"Not long ago, most families bought new clothes only a few times a year. Today, thanks to the rise of fast fashion, shoppers can pick up a T-shirt for less than the price of a sandwich. Brands release new styles almost every week, encouraging customers to see clothing as almost __61__ , rather than as something meant to last.\n\nThis convenience, however, comes at a heavy environmental price. Producing a single pair of jeans can require thousands of liters of water, and the chemical dyes used in factories often pollute nearby rivers. Moreover, most cheap garments are made from __62__ fibers such as polyester, which are produced from oil and release tiny plastic particles every time they are washed.\n\nThe problem does not end once the clothes are sold. Many shoppers throw items away after wearing them only a handful of times, and since polyester can take up to two hundred years to break down, mountains of unwanted clothing continue to __63__ in landfills around the world.\n\nThe human costs are just as troubling. To keep prices low, some brands rely on overseas factories that are __64__ for low wages, long hours, and unsafe working conditions.\n\nSo what can be done? Experts agree that recycling alone is not enough. The most effective solution is to curb our overall __65__ of new clothing by buying fewer but better-made pieces, repairing what we already own, and choosing second-hand items whenever possible. After all, the most sustainable outfit is the one already hanging in your closet.",
+      zh:"不久之前，大多數家庭一年只買幾次新衣。如今，由於快時尚的崛起，購物者能以比一份三明治更低的價格買到一件 T 恤。品牌幾乎每週推出新款，鼓勵顧客把衣服看成近乎用完即丟的東西，而不是打算長久穿下去的物件。\n\n然而這份便利付出了沉重的環境代價。生產一條牛仔褲可能需要數千公升的水，而工廠使用的化學染劑往往污染附近的河流。此外，多數便宜的成衣是以聚酯纖維這類合成纖維製成，它們由石油製造，而且每次洗滌都會釋出微小的塑膠顆粒。\n\n問題並不在衣服賣出之後就結束。許多購物者在只穿過幾次之後就把衣服丟掉，而由於聚酯纖維可能需要多達兩百年才能分解，成山的無用衣物持續在世界各地的垃圾掩埋場堆積。\n\n人力上的代價同樣令人憂心。為了壓低價格，有些品牌依賴海外工廠，而這些工廠以低薪、長工時與不安全的工作環境惡名在外。\n\n那麼能做些什麼呢？專家一致認為單靠回收並不足夠。最有效的解方是抑制我們對新衣服的整體消費量：買得更少但更耐穿、修補已經擁有的衣物，並在可能的時候選擇二手商品。畢竟，最永續的一套衣服，就是已經掛在你衣櫃裡的那一套。",
+      questions:[
+        { n:61, kind:"形容詞", answer:"E", answerText:"disposable 用完即丟的、一次性的",
+          stem:"Brands release new styles almost every week, encouraging customers to see clothing as almost ______ , rather than as something meant to last.",
+          translation:"品牌幾乎每週推出新款，鼓勵顧客把衣服看成近乎用完即丟的東西，而不是打算長久穿下去的物件。",
+          why:"空格在 see sth as almost 之後，要填形容詞當補語。決定性線索是 rather than 的對比：something meant to last（打算長久使用的東西）——空格必須是它的反面；而前文的 new styles almost every week（幾乎每週推新款）與 a T-shirt for less than the price of a sandwich（T 恤比三明治還便宜）也鋪陳出「穿幾次就丟」的消費模式。",
+          notes:[{term:"disposable", pos:"adj.", gloss:"用完即丟的（disposable cups／masks／a disposable camera）；也指「可動用的」（disposable income 可支配所得）。v. dispose of sth 丟棄、處置；n. disposal。", ex:"We should cut back on disposable plastics.", exZh:"我們應該減少使用一次性塑膠。"},
+            {term:"fast fashion", pos:"phr.", gloss:"快時尚（快速推出、低價、短生命週期的服飾產業）。相關：slow fashion 慢時尚／sustainable 永續的／carbon footprint 碳足跡／greenwashing 漂綠。"}]},
+
+        { n:62, kind:"形容詞", answer:"D", answerText:"synthetic 合成的、人造的",
+          stem:"Most cheap garments are made from ______ fibers such as polyester, which are produced from oil and release tiny plastic particles every time they are washed.",
+          translation:"多數便宜的成衣是以聚酯纖維這類合成纖維製成，它們由石油製造，而且每次洗滌都會釋出微小的塑膠顆粒。",
+          why:"空格修飾名詞 fibers，要填形容詞。兩個線索：舉例 such as polyester（例如聚酯纖維）是典型的人造纖維，而關係子句 which are produced from oil and release tiny plastic particles（由石油製造、會釋出塑膠微粒）更明確指出它們不是天然材質。synthetic 意為「合成的」。",
+          notes:[{term:"synthetic", pos:"adj.", gloss:"合成的、人造的（synthetic fibers／materials／rubber）。n. synthesis 合成（複數 syntheses）；v. synthesize 合成。反義 natural／organic。集訓三作業二第 21 題也出現過這個字當誘答。", ex:"The jacket is made of synthetic down.", exZh:"這件外套是用人造羽絨做的。"},
+            {term:"紡織材質", pos:"整理", gloss:"天然：cotton 棉／wool 羊毛／silk 絲／linen 亞麻。合成：polyester 聚酯／nylon 尼龍／acrylic 壓克力纖維／spandex 彈性纖維。microplastics 塑膠微粒。"}]},
+
+        { n:63, kind:"原形動詞", answer:"B", answerText:"accumulate 累積、堆積",
+          stem:"Since polyester can take up to two hundred years to break down, mountains of unwanted clothing continue to ______ in landfills around the world.",
+          translation:"由於聚酯纖維可能需要多達兩百年才能分解，成山的無用衣物持續在世界各地的垃圾掩埋場堆積。",
+          why:"空格在 continue to 之後，要填原形動詞。兩個線索：主詞 mountains of unwanted clothing（成山的無用衣物）本身就是堆積的意象，而原因 polyester can take up to two hundred years to break down（聚酯要兩百年才分解）說明丟掉的衣服不會消失，只會愈積愈多。accumulate 在此是不及物用法。",
+          notes:[{term:"accumulate", pos:"v.", gloss:"累積、堆積（accumulate wealth／evidence／dust；Snow accumulated on the roof.）。n. accumulation 累積。注意雙 c 單 m（ac-cu-mu-late）。", ex:"Debt continued to accumulate.", exZh:"債務持續累積。"},
+            {term:"break down", pos:"phr. v.", gloss:"① 分解（Plastic takes centuries to break down.）② 故障③ 情緒崩潰④ 拆解分析（break down the costs）。adj. biodegradable 可生物分解的。"}]},
+
+        { n:64, kind:"形容詞", answer:"A", answerText:"notorious 惡名昭彰的",
+          stem:"To keep prices low, some brands rely on overseas factories that are ______ for low wages, long hours, and unsafe working conditions.",
+          translation:"為了壓低價格，有些品牌依賴海外工廠，而這些工廠以低薪、長工時與不安全的工作環境惡名在外。",
+          why:"空格在 are 之後、for 之前，要填形容詞構成 be notorious for sth（因某事惡名在外）。兩個線索：介系詞 for 加上三項負面事實 low wages, long hours, and unsafe working conditions（低薪、長工時、不安全的工作環境）——因壞事而出名，正是 notorious；而本段開頭 The human costs are just as troubling（人力代價同樣令人憂心）也確立了負面基調。",
+          notes:[{term:"be notorious for", pos:"phr.", gloss:"因（壞事）而聞名（be notorious for corruption／delays）。n. notoriety 惡名。同義 be infamous for（集訓三練習卷測驗二第 37 題考過）；對照 be famous／renowned for（因好事聞名）。", ex:"The road is notorious for accidents.", exZh:"這條路以車禍頻繁惡名在外。"},
+            {term:"sweatshop", pos:"n.", gloss:"工廠條件惡劣的「血汗工廠」。勞動議題字彙：minimum wage 最低工資／overtime 加班／labor rights 勞權／supply chain 供應鏈／fair trade 公平貿易。"}]},
+
+        { n:65, kind:"名詞", answer:"C", answerText:"consumption 消費（量）",
+          stem:"The most effective solution is to curb our overall ______ of new clothing by buying fewer but better-made pieces, repairing what we already own, and choosing second-hand items whenever possible.",
+          translation:"最有效的解方是抑制我們對新衣服的整體消費量：買得更少但更耐穿、修補已經擁有的衣物，並在可能的時候選擇二手商品。",
+          why:"空格前有 our overall 修飾、後有 of new clothing，要填名詞。決定性線索是三項具體做法：buying fewer（買更少）、repairing what we already own（修補舊衣）、choosing second-hand items（選二手）——這三件事共同指向「少買新的」，而動詞 curb（抑制）要抑制的正是購買與使用的總量。consumption 意為「消費量」。",
+          notes:[{term:"consumption", pos:"n.", gloss:"消費（量）、消耗（energy／water consumption；conspicuous consumption 炫耀性消費）。v. consume 消耗、食用；n. consumer 消費者。", ex:"Household energy consumption fell last year.", exZh:"家庭能源消耗量去年下降了。"},
+            {term:"curb", pos:"vt. / n.", gloss:"vt. 抑制、約束（curb inflation／spending／emissions）／n. 路緣（美式；英式 kerb）。同義：rein in／restrain／check。"}]}
+      ]
+    }]
+  }
+  ]
+};
+
+/* ==========================================================================
+   ②  以下為程式碼，一般情況不需要修改。
+   ========================================================================== */
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const wordOf = q => q.options ? q.options[q.answer] : (q.answerText || '');
+const allQ = [];
+EXAM.sections.forEach(s => s.groups.forEach(g => g.questions.forEach(q => { q.__sid = s.id; allQ.push(q); })));
+const findQ = (n, sid) => allQ.find(q => String(q.n) === String(n) && (sid == null || q.__sid === sid));
+
+document.getElementById('brand').textContent = EXAM.brand;
+document.getElementById('examTitle').textContent = EXAM.title;
+document.getElementById('examMeta').textContent = EXAM.meta;
+
+let noteCount = 0;
+allQ.forEach(q => noteCount += (q.notes || []).length);
+
+const nav = document.getElementById('nav');
+EXAM.sections.forEach(s => {
+  const a = document.createElement('a');
+  a.className = 'chip'; a.href = '#sec-' + s.id; a.textContent = s.label.replace(/^[一二三四五六]、/, m => m);
+  nav.appendChild(a);
+});
+const noteChip = document.createElement('a');
+noteChip.className = 'chip'; noteChip.href = '#side'; noteChip.textContent = '重點表 ' + noteCount;
+nav.appendChild(noteChip);
+const toggleAll = document.createElement('button');
+toggleAll.className = 'chip solid'; toggleAll.textContent = '全部展開';
+nav.appendChild(toggleAll);
+
+function renderPassage(g, i, sid) {
+  let html = esc(g.passage);
+  g.questions.forEach(q => {
+    if (!q.evidence) return;
+    const t = esc(q.evidence);
+    if (html.includes(t)) html = html.replace(t, `<span class="hl ev" data-ev="${q.n}">${t}</span>`);
+  });
+  html = html.replace(/__(\d+)__/g, (m, n) =>
+    `<button class="blank" data-blank="${n}" aria-label="第 ${n} 題空格">${n}</button>`);
+  const body = '<div class="passage">' +
+    html.split(/\n{2,}/).map(p => '<p>' + p.replace(/\n/g, ' ') + '</p>').join('') + '</div>';
+  if (!g.zh) return body;
+  const id = sid + '-' + i;
+  return body +
+    `<button class="zhbtn" data-zh="${id}">全文中譯</button>` +
+    `<div class="zhbox" id="zh-${id}">` +
+      g.zh.split(/\n{2,}/).map(p => '<p>' + esc(p).replace(/\n/g, ' ') + '</p>').join('') +
+    '</div>';
+}
+
+function renderQ(q) {
+  const parts = [];
+  if (q.options) {
+    const ks = Object.keys(q.options);
+    parts.push('<div class="opts">' + ks.map(k =>
+      `<div class="opt"><span class="opt-k">(${k})</span><span>${esc(q.options[k])}</span></div>`).join('') + '</div>');
+  }
+  const head = `<div class="q-tag"><span class="q-n">${String(q.n).padStart(2,'0')}</span><span class="q-kind">${esc(q.kind || '')}</span></div>` +
+    (q.prompt ? `<p class="prompt">${esc(q.prompt)}</p>` : '') +
+    (q.stem ? `<p class="stem">${esc(q.stem).replace(/\n/g,'<br>')}</p>` : '');
+
+  let ans = '';
+  if (q.answers) {
+    ans = '<ul class="fills">' + q.answers.map(a =>
+      `<li class="fill"><span class="fill-k">${esc(a.k)}</span><span class="fill-w hl" data-ansmulti>${esc(a.w)}</span><span class="fill-n">${esc(a.note || '')}</span></li>`).join('') + '</ul>';
+  } else {
+    const label = q.options ? `(${q.answer}) ${esc(wordOf(q))}` :
+      (q.answer ? `(${q.answer}) ${esc(q.answerText)}` : esc(q.answerText));
+    ans = `<p class="ans"><span class="ans-k">答案</span><span class="ans-v hl" data-ans="${q.n}">${label}</span></p>`;
+  }
+
+  let expl = '';
+  if (q.explain) {
+    expl = '<ul class="lines">' + Object.keys(q.options).map(k => {
+      const right = q.multi ? q.multi.includes(k) : k === q.answer;
+      return `<li class="line ${right ? 'right' : 'wrong'}"><span class="line-k">(${k})</span><span>${esc(q.explain[k] || '')}</span></li>`;
+    }).join('') + '</ul>';
+  }
+  const why = q.why ? `<p class="why">${esc(q.why)}</p>` : '';
+  const sample = q.sample ? `<div class="sample"><p class="note-h">參考範文</p>` +
+    q.sample.split(/\n{2,}/).map(p => `<p>${esc(p).replace(/\n/g,' ')}</p>`).join('') + '</div>' : '';
+  const evid = q.evidence ? `<p class="evid"><span>文中依據</span>${esc(q.evidence)}</p>` : '';
+  const notes = (q.notes || []).length ? `<div class="note"><p class="note-h">重點整理</p>` +
+    q.notes.map(nt => `<p class="note-i"><span class="term">${esc(nt.term)}</span><span class="pos">${esc(nt.pos || '')}</span><span class="gloss">${esc(nt.gloss || '')}</span>` +
+      (nt.ex ? `<span class="ex">${esc(nt.ex)}<i>${esc(nt.exZh || '')}</i></span>` : '') + '</p>').join('') + '</div>' : '';
+
+  return `<article class="q" id="q-${q.__sid}-${q.n}" data-n="${q.n}" data-sid="${q.__sid}">
+    <div class="q-top">${head}${parts.join('')}
+      <button class="reveal" aria-expanded="false" aria-controls="body-${q.n}">看詳解</button>
+    </div>
+    <div class="body" id="body-${q.n}">
+      ${ans}${q.translation ? `<p class="zh">${esc(q.translation)}</p>` : ''}${expl}${why}${evid}${sample}${notes}
+    </div>
+  </article>`;
+}
+
+document.getElementById('main').innerHTML = EXAM.sections.map((s, i) => `
+  <section class="sec" id="sec-${s.id}">
+    <div class="sec-head">
+      <span class="sec-num">${String(i+1).padStart(2,'0')}</span>
+      <h2 class="sec-label">${esc(s.label)}</h2>
+      <span class="sec-score">${esc(s.score || '')}</span>
+    </div>
+    ${s.instruction ? `<p class="sec-inst">${esc(s.instruction)}</p>` : ''}
+    ${s.bank ? `<div class="bank${s.bankWide ? ' wide' : ''}">${Object.keys(s.bank).map(k =>
+      `<div class="bank-i" data-bank="${k}"><span>(${k})</span>${esc(s.bank[k])}</div>`).join('')}</div>` : ''}
+    ${s.groups.map((g, gi) => (g.passage ? renderPassage(g, gi, s.id) : '') + g.questions.map(renderQ).join('')).join('')}
+  </section>`).join('');
+
+const items = [];
+allQ.forEach(q => (q.notes || []).forEach(nt => items.push({ ...nt, n: q.n, sid: q.__sid })));
+document.getElementById('side').innerHTML = `
+  <p class="side-h">Notes</p>
+  <p class="side-t">本卷重點 ${items.length} 則</p>
+  <ul class="card-list">${items.map(nt => `
+    <li class="card-item"><a href="#q-${nt.sid}-${nt.n}">
+      <span class="jump">第 ${nt.n} 題</span>
+      <span class="term">${esc(nt.term)}</span><span class="pos">${esc(nt.pos || '')}</span>
+      <div class="gloss">${esc(nt.gloss || '')}</div>
+    </a></li>`).join('')}</ul>
+  <p class="side-note">點任一則可跳到出處題目。用瀏覽器列印（Ctrl／⌘ + P）會自動展開全部詳解與中譯，可直接印成講義。</p>`;
+
+document.getElementById('foot').textContent = `共 ${allQ.length} 題 · ${EXAM.footer}`;
+
+function setOpen(card, open) {
+  card.classList.toggle('open', open);
+  const btn = card.querySelector('.reveal');
+  btn.setAttribute('aria-expanded', open);
+  btn.firstChild.nodeValue = open ? '收合詳解' : '看詳解';
+  const n = card.dataset.n;
+  const sec = card.closest('.sec') || document;
+  card.querySelectorAll('.hl').forEach(h => h.classList.toggle('on', open));
+  const ev = sec.querySelector(`[data-ev="${n}"]`);
+  if (ev) ev.classList.toggle('on', open);
+  const q = findQ(n, card.dataset.sid);
+  if (q && q.answer && q.answerText) {
+    const bi = sec.querySelector(`[data-bank="${q.answer}"]`);
+    if (bi) bi.classList.toggle('used', open);
+  }
+  const bl = sec.querySelector(`[data-blank="${n}"]`);
+  if (bl) {
+    if (open) {
+      bl.classList.add('filled');
+      bl.innerHTML = `<sup>${n}</sup><span class="hl">${esc(wordOf(q))}</span>`;
+      requestAnimationFrame(() => bl.querySelector('.hl').classList.add('on'));
+    } else {
+      bl.classList.remove('filled');
+      bl.textContent = n;
+    }
+  }
+}
+document.addEventListener('click', e => {
+  const rv = e.target.closest('.reveal');
+  if (rv) { const c = rv.closest('.q'); setOpen(c, !c.classList.contains('open')); return; }
+  const zb = e.target.closest('.zhbtn');
+  if (zb) { zb.classList.toggle('on'); document.getElementById('zh-' + zb.dataset.zh).classList.toggle('on'); return; }
+  const bl = e.target.closest('.blank');
+  if (bl) {
+    const c = document.getElementById('q-' + bl.dataset.blank);
+    if (!c.classList.contains('open')) setOpen(c, true);
+    c.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+});
+toggleAll.addEventListener('click', () => {
+  const open = toggleAll.textContent === '全部展開';
+  document.querySelectorAll('.q').forEach(c => setOpen(c, open));
+  toggleAll.textContent = open ? '全部收合' : '全部展開';
+});
+window.addEventListener('beforeprint', () => {
+  document.querySelectorAll('.q').forEach(c => setOpen(c, true));
+  document.querySelectorAll('.zhbox').forEach(b => b.classList.add('on'));
+  toggleAll.textContent = '全部收合';
+});
+</script>
+</body>
+</html>
